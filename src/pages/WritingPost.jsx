@@ -5,15 +5,17 @@ import { POSTS } from "../data/posts.js";
 
 const CONTENT_WIDTH = "max-w-[48rem] lg:max-w-[68rem]";
 
-/* Minimal inline markdown: *word* -> italic */
+/* Minimal inline markdown: **word** -> bold, *word* -> italic */
 function renderInline(text) {
-  return text.split(/(\*[^*]+\*)/g).map((part, i) =>
-    part.startsWith("*") && part.endsWith("*") ? (
-      <em key={i}>{part.slice(1, -1)}</em>
-    ) : (
-      <React.Fragment key={i}>{part}</React.Fragment>
-    )
-  );
+  return text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith("*") && part.endsWith("*")) {
+      return <em key={i}>{part.slice(1, -1)}</em>;
+    }
+    return <React.Fragment key={i}>{part}</React.Fragment>;
+  });
 }
 
 function Block({ block }) {
@@ -38,9 +40,40 @@ function Block({ block }) {
   );
 }
 
+function PostNav({ prevPost, nextPost }) {
+  if (!prevPost && !nextPost) return null;
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div>
+        {prevPost && (
+          <Link to={`/writing/${prevPost.slug}`} className="group block">
+            <div className="text-[11px] tracking-wide text-[#9A9AA5] mb-1">← PREVIOUS</div>
+            <div className="text-[14px] sm:text-[15px] font-medium text-[#14141A] group-hover:text-[#2452C4] transition-colors">
+              {prevPost.title}
+            </div>
+          </Link>
+        )}
+      </div>
+      <div className="sm:text-right">
+        {nextPost && (
+          <Link to={`/writing/${nextPost.slug}`} className="group block">
+            <div className="text-[11px] tracking-wide text-[#9A9AA5] mb-1">NEXT →</div>
+            <div className="text-[14px] sm:text-[15px] font-medium text-[#14141A] group-hover:text-[#2452C4] transition-colors">
+              {nextPost.title}
+            </div>
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function WritingPost() {
   const { slug } = useParams();
-  const post = POSTS.find((p) => p.slug === slug);
+  const index = POSTS.findIndex((p) => p.slug === slug);
+  const post = index !== -1 ? POSTS[index] : null;
+  const prevPost = index > 0 ? POSTS[index - 1] : null;
+  const nextPost = index !== -1 && index < POSTS.length - 1 ? POSTS[index + 1] : null;
 
   if (!post) {
     return (
@@ -85,6 +118,10 @@ export default function WritingPost() {
         {post.body.map((block, i) => (
           <Block key={i} block={block} />
         ))}
+      </section>
+
+      <section className={`${CONTENT_WIDTH} mx-auto px-4 sm:px-6 pb-10 sm:pb-14 pt-8 border-t border-black/5`}>
+        <PostNav prevPost={prevPost} nextPost={nextPost} />
       </section>
 
       <Footer />

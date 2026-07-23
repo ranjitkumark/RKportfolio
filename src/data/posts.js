@@ -1,8 +1,101 @@
 // Real posts live alongside placeholders here — swap in more real
 // title/excerpt/date/body content as Ranjit's writing is ready. Body is a
 // list of blocks ({ type: "p" | "h2" | "note", text }) so posts can mix
-// paragraphs, subheadings, and a closing note; *word* renders as italic.
+// paragraphs, subheadings, and a closing note; *word* renders as italic,
+// **word** renders as bold.
 export const POSTS = [
+  {
+    slug: "psychology-of-variable-rewards",
+    date: "July 23, 2026",
+    readTime: "4 min read",
+    title: "Why Uncertainty Is More Addictive Than Reward Itself",
+    excerpt:
+      "Why a maybe is more compelling than a guarantee — and why willpower alone can't beat a variable-ratio schedule.",
+    body: [
+      {
+        type: "p",
+        text:
+          "If you want to understand why you can't put your phone down, forget the app icons and the color schemes. Look at a pigeon in a box.",
+      },
+      {
+        type: "p",
+        text:
+          "In the 1950s, B.F. Skinner ran an experiment that quietly built the entire attention economy. He put pigeons in a box with a lever. Peck the lever, get a food pellet. Simple enough — the bird learns the pattern, pecks when hungry, stops when full. Predictable behavior for a predictable reward.",
+      },
+      {
+        type: "p",
+        text:
+          "Then he changed one variable. Instead of a pellet every time, the lever paid out on a *random* schedule. Sometimes one peck. Sometimes twenty. No pattern the bird could learn.",
+      },
+      {
+        type: "p",
+        text:
+          "The pigeons didn't peck less. They pecked obsessively — faster, longer, and far harder to get to stop than the pigeons on the predictable schedule. Skinner called it a variable-ratio reinforcement schedule, and it turned out to be one of the most powerful behavior-shaping tools psychology has ever documented.",
+      },
+      { type: "h2", text: "Certainty Is Boring. Your Brain Knows It." },
+      {
+        type: "p",
+        text: "Here's the counterintuitive part: a guaranteed reward is less compelling than a maybe.",
+      },
+      {
+        type: "p",
+        text:
+          "When a reward is certain, the anticipation and the payoff barely register differently — dopamine fires, you get what you expected, done. But when a reward is uncertain, dopamine doesn't just fire *at* the reward. It fires in the gap of not knowing, in the reaching itself. Neuroscientist Wolfram Schultz's research on dopamine neurons found that reward-predicting cues generate the largest dopamine response when the outcome is *maximally uncertain* — right around a 50/50 chance — not when the reward is guaranteed or impossible.",
+      },
+      { type: "p", text: "Translation: your brain isn't chasing the reward. It's chasing the not-knowing." },
+      {
+        type: "p",
+        text:
+          "This is why a slot machine is more compelling than a vending machine, even though the vending machine has a 100% success rate. It's why \"check email\" turns into a reflex faster than \"check bank balance,\" even though your bank balance changes far less often. Certainty kills the itch. Ambiguity feeds it.",
+      },
+      { type: "h2", text: "Three Flavors of Maybe" },
+      {
+        type: "p",
+        text: "Not all variable rewards work the same way, and the products that hook you hardest usually stack more than one.",
+      },
+      {
+        type: "p",
+        text:
+          "**Rewards of the tribe** — social validation you didn't see coming. A like, a comment, a reply. You don't know if it's there until you check, and it's never guaranteed, which is exactly why checking becomes reflexive.",
+      },
+      {
+        type: "p",
+        text:
+          "**Rewards of the hunt** — material or informational payoff with unpredictable value. The next scroll on a feed might be boring or it might be the best thing you've seen all week. Slot machines, loot boxes, and infinite-scroll feeds all run on this same hunt logic — you're foraging, not consuming.",
+      },
+      {
+        type: "p",
+        text:
+          "**Rewards of the self** — a private sense of competence or progress that shows up unpredictably. A high score you didn't expect. A streak you almost broke. Games are especially good at manufacturing this one because they control the entire reward schedule from scratch.",
+      },
+      {
+        type: "p",
+        text:
+          "Stack all three — you don't know if anyone liked your post, you don't know what you'll see next, you don't know if you'll beat your record — and you've built something closer to a casino than an app.",
+      },
+      { type: "h2", text: "Why Your Willpower Isn't the Problem" },
+      {
+        type: "p",
+        text:
+          "This is the part that matters most and gets said least: if you've ever felt weak-willed for checking your phone compulsively, you're diagnosing the wrong system. Variable-ratio schedules are, by design, the most resistant to extinction of any reinforcement pattern psychology has studied. Behavior trained on a variable schedule doesn't just persist longer — it's *harder to unlearn* than behavior trained on a predictable one, even after the rewards stop coming entirely. That's not a personal failing. That's the mechanism working exactly as engineered.",
+      },
+      {
+        type: "p",
+        text:
+          "Which is the uncomfortable truth sitting underneath every \"just have more self-control\" take on phone addiction: you're applying willpower to a system that was specifically selected, tested, and iterated on *because* it defeats willpower. Skinner didn't design his box to be resisted. Neither did the product teams who read his research afterward.",
+      },
+      { type: "h2", text: "The Only Real Defense" },
+      {
+        type: "p",
+        text:
+          "Since the mechanism runs on uncertainty, the only thing that actually breaks it is removing the uncertainty — not gritting your teeth through it. Turn off notifications so the trigger doesn't arrive uninvited. Batch-check things on your own schedule instead of theirs. Make the reward predictable again — check email at set times and it stops being a slot machine and goes back to being a mailbox.",
+      },
+      {
+        type: "p",
+        text: "You can't out-discipline a variable-ratio schedule. You can only stop feeding it a random one.",
+      },
+    ],
+  },
   {
     slug: "hooked-ethics-of-habit-design",
     date: "July 23, 2026",
