@@ -76,16 +76,17 @@ const EDUCATION = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* Hero — full-screen intro with the real illustration                 */
-/* (the source image already has the "Product Vision" etc. labels)     */
+/* Hero illustration — kept small and tucked in a corner so it reads   */
+/* as a decorative accent, not competing with the centered headline.  */
+/* (the source image already has the "Product Vision" etc. labels)    */
 /* ------------------------------------------------------------------ */
 function HeroIllustration() {
   return (
-    <div className="hidden md:block w-full max-w-[420px] mx-auto">
+    <div className="hidden md:block absolute top-2 right-0 lg:right-4 w-[130px] lg:w-[160px] pointer-events-none">
       <img
         src="/aboutus-me.png"
         alt="Illustration of Ranjit sitting cross-legged, surrounded by labels for Product Vision, User Insights, Business Impact, UX Strategy, and Stakeholder Alignment"
-        className="w-full h-auto select-none pointer-events-none animate-shakeVertical"
+        className="w-full h-auto select-none animate-shakeVertical"
       />
     </div>
   );
@@ -98,8 +99,8 @@ function Row({ label, sub, children }) {
   return (
     <div className="border-t border-black/5 pt-6 grid sm:grid-cols-3 gap-3 sm:gap-6">
       <div>
-        <div className="text-[15px] font-semibold text-[#14141A]">{label}</div>
-        {sub && <div className="text-[12px] text-[#9A9AA5] mt-0.5">{sub}</div>}
+        <div className="text-[18px] font-semibold text-[#14141A]">{label}</div>
+        {sub && <div className="text-[14px] text-[#9A9AA5] mt-0.5">{sub}</div>}
       </div>
       <div className="sm:col-span-2">{children}</div>
     </div>
@@ -115,7 +116,7 @@ function SkillGroup({ group, items }) {
         {items.map((s, i) => (
           <span
             key={s}
-            className={`text-[13px] sm:text-[14px] text-[#6C6C76] px-3 first:pl-0 ${
+            className={`text-[13px] sm:text-[14px] text-[#2D2D2D] px-3 first:pl-0 ${
               i !== items.length - 1 ? "border-r border-black/15" : ""
             }`}
           >
@@ -130,50 +131,44 @@ function SkillGroup({ group, items }) {
 export default function About() {
   return (
     <div className="animate-fadeIn w-full">
-      {/* Full-screen hero */}
-      <section className="md:min-h-[80vh] flex items-center px-4 sm:px-6 md:px-10 lg:px-16 py-10">
-        <div className="w-full grid md:grid-cols-2 items-center gap-10 sm:gap-14">
-          <div className="text-center md:text-left order-2 md:order-1">
-            <p className="text-[22px] sm:text-[26px] md:text-[30px] text-[#17213E] tracking-tight leading-tight">
-              <span className="font-light">I'm</span> <span className="font-bold">Ranjit</span>
-            </p>
-            <h1 className="mt-2 text-[36px] sm:text-[48px] md:text-[56px] lg:text-[64px] font-bold text-[#DD9B21] tracking-tight leading-[1.05]">
-              {TAGLINE}
-            </h1>
-            <p className="mt-5 text-[13px] sm:text-[14px] md:text-[15px] leading-relaxed text-[#5B5B66] max-w-lg mx-auto md:mx-0">
-              {PROFILE}
-            </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-3">
-              <a
-                href="/ranjit-resume.pdf"
-                download
-                className="text-[13px] font-medium text-white bg-[#17213E] rounded-full px-5 py-2.5 shadow-sm hover:bg-[#232F55] transition-colors"
-              >
-                Download Resume ↓
-              </a>
-              <a
-                href="mailto:postranjitk@gmail.com"
-                className="text-[13px] font-medium text-[#43434D] bg-white border border-black/5 rounded-full px-5 py-2.5 shadow-sm hover:border-black/15 transition-colors"
-              >
-                Get in touch
-              </a>
-            </div>
-          </div>
-          <div className="order-1 md:order-2">
-            <HeroIllustration />
-          </div>
+      {/* Centered hero, matching the Home page's hero treatment */}
+      <section className="relative min-h-[70vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-16 lg:px-32 py-10">
+        <HeroIllustration />
+        <p className="text-[22px] sm:text-[26px] md:text-[30px] text-[#17213E] tracking-tight leading-tight">
+          <span className="font-light">I'm</span> <span className="font-bold">Ranjit</span>
+        </p>
+        <h1 className="mt-2 text-[36px] sm:text-[48px] lg:text-[56px] font-bold text-[#DD9B21] tracking-tight leading-[1.05]">
+          {TAGLINE}
+        </h1>
+        <p className="mt-5 text-[13px] sm:text-[14px] md:text-[15px] leading-relaxed text-[#5B5B66] max-w-lg mx-auto">
+          {PROFILE}
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="/ranjit-resume.pdf"
+            download
+            className="text-[13px] font-medium text-white bg-[#17213E] rounded-full px-5 py-2.5 shadow-sm hover:bg-[#232F55] transition-colors"
+          >
+            Download Resume ↓
+          </a>
+          <a
+            href="mailto:postranjitk@gmail.com"
+            className="text-[13px] font-medium text-[#43434D] bg-white border border-black/5 rounded-full px-5 py-2.5 shadow-sm hover:border-black/15 transition-colors"
+          >
+            Get in touch
+          </a>
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 md:px-10 lg:px-16 mt-16 sm:mt-20 pb-4 space-y-8 sm:space-y-10">
+      <section className="px-4 sm:px-6 md:px-16 lg:px-32 mt-16 sm:mt-20 pb-4 space-y-8 sm:space-y-10">
         {EXPERIENCE.map((job) => (
           <Row key={job.company + job.period} label={job.company} sub={job.period}>
-            <div className="text-[14px] font-medium text-[#43434D] mb-1.5">{job.role}</div>
-            <p className="text-[13px] sm:text-[14px] leading-relaxed text-[#6C6C76] max-w-3xl">{job.body}</p>
+            <div className="text-[16px] font-semibold text-[#2D2D2D] mb-1.5">{job.role}</div>
+            <p className="text-[13px] sm:text-[14px] leading-relaxed text-[#2D2D2D] max-w-3xl">{job.body}</p>
             {job.bullets && (
               <ul className="mt-3 space-y-2 list-disc pl-4 max-w-3xl">
                 {job.bullets.map((b, i) => (
-                  <li key={i} className="text-[13px] sm:text-[14px] leading-relaxed text-[#6C6C76]">
+                  <li key={i} className="text-[13px] sm:text-[14px] leading-relaxed text-[#2D2D2D]">
                     {b}
                   </li>
                 ))}

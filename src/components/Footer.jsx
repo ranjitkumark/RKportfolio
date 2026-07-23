@@ -5,7 +5,7 @@ import React from "react";
    pages stay visually consistent and only the background differs. */
 export function FooterContent() {
   return (
-    <div className="w-full flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 px-4 sm:px-6 md:px-10 lg:px-16 text-[13px] text-[#9A9AA5] text-center sm:text-left">
+    <div className="w-full flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 px-4 sm:px-6 md:px-16 lg:px-32 text-[13px] text-[#9A9AA5] text-center sm:text-left">
       <span>© 2026 Ranjit Kumar</span>
       <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
         <a

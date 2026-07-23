@@ -5,6 +5,7 @@ import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Work from "./pages/Work.jsx";
 import Writing from "./pages/Writing.jsx";
+import WritingPost from "./pages/WritingPost.jsx";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/work" element={<Work />} />
             <Route path="/writing" element={<Writing />} />
+            <Route path="/writing/:slug" element={<WritingPost />} />
           </Routes>
         </main>
       </div>

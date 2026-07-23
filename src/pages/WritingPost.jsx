@@ -1,0 +1,60 @@
+import React from "react";
+import { useParams, Link } from "react-router-dom";
+import Footer from "../components/Footer.jsx";
+import { POSTS } from "../data/posts.js";
+
+export default function WritingPost() {
+  const { slug } = useParams();
+  const post = POSTS.find((p) => p.slug === slug);
+
+  if (!post) {
+    return (
+      <div className="animate-fadeIn">
+        <section className="text-center px-4 sm:px-6 pt-16 sm:pt-24 pb-16 sm:pb-24">
+          <h1 className="text-[24px] sm:text-[28px] font-semibold text-[#14141A]">Post not found</h1>
+          <Link
+            to="/writing"
+            className="mt-4 inline-block text-[13px] text-[#43434D] bg-white border border-black/5 rounded-full px-5 py-2.5 shadow-sm hover:border-black/15 transition-colors"
+          >
+            ← Back to Writing
+          </Link>
+        </section>
+        <Footer />
+      </div>
+    );
+  }
+
+  return (
+    <div className="animate-fadeIn">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12">
+        <Link
+          to="/writing"
+          className="inline-flex items-center gap-1.5 text-[13px] text-[#9A9AA5] hover:text-[#43434D] transition-colors"
+        >
+          ← Back to Writing
+        </Link>
+      </section>
+
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-6 pb-8 sm:pb-10 border-b border-black/5">
+        <div className="flex items-center gap-3 text-[11px] tracking-wide text-[#9A9AA5] mb-4">
+          <span className="uppercase">{post.date}</span>
+          <span className="w-4 h-px bg-[#D5D5DC]" />
+          <span className="uppercase">{post.readTime}</span>
+        </div>
+        <h1 className="text-[26px] sm:text-[32px] md:text-[38px] font-bold text-[#14141A] tracking-tight leading-tight">
+          {post.title}
+        </h1>
+      </section>
+
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-5">
+        {post.body.map((para, i) => (
+          <p key={i} className="text-[14px] sm:text-[15px] leading-relaxed text-[#2D2D2D]">
+            {para}
+          </p>
+        ))}
+      </section>
+
+      <Footer />
+    </div>
+  );
+}
