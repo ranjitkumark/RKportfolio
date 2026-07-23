@@ -1,57 +1,9 @@
 import React from "react";
-import StackedCaseStudyCard from "../components/StackedCaseStudyCard.jsx";
 import Footer from "../components/Footer.jsx";
 
+const TAGLINE = "Experience Strategist.";
 const PROFILE =
-  "Senior/Lead UX Designer with 12+ years of experience designing intuitive, user-centered digital experiences across benefits management, IoT, AI, e-commerce, and decentralized (dApp) platforms. Skilled at translating complex, cross-functional requirements into scalable design solutions that improve usability, accessibility, and business outcomes.";
-
-const HIGHLIGHTS = [
-  {
-    id: "spending",
-    badge: "PRODUCT DESIGN",
-    badgeBg: "#D8F3EA",
-    badgeText: "#0E8A66",
-    title: "Spending Accounts",
-    subtitle: "Health Savings Account Platform",
-    body:
-      "Led a full revamp of the HSA experience — simplified employer setup while keeping IRS compliance, cut admin task time from 38 to 21 minutes, and reduced support tickets by 38%. Helped win new clients, contributing to a 15% revenue increase.",
-    stat: "+41%",
-    statLabel: "CONTRIBUTION RATE",
-    statColor: "#0E8A66",
-    panelBg: "#4B7A72",
-    mock: "hsa",
-  },
-  {
-    id: "communication",
-    badge: "UX RESEARCH",
-    badgeBg: "#DCE7FB",
-    badgeText: "#2452C4",
-    title: "Communication",
-    subtitle: "Messaging & Notification System",
-    body:
-      "Shipped prebuilt templates and automated messaging flows for employee communications — cut task time from 69 to 47 minutes and lifted feature CSAT from 2.9 to 4.1, improving clarity and consistency across the board.",
-    stat: "4.1",
-    statLabel: "CSAT (FROM 2.9)",
-    statColor: "#2452C4",
-    panelBg: "#CFE0FA",
-    mock: "comm",
-  },
-  {
-    id: "guided",
-    badge: "PLATFORM",
-    badgeBg: "#E4E7FA",
-    badgeText: "#3F4FB8",
-    title: "Guided Implementation",
-    subtitle: "Employee Platform Redesign",
-    body:
-      "Redesigned the employee platform with a modern, responsive UI for web and native mobile — informed by research with partners, power users, and internal teams, then rolled out with guided onboarding support.",
-    stat: "+23%",
-    statLabel: "ENGAGEMENT",
-    statColor: "#3F4FB8",
-    panelBg: "#DCE0F5",
-    mock: "platform",
-  },
-];
+  "designing human-centered experiences that balance users, product strategy, and business outcomes across modern digital platforms.";
 
 const EXPERIENCE = [
   {
@@ -113,7 +65,7 @@ const EXPERIENCE = [
 const SKILLS = {
   "Research & Strategy": ["User Research", "Usability Testing", "Value Proposition", "Competitive Analysis", "Personas", "Journey Mapping", "UX Strategy"],
   "Design & Experience": ["Information Architecture", "Wireframing", "Interactive Prototyping", "Visual Design", "Iconography", "Web Development"],
-  "Methods & Management": ["Accessibility (WCAG)", "Design Thinking", "Problem Solving", "Empathy", "Leadership & Mentoring", "Product Strategy & Collaboration", "Design Systems"],
+  "Methods & Management": ["Accessibility (WCAG)", "Design Thinking", "Problem Solving", "Empathy", "Product Strategy & Collaboration", "Leadership & Mentoring", "Design Systems"],
   "Software & Languages": ["Figma", "InVision", "Adobe CC", "Axure", "HTML", "CSS", "JavaScript"],
 };
 
@@ -129,30 +81,51 @@ const EDUCATION = [
 /* ------------------------------------------------------------------ */
 function HeroIllustration() {
   return (
-    <div className="w-full max-w-[420px] mx-auto">
+    <div className="hidden md:block w-full max-w-[420px] mx-auto">
       <img
         src="/aboutus-me.png"
         alt="Illustration of Ranjit sitting cross-legged, surrounded by labels for Product Vision, User Insights, Business Impact, UX Strategy, and Stakeholder Alignment"
-        className="w-full h-auto select-none pointer-events-none"
+        className="w-full h-auto select-none pointer-events-none animate-shakeVertical"
       />
+    </div>
+  );
+}
+
+/* Plain text list separated by dividers, grouped by category — no chips */
+function SkillGroup({ group, items }) {
+  return (
+    <div>
+      <h3 className="text-[18px] sm:text-[20px] font-semibold text-[#14141A] mb-4">{group}</h3>
+      <div className="flex flex-wrap gap-y-2">
+        {items.map((s, i) => (
+          <span
+            key={s}
+            className={`text-[14px] sm:text-[15px] text-[#43434D] px-3 first:pl-0 ${
+              i !== items.length - 1 ? "border-r border-black/15" : ""
+            }`}
+          >
+            {s}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
 
 export default function About() {
   return (
-    <div className="animate-fadeIn">
+    <div className="animate-fadeIn w-full">
       {/* Full-screen hero */}
-      <section className="min-h-[85vh] sm:min-h-[80vh] flex items-center px-4 sm:px-6 md:px-10 lg:px-16 py-10">
-        <div className="w-full max-w-5xl mx-auto grid md:grid-cols-2 items-center gap-10 sm:gap-14">
+      <section className="md:min-h-[80vh] flex items-center px-4 sm:px-6 md:px-10 lg:px-16 py-10">
+        <div className="w-full grid md:grid-cols-2 items-center gap-10 sm:gap-14">
           <div className="text-center md:text-left order-2 md:order-1">
-            <h1 className="text-[26px] sm:text-[34px] md:text-[42px] lg:text-[48px] font-semibold text-[#14141A] tracking-tight leading-tight">
-              Hello <span className="font-bold">I'm Ranjit</span>
-            </h1>
-            <p className="mt-2 text-[15px] sm:text-[17px] md:text-[19px] text-[#43434D] font-medium">
-              Lead UX Designer
+            <p className="text-[22px] sm:text-[26px] md:text-[30px] text-[#17213E] tracking-tight leading-tight">
+              <span className="font-light">I'm</span> <span className="font-bold">Ranjit</span>
             </p>
-            <p className="mt-4 text-[13px] sm:text-[14px] md:text-[15px] leading-relaxed text-[#5B5B66] max-w-md mx-auto md:mx-0">
+            <h1 className="mt-2 text-[36px] sm:text-[48px] md:text-[56px] lg:text-[64px] font-bold text-[#DD9B21] tracking-tight leading-[1.05]">
+              {TAGLINE}
+            </h1>
+            <p className="mt-5 text-[13px] sm:text-[14px] md:text-[15px] leading-relaxed text-[#5B5B66] max-w-lg mx-auto md:mx-0">
               {PROFILE}
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-3">
@@ -177,13 +150,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 mt-4 sm:mt-8 space-y-6 sm:space-y-8">
-        {HIGHLIGHTS.map((cs) => (
-          <StackedCaseStudyCard key={cs.id} cs={cs} />
-        ))}
-      </section>
-
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 mt-16 sm:mt-20">
+      <section className="px-4 sm:px-6 md:px-10 lg:px-16 mt-16 sm:mt-20">
         <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6 sm:mb-8">Experience</h2>
         <div className="space-y-8 sm:space-y-10">
           {EXPERIENCE.map((job) => (
@@ -194,9 +161,9 @@ export default function About() {
               </div>
               <div className="sm:col-span-2">
                 <div className="text-[14px] font-medium text-[#43434D] mb-1.5">{job.role}</div>
-                <p className="text-[13px] sm:text-[14px] leading-relaxed text-[#6C6C76]">{job.body}</p>
+                <p className="text-[13px] sm:text-[14px] leading-relaxed text-[#6C6C76] max-w-3xl">{job.body}</p>
                 {job.bullets && (
-                  <ul className="mt-3 space-y-2 list-disc pl-4">
+                  <ul className="mt-3 space-y-2 list-disc pl-4 max-w-3xl">
                     {job.bullets.map((b, i) => (
                       <li key={i} className="text-[13px] sm:text-[14px] leading-relaxed text-[#6C6C76]">
                         {b}
@@ -210,25 +177,16 @@ export default function About() {
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 mt-16 sm:mt-20">
+      <section className="px-4 sm:px-6 md:px-10 lg:px-16 mt-16 sm:mt-20">
         <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6 sm:mb-8">Skills</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="space-y-8 sm:space-y-10">
           {Object.entries(SKILLS).map(([group, items]) => (
-            <div key={group}>
-              <div className="text-[12px] font-medium tracking-wide text-[#9A9AA5] mb-3 uppercase">{group}</div>
-              <div className="flex flex-wrap gap-1.5">
-                {items.map((s) => (
-                  <span key={s} className="text-[12px] text-[#43434D] bg-[#F1F1F4] rounded-full px-3 py-1">
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <SkillGroup key={group} group={group} items={items} />
           ))}
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 mt-16 sm:mt-20 pb-4">
+      <section className="px-4 sm:px-6 md:px-10 lg:px-16 mt-16 sm:mt-20 pb-4">
         <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6 sm:mb-8">Education & Certifications</h2>
         <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
           {EDUCATION.map((e) => (
