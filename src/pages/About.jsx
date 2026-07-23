@@ -91,16 +91,31 @@ function HeroIllustration() {
   );
 }
 
+/* Shared row: left label column + right content column, used for every
+   entry (job, skills, education) so the whole page reads off one
+   consistent type scale. */
+function Row({ label, sub, children }) {
+  return (
+    <div className="border-t border-black/5 pt-6 grid sm:grid-cols-3 gap-3 sm:gap-6">
+      <div>
+        <div className="text-[15px] font-semibold text-[#14141A]">{label}</div>
+        {sub && <div className="text-[12px] text-[#9A9AA5] mt-0.5">{sub}</div>}
+      </div>
+      <div className="sm:col-span-2">{children}</div>
+    </div>
+  );
+}
+
 /* Plain text list separated by dividers, grouped by category — no chips */
 function SkillGroup({ group, items }) {
   return (
     <div>
-      <h3 className="text-[18px] sm:text-[20px] font-semibold text-[#14141A] mb-4">{group}</h3>
+      <div className="text-[14px] font-medium text-[#43434D] mb-2">{group}</div>
       <div className="flex flex-wrap gap-y-2">
         {items.map((s, i) => (
           <span
             key={s}
-            className={`text-[14px] sm:text-[15px] text-[#43434D] px-3 first:pl-0 ${
+            className={`text-[13px] sm:text-[14px] text-[#6C6C76] px-3 first:pl-0 ${
               i !== items.length - 1 ? "border-r border-black/15" : ""
             }`}
           >
@@ -150,52 +165,41 @@ export default function About() {
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 md:px-10 lg:px-16 mt-16 sm:mt-20">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6 sm:mb-8">Experience</h2>
-        <div className="space-y-8 sm:space-y-10">
-          {EXPERIENCE.map((job) => (
-            <div key={job.company + job.period} className="border-t border-black/5 pt-6 grid sm:grid-cols-3 gap-3 sm:gap-6">
-              <div>
-                <div className="text-[15px] font-medium text-[#14141A]">{job.company}</div>
-                <div className="text-[12px] text-[#9A9AA5] mt-0.5">{job.period}</div>
-              </div>
-              <div className="sm:col-span-2">
-                <div className="text-[14px] font-medium text-[#43434D] mb-1.5">{job.role}</div>
-                <p className="text-[13px] sm:text-[14px] leading-relaxed text-[#6C6C76] max-w-3xl">{job.body}</p>
-                {job.bullets && (
-                  <ul className="mt-3 space-y-2 list-disc pl-4 max-w-3xl">
-                    {job.bullets.map((b, i) => (
-                      <li key={i} className="text-[13px] sm:text-[14px] leading-relaxed text-[#6C6C76]">
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <section className="px-4 sm:px-6 md:px-10 lg:px-16 mt-16 sm:mt-20 pb-4 space-y-8 sm:space-y-10">
+        {EXPERIENCE.map((job) => (
+          <Row key={job.company + job.period} label={job.company} sub={job.period}>
+            <div className="text-[14px] font-medium text-[#43434D] mb-1.5">{job.role}</div>
+            <p className="text-[13px] sm:text-[14px] leading-relaxed text-[#6C6C76] max-w-3xl">{job.body}</p>
+            {job.bullets && (
+              <ul className="mt-3 space-y-2 list-disc pl-4 max-w-3xl">
+                {job.bullets.map((b, i) => (
+                  <li key={i} className="text-[13px] sm:text-[14px] leading-relaxed text-[#6C6C76]">
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Row>
+        ))}
 
-      <section className="px-4 sm:px-6 md:px-10 lg:px-16 mt-16 sm:mt-20">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6 sm:mb-8">Skills</h2>
-        <div className="space-y-8 sm:space-y-10">
-          {Object.entries(SKILLS).map(([group, items]) => (
-            <SkillGroup key={group} group={group} items={items} />
-          ))}
-        </div>
-      </section>
+        <Row label="Skills">
+          <div className="space-y-6 sm:space-y-8">
+            {Object.entries(SKILLS).map(([group, items]) => (
+              <SkillGroup key={group} group={group} items={items} />
+            ))}
+          </div>
+        </Row>
 
-      <section className="px-4 sm:px-6 md:px-10 lg:px-16 mt-16 sm:mt-20 pb-4">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6 sm:mb-8">Education & Certifications</h2>
-        <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
-          {EDUCATION.map((e) => (
-            <div key={e.title} className="bg-white border border-black/5 rounded-2xl px-5 py-4 shadow-sm">
-              <div className="text-[14px] font-medium text-[#14141A]">{e.title}</div>
-              {e.sub && <div className="text-[12px] text-[#9A9AA5] mt-1">{e.sub}</div>}
-            </div>
-          ))}
-        </div>
+        <Row label="Education & Certifications">
+          <div className="space-y-2">
+            {EDUCATION.map((e) => (
+              <div key={e.title} className="flex flex-wrap items-baseline gap-x-2">
+                <span className="text-[14px] font-medium text-[#43434D]">{e.title}</span>
+                {e.sub && <span className="text-[13px] sm:text-[14px] text-[#9A9AA5]">— {e.sub}</span>}
+              </div>
+            ))}
+          </div>
+        </Row>
       </section>
 
       <Footer />
