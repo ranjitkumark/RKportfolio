@@ -3,6 +3,41 @@ import { useParams, Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import { POSTS } from "../data/posts.js";
 
+const CONTENT_WIDTH = "max-w-[48rem] lg:max-w-[68rem]";
+
+/* Minimal inline markdown: *word* -> italic */
+function renderInline(text) {
+  return text.split(/(\*[^*]+\*)/g).map((part, i) =>
+    part.startsWith("*") && part.endsWith("*") ? (
+      <em key={i}>{part.slice(1, -1)}</em>
+    ) : (
+      <React.Fragment key={i}>{part}</React.Fragment>
+    )
+  );
+}
+
+function Block({ block }) {
+  if (block.type === "h2") {
+    return (
+      <h2 className="text-[19px] sm:text-[21px] font-semibold text-[#14141A] tracking-tight pt-2">
+        {renderInline(block.text)}
+      </h2>
+    );
+  }
+  if (block.type === "note") {
+    return (
+      <p className="text-[14px] sm:text-[15px] leading-relaxed text-[#5B5B66] italic border-t border-black/5 pt-6">
+        {renderInline(block.text)}
+      </p>
+    );
+  }
+  return (
+    <p className="text-[14px] sm:text-[15px] leading-relaxed text-[#2D2D2D]">
+      {renderInline(block.text)}
+    </p>
+  );
+}
+
 export default function WritingPost() {
   const { slug } = useParams();
   const post = POSTS.find((p) => p.slug === slug);
@@ -26,7 +61,7 @@ export default function WritingPost() {
 
   return (
     <div className="animate-fadeIn">
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12">
+      <section className={`${CONTENT_WIDTH} mx-auto px-4 sm:px-6 pt-8 sm:pt-12`}>
         <Link
           to="/writing"
           className="inline-flex items-center gap-1.5 text-[13px] text-[#9A9AA5] hover:text-[#43434D] transition-colors"
@@ -35,7 +70,7 @@ export default function WritingPost() {
         </Link>
       </section>
 
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 pt-6 pb-8 sm:pb-10 border-b border-black/5">
+      <section className={`${CONTENT_WIDTH} mx-auto px-4 sm:px-6 pt-6 pb-8 sm:pb-10 border-b border-black/5`}>
         <div className="flex items-center gap-3 text-[11px] tracking-wide text-[#9A9AA5] mb-4">
           <span className="uppercase">{post.date}</span>
           <span className="w-4 h-px bg-[#D5D5DC]" />
@@ -46,11 +81,9 @@ export default function WritingPost() {
         </h1>
       </section>
 
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-5">
-        {post.body.map((para, i) => (
-          <p key={i} className="text-[14px] sm:text-[15px] leading-relaxed text-[#2D2D2D]">
-            {para}
-          </p>
+      <section className={`${CONTENT_WIDTH} mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-5`}>
+        {post.body.map((block, i) => (
+          <Block key={i} block={block} />
         ))}
       </section>
 

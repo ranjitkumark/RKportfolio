@@ -6,7 +6,7 @@ import { POSTS } from "../data/posts.js";
 export default function Writing() {
   return (
     <div className="animate-fadeIn">
-      <section className="text-center px-4 sm:px-6 pt-6 sm:pt-10 pb-10 sm:pb-14 border-b border-black/5">
+      <section className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-16 lg:px-32 py-10 border-b border-black/5">
         <h1 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold text-[#14141A] tracking-tight">
           Writing
         </h1>
@@ -15,7 +15,7 @@ export default function Writing() {
         </p>
       </section>
 
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+      <section className="max-w-[48rem] lg:max-w-[68rem] mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <div className="divide-y divide-black/5">
           {POSTS.map((post) => (
             <article key={post.slug} className="py-8 first:pt-0">
