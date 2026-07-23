@@ -2,6 +2,9 @@ import React from "react";
 import StackedCaseStudyCard from "../components/StackedCaseStudyCard.jsx";
 import Footer from "../components/Footer.jsx";
 
+const PROFILE =
+  "Senior/Lead UX Designer with 12+ years of experience designing intuitive, user-centered digital experiences across benefits management, IoT, AI, e-commerce, and decentralized (dApp) platforms. Skilled at translating complex, cross-functional requirements into scalable design solutions that improve usability, accessibility, and business outcomes.";
+
 const HIGHLIGHTS = [
   {
     id: "spending",
@@ -52,81 +55,86 @@ const HIGHLIGHTS = [
 
 const EXPERIENCE = [
   {
-    company: "PlanSource Operations",
-    role: "Senior UX Designer",
-    period: "Aug 2016 — Present",
+    company: "ValueLabs — Plansource Account",
+    role: "Lead UX Designer",
+    period: "Aug 2025 — Present",
     body:
-      "Collaborate closely with product managers, product owners, and engineering to ensure smooth transitions from research through implementation. Led the redesign of the product design system for consistency, scalability, and accessibility.",
+      "Promoted to Lead UX Designer as the Plansource account transitioned to ValueLabs. Continue to partner closely with product managers, product owners, and engineering teams to drive UX from research through implementation, and lead the redesign and governance of the product design system to strengthen consistency, scalability, and accessibility platform-wide.",
+  },
+  {
+    company: "Plansource Operations",
+    role: "Senior UX Designer",
+    period: "Jul 2021 — Aug 2025",
+    body:
+      "Partnered closely with product managers, product owners, and engineering teams to drive UX from research through implementation. Led the redesign and planning of the product design system to strengthen consistency, scalability, and accessibility platform-wide.",
+    bullets: [
+      "Spearheaded a complete overhaul of the HSA experience, simplifying employer setup and ensuring IRS compliance with clear contribution guidelines — cut average admin task time from 38 to 21 minutes and reduced support tickets by 38%.",
+      "Engineered prebuilt templates and automated messaging flows that reduced average task time from 69 to 47 minutes and raised feature CSAT from 2.9 to 4.1.",
+      "Designed and launched an AI- and voice-enabled chatbot to handle benefit queries and manage life-event workflows, reducing human agent handoffs by 13% within six months.",
+      "Optimized the benefits enrollment flow through usability testing and research — driving a 22% increase in completion rates and cutting average task time by 30%.",
+      "Unified two disparate design systems into a single framework, improving consistency, accessibility, and scalability while accelerating design decision-making.",
+    ],
   },
   {
     company: "Dataway Solutions",
     role: "Senior UX Designer",
-    period: "Earlier",
+    period: "Aug 2016 — Jul 2021",
     body:
-      "Turned complex workflows into simple, intuitive interactions — design sprints, user research, user flows, wireframes, and prototypes of varying fidelity, start to finish.",
+      "Led end-to-end UX design for high-impact government and IoT initiatives, including the design and development of a next-generation IoT platform.",
+    bullets: [
+      "Delivered the MeitY-funded “Emergency Citizen Safety” initiative, establishing a centralized command center at the Rajasthan Skill Center headquarters that monitored 2,300+ cameras in real time.",
+      "Rolled out a face-recognition-based attendance system across approximately 400 skill centers, streamlining workforce tracking at scale.",
+      "Earned the India Today Digital Trailblazer Award from the IT Minister in recognition of the initiative's digital innovation impact.",
+    ],
   },
   {
     company: "Paskon Inc",
     role: "Sr. Web & Graphics Designer",
     period: "Oct 2013 — Jun 2016",
     body:
-      "Part of the product team: low-fidelity prototypes, detailed mockups, design principles, web and graphics design.",
+      "Contributed to the core product team, creating low-fidelity prototypes, detailed mockups, design principles, and web/graphic designs. Translated input from business and creative directors into simple, elegant design solutions.",
   },
   {
     company: "Wifi Networks",
     role: "Web & Graphics Designer",
     period: "Nov 2012 — Oct 2013",
     body:
-      "Designed and delivered print ads, branding, web, email promotions, illustrations, iconography, and motion graphics.",
+      "Designed and delivered a range of projects including print ads, branding, web and email promotions, illustrations, iconography, and motion graphics videos.",
+  },
+  {
+    company: "Startup from the Himalayas",
+    role: "Design Consultant",
+    period: "Independent",
+    body:
+      "Guided a startup's transformation into a lean, design-led organization aligned with the UN Sustainable Development Goals. Conducted user research and diary studies to ground decisions in real user needs, and led branding for a new product concept in partnership with the founder.",
   },
 ];
 
 const SKILLS = {
   "Research & Strategy": ["User Research", "Usability Testing", "Value Proposition", "Competitive Analysis", "Personas", "Journey Mapping", "UX Strategy"],
   "Design & Experience": ["Information Architecture", "Wireframing", "Interactive Prototyping", "Visual Design", "Iconography", "Web Development"],
-  "Methods & Management": ["Accessibility (WCAG)", "Design Thinking", "Problem Solving", "Empathy", "Product Strategy", "Leadership & Mentoring", "Design Systems"],
+  "Methods & Management": ["Accessibility (WCAG)", "Design Thinking", "Problem Solving", "Empathy", "Leadership & Mentoring", "Product Strategy & Collaboration", "Design Systems"],
+  "Software & Languages": ["Figma", "InVision", "Adobe CC", "Axure", "HTML", "CSS", "JavaScript"],
 };
 
-const TOOLS = ["Figma", "Adobe CC", "Axure RP", "InVision", "HTML", "CSS", "JavaScript"];
+const EDUCATION = [
+  { title: "Bachelor of Computer Applications", sub: "" },
+  { title: "Professional Diploma in 3D", sub: "" },
+  { title: "UX Certification", sub: "IXDF" },
+];
 
 /* ------------------------------------------------------------------ */
-/* Hero illustration — meditating "product zen" character              */
+/* Hero — full-screen intro with the real illustration                 */
+/* (the source image already has the "Product Vision" etc. labels)     */
 /* ------------------------------------------------------------------ */
 function HeroIllustration() {
-  const bubbles = [
-    { label: "Product Vision", style: "top-0 left-1/2 -translate-x-1/2" },
-    { label: "User Insights", style: "top-[28%] left-0" },
-    { label: "Business Impact", style: "top-[28%] right-0" },
-    { label: "UX Strategy", style: "top-[52%] left-[6%]" },
-    { label: "Stakeholder Alignment", style: "top-[52%] right-[2%]" },
-  ];
   return (
-    <div className="relative w-[280px] h-[280px] mx-auto">
-      {bubbles.map((b) => (
-        <span
-          key={b.label}
-          className={`absolute ${b.style} whitespace-nowrap bg-white border border-black/5 shadow-sm rounded-full px-3 py-1.5 text-[11px] font-medium text-[#43434D] z-10`}
-        >
-          {b.label}
-        </span>
-      ))}
-      {/* character */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center">
-        {/* head */}
-        <div className="relative w-16 h-16 rounded-full bg-[#F4C9A0] mb-[-6px] z-[1]">
-          <div className="absolute -top-2 left-0 right-0 h-9 rounded-t-full bg-[#2B2320]" />
-          <div className="absolute bottom-3 left-3 w-9 h-6 rounded-full bg-[#2B2320]" />
-        </div>
-        {/* torso */}
-        <div className="relative w-32 h-24 rounded-t-[40px] bg-white border border-black/5 flex items-start justify-center pt-3">
-          <div className="w-6 h-1.5 rounded-full bg-[#17213E]/20" />
-          {/* arms */}
-          <span className="absolute left-[-18px] top-4 w-9 h-4 rounded-full bg-[#F4C9A0] rotate-[20deg]" />
-          <span className="absolute right-[-18px] top-4 w-9 h-4 rounded-full bg-[#F4C9A0] -rotate-[20deg]" />
-        </div>
-        {/* crossed legs */}
-        <div className="w-40 h-8 rounded-full bg-[#17213E] -mt-1" />
-      </div>
+    <div className="w-full max-w-[420px] mx-auto">
+      <img
+        src="/aboutus-me.png"
+        alt="Illustration of Ranjit sitting cross-legged, surrounded by labels for Product Vision, User Insights, Business Impact, UX Strategy, and Stakeholder Alignment"
+        className="w-full h-auto select-none pointer-events-none"
+      />
     </div>
   );
 }
@@ -134,29 +142,52 @@ function HeroIllustration() {
 export default function About() {
   return (
     <div className="animate-fadeIn">
-      <section className="px-4 sm:px-6 pt-4 sm:pt-8 pb-4 max-w-5xl mx-auto grid md:grid-cols-2 items-center gap-10">
-        <div className="text-center md:text-left">
-          <h1 className="text-[26px] sm:text-[32px] md:text-[44px] font-semibold text-[#14141A] tracking-tight leading-tight">
-            Hello <span className="font-bold">I'm Ranjit - UX Designer</span>
-          </h1>
-          <p className="mt-4 text-[14px] sm:text-[15px] md:text-[16px] text-[#5B5B66] max-w-md mx-auto md:mx-0">
-            Designing products at the intersection of user needs, business goals, and technology constraints.
-          </p>
+      {/* Full-screen hero */}
+      <section className="min-h-[85vh] sm:min-h-[80vh] flex items-center px-4 sm:px-6 md:px-10 lg:px-16 py-10">
+        <div className="w-full max-w-5xl mx-auto grid md:grid-cols-2 items-center gap-10 sm:gap-14">
+          <div className="text-center md:text-left order-2 md:order-1">
+            <h1 className="text-[26px] sm:text-[34px] md:text-[42px] lg:text-[48px] font-semibold text-[#14141A] tracking-tight leading-tight">
+              Hello <span className="font-bold">I'm Ranjit</span>
+            </h1>
+            <p className="mt-2 text-[15px] sm:text-[17px] md:text-[19px] text-[#43434D] font-medium">
+              Lead UX Designer
+            </p>
+            <p className="mt-4 text-[13px] sm:text-[14px] md:text-[15px] leading-relaxed text-[#5B5B66] max-w-md mx-auto md:mx-0">
+              {PROFILE}
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-3">
+              <a
+                href="/ranjit-resume.pdf"
+                download
+                className="text-[13px] font-medium text-white bg-[#17213E] rounded-full px-5 py-2.5 shadow-sm hover:bg-[#232F55] transition-colors"
+              >
+                Download Resume ↓
+              </a>
+              <a
+                href="mailto:postranjitk@gmail.com"
+                className="text-[13px] font-medium text-[#43434D] bg-white border border-black/5 rounded-full px-5 py-2.5 shadow-sm hover:border-black/15 transition-colors"
+              >
+                Get in touch
+              </a>
+            </div>
+          </div>
+          <div className="order-1 md:order-2">
+            <HeroIllustration />
+          </div>
         </div>
-        <HeroIllustration />
       </section>
 
-      <section className="max-w-3xl mx-auto px-4 md:px-6 mt-12 sm:mt-16 space-y-6 sm:space-y-8">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 mt-4 sm:mt-8 space-y-6 sm:space-y-8">
         {HIGHLIGHTS.map((cs) => (
           <StackedCaseStudyCard key={cs.id} cs={cs} />
         ))}
       </section>
 
-      <section className="max-w-3xl mx-auto px-4 md:px-6 mt-16 sm:mt-20">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6">Experience</h2>
-        <div className="space-y-8">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 mt-16 sm:mt-20">
+        <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6 sm:mb-8">Experience</h2>
+        <div className="space-y-8 sm:space-y-10">
           {EXPERIENCE.map((job) => (
-            <div key={job.company} className="border-t border-black/5 pt-6 grid sm:grid-cols-3 gap-3 sm:gap-6">
+            <div key={job.company + job.period} className="border-t border-black/5 pt-6 grid sm:grid-cols-3 gap-3 sm:gap-6">
               <div>
                 <div className="text-[15px] font-medium text-[#14141A]">{job.company}</div>
                 <div className="text-[12px] text-[#9A9AA5] mt-0.5">{job.period}</div>
@@ -164,15 +195,24 @@ export default function About() {
               <div className="sm:col-span-2">
                 <div className="text-[14px] font-medium text-[#43434D] mb-1.5">{job.role}</div>
                 <p className="text-[13px] sm:text-[14px] leading-relaxed text-[#6C6C76]">{job.body}</p>
+                {job.bullets && (
+                  <ul className="mt-3 space-y-2 list-disc pl-4">
+                    {job.bullets.map((b, i) => (
+                      <li key={i} className="text-[13px] sm:text-[14px] leading-relaxed text-[#6C6C76]">
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="max-w-3xl mx-auto px-4 md:px-6 mt-16 sm:mt-20">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6">Skills</h2>
-        <div className="grid sm:grid-cols-3 gap-6">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 mt-16 sm:mt-20">
+        <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6 sm:mb-8">Skills</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {Object.entries(SKILLS).map(([group, items]) => (
             <div key={group}>
               <div className="text-[12px] font-medium tracking-wide text-[#9A9AA5] mb-3 uppercase">{group}</div>
@@ -188,16 +228,14 @@ export default function About() {
         </div>
       </section>
 
-      <section className="max-w-3xl mx-auto px-4 md:px-6 mt-16 sm:mt-20 pb-4">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6">Tools</h2>
-        <div className="flex flex-wrap gap-2">
-          {TOOLS.map((t) => (
-            <span
-              key={t}
-              className="text-[13px] text-[#14141A] bg-white border border-black/5 rounded-full px-4 py-2 shadow-sm"
-            >
-              {t}
-            </span>
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 mt-16 sm:mt-20 pb-4">
+        <h2 className="text-xl sm:text-2xl font-semibold text-[#14141A] mb-6 sm:mb-8">Education & Certifications</h2>
+        <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
+          {EDUCATION.map((e) => (
+            <div key={e.title} className="bg-white border border-black/5 rounded-2xl px-5 py-4 shadow-sm">
+              <div className="text-[14px] font-medium text-[#14141A]">{e.title}</div>
+              {e.sub && <div className="text-[12px] text-[#9A9AA5] mt-1">{e.sub}</div>}
+            </div>
           ))}
         </div>
       </section>
