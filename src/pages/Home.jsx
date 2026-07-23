@@ -70,7 +70,11 @@ function StickerBand() {
   return (
     <div
       className="relative mt-16 md:mt-24 w-full overflow-hidden"
-      style={{ backgroundImage: "radial-gradient(#DADAE2 1px, transparent 1px)", backgroundSize: "22px 22px" }}
+      style={{
+        backgroundImage:
+          "linear-gradient(to right, #E3E3EA 1px, transparent 1px), linear-gradient(to bottom, #E3E3EA 1px, transparent 1px)",
+        backgroundSize: "40px 40px",
+      }}
     >
       {/* Desktop: tagline sits vertically centered, top row above it, bottom row below it */}
       <div className="hidden md:block relative w-full px-[4%] pt-16 pb-16">
