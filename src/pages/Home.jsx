@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ArrowUp, X, Linkedin, Phone, Mail, ArrowUpRight, Download, SkipBack, Play, SkipForward } from "lucide-react";
+import { ArrowUp, X, Linkedin, Phone, Mail, ArrowUpRight, Download, FileText, SkipBack, Play, SkipForward } from "lucide-react";
 import CaseStudyCard from "../components/CaseStudyCard.jsx";
 import Footer, { FooterContent } from "../components/Footer.jsx";
 
@@ -69,181 +69,200 @@ const CASE_STUDIES = [
 function StickerBand() {
   return (
     <div
-      className="relative mt-16 md:mt-24 pt-14 md:pt-20 pb-8 overflow-hidden"
+      className="relative mt-16 md:mt-24 w-full overflow-hidden"
       style={{ backgroundImage: "radial-gradient(#DADAE2 1px, transparent 1px)", backgroundSize: "22px 22px" }}
     >
-      {/* Desktop scatter layout */}
-      <div className="hidden md:block relative h-[420px] max-w-5xl mx-auto">
-        {/* Contact */}
-        <div className="absolute left-[4%] top-[6%] -rotate-6 bg-[#B7E4C7] rounded-xl px-4 py-3 shadow-md w-[190px]">
-          <div className="text-[9px] tracking-wider text-[#2E6B45] font-semibold mb-1.5">CONTACT</div>
-          <a href="tel:+919738729691" className="flex items-center gap-1.5 text-[12px] text-[#1E3A2B] mb-1 hover:underline">
-            <Phone size={12} /> +91-9738729691
-          </a>
-          <a href="mailto:postranjitk@gmail.com" className="flex items-center gap-1.5 text-[12px] text-[#1E3A2B] hover:underline">
-            <Mail size={12} /> postranjitk@gmail.com
-          </a>
-        </div>
+      {/* Desktop: tagline sits vertically centered, top row above it, bottom row below it */}
+      <div className="hidden md:block relative w-full px-[4%] pt-16 pb-16">
+        {/* top row */}
+        <div className="relative h-[150px] max-w-none">
+          <div className="absolute left-0 top-0 -rotate-6 bg-[#B7E4C7] rounded-xl px-4 py-3 shadow-md w-[190px]">
+            <div className="text-[9px] tracking-wider text-[#2E6B45] font-semibold mb-1.5">CONTACT</div>
+            <a href="tel:+919738729691" className="flex items-center gap-1.5 text-[12px] text-[#1E3A2B] mb-1 hover:underline">
+              <Phone size={12} /> +91-9738729691
+            </a>
+            <a href="mailto:postranjitk@gmail.com" className="flex items-center gap-1.5 text-[12px] text-[#1E3A2B] hover:underline">
+              <Mail size={12} /> postranjitk@gmail.com
+            </a>
+          </div>
 
-        {/* Music player — links out to the track (placeholder URL until you send the real one) */}
-        <a
-          href="https://music.youtube.com/"
-          target="_blank"
-          rel="noreferrer"
-          className="block absolute left-1/2 -translate-x-1/2 top-0 bg-[#15151B] text-white rounded-2xl px-5 py-4 shadow-lg w-[220px] hover:opacity-90 transition-opacity"
-        >
-          <div className="flex items-center gap-3 mb-3">
-            <span className="w-9 h-9 rounded-lg bg-[#6C4FE0] shrink-0" />
-            <div className="min-w-0">
-              <div className="text-[13px] font-medium truncate">David Bowie</div>
-              <div className="text-[11px] text-white/50 truncate">Space Oddity</div>
+          <a
+            href="https://music.youtube.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="block absolute left-1/2 -translate-x-1/2 top-0 bg-[#15151B] text-white rounded-2xl px-5 py-4 shadow-lg w-[220px] hover:opacity-90 transition-opacity"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <span className="w-9 h-9 rounded-lg bg-[#6C4FE0] shrink-0" />
+              <div className="min-w-0">
+                <div className="text-[13px] font-medium truncate">David Bowie</div>
+                <div className="text-[11px] text-white/50 truncate">Space Oddity</div>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center justify-center gap-4 mb-2 text-white/80">
-            <SkipBack size={14} />
-            <span className="w-7 h-7 rounded-full bg-white text-[#15151B] flex items-center justify-center">
-              <Play size={12} fill="currentColor" />
-            </span>
-            <SkipForward size={14} />
-          </div>
-          <div className="w-full h-1 bg-white/15 rounded-full overflow-hidden">
-            <div className="h-full w-1/3 bg-[#F5D948] rounded-full" />
-          </div>
-        </a>
-
-        {/* Resume — downloads the real PDF once it's added to /public */}
-        <a
-          href="/ranjit-resume.pdf"
-          download
-          className="absolute right-[6%] top-[8%] rotate-6 bg-[#FBEBAE] rounded-xl px-4 py-3 shadow-md w-[140px] hover:opacity-90 transition-opacity"
-        >
-          <div className="text-[9px] tracking-wider text-[#7A6A1E] font-semibold mb-1">CV</div>
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-[13px] text-[#3A320C] font-medium">Resume</div>
-              <div className="text-[11px] text-[#7A6A1E]">PDF · 2 pages</div>
-            </div>
-            <Download size={14} className="text-[#7A6A1E] shrink-0" />
-          </div>
-        </a>
-
-        {/* Interests — pill chips */}
-        <div className="absolute left-[6%] bottom-[8%] -rotate-3 bg-white rounded-xl px-4 py-3 shadow-md w-[220px] border border-black/5">
-          <div className="text-[9px] tracking-wider text-[#8A8A93] font-semibold mb-2">INTERESTS</div>
-          <div className="flex flex-wrap gap-1.5">
-            {["Painting", "Reading", "Cooking", "Music", "Travelling"].map((tag) => (
-              <span key={tag} className="text-[11px] text-[#3A3A42] border border-black/10 rounded-full px-2.5 py-1">
-                {tag}
+            <div className="flex items-center justify-center gap-4 mb-2 text-white/80">
+              <SkipBack size={14} />
+              <span className="w-7 h-7 rounded-full bg-white text-[#15151B] flex items-center justify-center">
+                <Play size={12} fill="currentColor" />
               </span>
-            ))}
-          </div>
+              <SkipForward size={14} />
+            </div>
+            <div className="w-full h-1 bg-white/15 rounded-full overflow-hidden">
+              <div className="h-full w-1/3 bg-[#F5D948] rounded-full" />
+            </div>
+          </a>
+
+          <a
+            href="/ranjit-resume.pdf"
+            download
+            className="absolute right-0 top-0 rotate-6 bg-[#FBEBAE] rounded-xl px-4 py-3 shadow-md w-[150px] hover:opacity-90 transition-opacity"
+          >
+            <div className="text-[9px] tracking-wider text-[#7A6A1E] font-semibold mb-1">CV</div>
+            <div className="flex items-center gap-2">
+              <span className="w-7 h-9 rounded-[3px] bg-white border border-[#E0C97A] shrink-0 flex items-center justify-center">
+                <FileText size={13} className="text-[#B4600F]" />
+              </span>
+              <div className="min-w-0">
+                <div className="text-[13px] text-[#3A320C] font-medium">Resume</div>
+                <div className="text-[10px] text-[#7A6A1E] flex items-center gap-1">
+                  PDF · 2p <Download size={10} />
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
 
-        {/* Currently reading */}
-        <div className="flex flex-col items-center absolute left-1/2 -translate-x-1/2 bottom-0 rotate-[-2deg] bg-[#F5D948] rounded-xl px-5 pt-4 pb-3 shadow-lg w-[150px]">
-          <div className="text-[9px] tracking-wide text-[#5A4B0A] mb-2 self-start">CURRENTLY READING</div>
-          <div className="text-2xl font-black text-[#1E1B04] leading-none mb-1">HOOKED</div>
-          <div className="text-[9px] text-[#5A4B0A] text-center leading-tight mb-2">How to Build Habit-Forming Products</div>
-          <div className="text-[10px] text-[#5A4B0A] self-start mb-1">NIR EYAL</div>
-          <div className="w-full flex items-center gap-2">
-            <div className="flex-1 h-1 bg-[#00000022] rounded-full overflow-hidden">
-              <div className="h-full w-[72%] bg-[#1E1B04]" />
-            </div>
-            <span className="text-[9px] text-[#5A4B0A] shrink-0">72%</span>
-          </div>
+        {/* tagline — true vertical center of the band */}
+        <div className="text-center px-6 max-w-2xl mx-auto py-10">
+          <p className="font-mono text-[26px] lg:text-[38px] leading-tight text-[#1D1D24]">
+            The screen is the output.
+            <br />
+            The real design happens before it.
+          </p>
         </div>
 
-        {/* LinkedIn */}
-        <a
-          href="https://www.linkedin.com/in/ranjit-kumar-kar-3a3b7931/"
-          target="_blank"
-          rel="noreferrer"
-          className="absolute right-[10%] bottom-[10%] rotate-3 bg-[#2452C4] text-white rounded-xl px-4 py-3 shadow-md w-[160px] hover:opacity-90 transition-opacity"
-        >
-          <div className="text-[9px] tracking-wider text-white/70 font-semibold mb-1.5">FIND ME ONLINE</div>
-          <div className="flex items-center gap-2">
-            <Linkedin size={16} />
-            <div className="flex-1">
-              <div className="text-[12px] font-medium leading-tight">LinkedIn</div>
-              <div className="text-[11px] text-white/70 leading-tight">/ranjitkumar</div>
+        {/* bottom row */}
+        <div className="relative h-[160px] max-w-none">
+          <div className="absolute left-[4%] bottom-0 -rotate-3 bg-white rounded-xl px-4 py-3 shadow-md w-[220px] border border-black/5">
+            <div className="text-[9px] tracking-wider text-[#8A8A93] font-semibold mb-2">INTERESTS</div>
+            <div className="flex flex-wrap gap-1.5">
+              {["Painting", "Reading", "Cooking", "Music", "Travelling"].map((tag) => (
+                <span key={tag} className="text-[11px] text-[#3A3A42] border border-black/10 rounded-full px-2.5 py-1">
+                  {tag}
+                </span>
+              ))}
             </div>
-            <ArrowUpRight size={13} className="text-white/70 shrink-0" />
           </div>
-        </a>
 
-        {/* Real illustration, matching the Figma character */}
-        <img
-          src="/footer-character.png"
-          alt=""
-          aria-hidden="true"
-          className="absolute right-[1%] bottom-[-2%] w-[130px] h-auto select-none pointer-events-none"
-        />
+          <div className="flex flex-col items-center absolute left-1/2 -translate-x-1/2 bottom-0 rotate-[-2deg] bg-[#F5D948] rounded-xl px-5 pt-4 pb-3 shadow-lg w-[150px]">
+            <div className="text-[9px] tracking-wide text-[#5A4B0A] mb-2 self-start">CURRENTLY READING</div>
+            <div className="text-2xl font-black text-[#1E1B04] leading-none mb-1">HOOKED</div>
+            <div className="text-[9px] text-[#5A4B0A] text-center leading-tight mb-2">How to Build Habit-Forming Products</div>
+            <div className="text-[10px] text-[#5A4B0A] self-start mb-1">NIR EYAL</div>
+            <div className="w-full flex items-center gap-2">
+              <div className="flex-1 h-1 bg-[#00000022] rounded-full overflow-hidden">
+                <div className="h-full w-[72%] bg-[#1E1B04]" />
+              </div>
+              <span className="text-[9px] text-[#5A4B0A] shrink-0">72%</span>
+            </div>
+          </div>
+
+          <a
+            href="https://www.linkedin.com/in/ranjit-kumar-kar-3a3b7931/"
+            target="_blank"
+            rel="noreferrer"
+            className="absolute right-[10%] bottom-0 rotate-3 bg-[#2452C4] text-white rounded-xl px-4 py-3 shadow-md w-[160px] hover:opacity-90 transition-opacity"
+          >
+            <div className="text-[9px] tracking-wider text-white/70 font-semibold mb-1.5">FIND ME ONLINE</div>
+            <div className="flex items-center gap-2">
+              <Linkedin size={16} />
+              <div className="flex-1">
+                <div className="text-[12px] font-medium leading-tight">LinkedIn</div>
+                <div className="text-[11px] text-white/70 leading-tight">/ranjitkumar</div>
+              </div>
+              <ArrowUpRight size={13} className="text-white/70 shrink-0" />
+            </div>
+          </a>
+
+          <img
+            src="/footer-character.png"
+            alt=""
+            aria-hidden="true"
+            className="absolute right-0 bottom-[-10%] w-[120px] h-auto select-none pointer-events-none"
+          />
+        </div>
       </div>
 
-      {/* Mobile: same cards, wrapped flow instead of absolute scatter */}
-      <div className="md:hidden flex flex-wrap justify-center gap-3 px-5 max-w-sm mx-auto">
-        <div className="bg-[#B7E4C7] rounded-xl px-4 py-3 shadow-md w-[160px]">
-          <div className="text-[9px] tracking-wider text-[#2E6B45] font-semibold mb-1.5">CONTACT</div>
-          <a href="tel:+919738729691" className="flex items-center gap-1.5 text-[11px] text-[#1E3A2B] mb-1">
-            <Phone size={11} /> +91-9738729691
-          </a>
-          <a href="mailto:postranjitk@gmail.com" className="flex items-center gap-1.5 text-[11px] text-[#1E3A2B] break-all">
-            <Mail size={11} /> postranjitk@gmail.com
-          </a>
-        </div>
-        <a
-          href="/ranjit-resume.pdf"
-          download
-          className="bg-[#FBEBAE] rounded-xl px-4 py-3 shadow-md w-[130px]"
-        >
-          <div className="text-[9px] tracking-wider text-[#7A6A1E] font-semibold mb-1">CV</div>
-          <div className="text-[13px] text-[#3A320C] font-medium">Resume</div>
-          <div className="text-[11px] text-[#7A6A1E] flex items-center gap-1">
-            PDF · 2 pages <Download size={11} />
+      {/* Mobile: wrapped flow, tagline between the two groups */}
+      <div className="md:hidden flex flex-col items-center gap-8 px-5 pt-12 pb-10">
+        <div className="flex flex-wrap justify-center gap-3 max-w-sm">
+          <div className="bg-[#B7E4C7] rounded-xl px-4 py-3 shadow-md w-[160px]">
+            <div className="text-[9px] tracking-wider text-[#2E6B45] font-semibold mb-1.5">CONTACT</div>
+            <a href="tel:+919738729691" className="flex items-center gap-1.5 text-[11px] text-[#1E3A2B] mb-1">
+              <Phone size={11} /> +91-9738729691
+            </a>
+            <a href="mailto:postranjitk@gmail.com" className="flex items-center gap-1.5 text-[11px] text-[#1E3A2B] break-all">
+              <Mail size={11} /> postranjitk@gmail.com
+            </a>
           </div>
-        </a>
-        <a
-          href="https://www.linkedin.com/in/ranjit-kumar-kar-3a3b7931/"
-          target="_blank"
-          rel="noreferrer"
-          className="bg-[#2452C4] text-white rounded-xl px-4 py-3 shadow-md w-[160px]"
-        >
-          <div className="text-[9px] tracking-wider text-white/70 font-semibold mb-1.5">FIND ME ONLINE</div>
-          <div className="flex items-center gap-2">
-            <Linkedin size={16} />
-            <div>
-              <div className="text-[12px] font-medium leading-tight">LinkedIn</div>
-              <div className="text-[11px] text-white/70 leading-tight">/ranjitkumar</div>
-            </div>
-          </div>
-        </a>
-        <div className="bg-white rounded-xl px-4 py-3 shadow-md w-[180px] border border-black/5">
-          <div className="text-[9px] tracking-wider text-[#8A8A93] font-semibold mb-2">INTERESTS</div>
-          <div className="flex flex-wrap gap-1.5">
-            {["Painting", "Reading", "Cooking", "Music", "Travelling"].map((tag) => (
-              <span key={tag} className="text-[11px] text-[#3A3A42] border border-black/10 rounded-full px-2.5 py-1">
-                {tag}
+          <a href="/ranjit-resume.pdf" download className="bg-[#FBEBAE] rounded-xl px-4 py-3 shadow-md w-[150px]">
+            <div className="text-[9px] tracking-wider text-[#7A6A1E] font-semibold mb-1">CV</div>
+            <div className="flex items-center gap-2">
+              <span className="w-6 h-8 rounded-[3px] bg-white border border-[#E0C97A] shrink-0 flex items-center justify-center">
+                <FileText size={12} className="text-[#B4600F]" />
               </span>
-            ))}
-          </div>
+              <div>
+                <div className="text-[13px] text-[#3A320C] font-medium">Resume</div>
+                <div className="text-[10px] text-[#7A6A1E] flex items-center gap-1">
+                  PDF · 2p <Download size={10} />
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
-        <img
-          src="/footer-character.png"
-          alt=""
-          aria-hidden="true"
-          className="w-[110px] h-auto select-none pointer-events-none mt-2"
-        />
-      </div>
 
-      <div className="relative text-center px-6 max-w-2xl mx-auto pt-10 md:pt-8 pb-12 md:pb-16">
-        <p className="font-mono text-[22px] sm:text-[26px] md:text-[38px] leading-tight text-[#1D1D24]">
+        <p className="font-mono text-[20px] leading-tight text-[#1D1D24] text-center max-w-xs">
           The screen is the output.
           <br />
           The real design happens before it.
         </p>
+
+        <div className="flex flex-wrap justify-center gap-3 max-w-sm">
+          <a
+            href="https://www.linkedin.com/in/ranjit-kumar-kar-3a3b7931/"
+            target="_blank"
+            rel="noreferrer"
+            className="bg-[#2452C4] text-white rounded-xl px-4 py-3 shadow-md w-[160px]"
+          >
+            <div className="text-[9px] tracking-wider text-white/70 font-semibold mb-1.5">FIND ME ONLINE</div>
+            <div className="flex items-center gap-2">
+              <Linkedin size={16} />
+              <div>
+                <div className="text-[12px] font-medium leading-tight">LinkedIn</div>
+                <div className="text-[11px] text-white/70 leading-tight">/ranjitkumar</div>
+              </div>
+            </div>
+          </a>
+          <div className="bg-white rounded-xl px-4 py-3 shadow-md w-[180px] border border-black/5">
+            <div className="text-[9px] tracking-wider text-[#8A8A93] font-semibold mb-2">INTERESTS</div>
+            <div className="flex flex-wrap gap-1.5">
+              {["Painting", "Reading", "Cooking", "Music", "Travelling"].map((tag) => (
+                <span key={tag} className="text-[11px] text-[#3A3A42] border border-black/10 rounded-full px-2.5 py-1">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <img
+          src="/footer-character.png"
+          alt=""
+          aria-hidden="true"
+          className="w-[110px] h-auto select-none pointer-events-none"
+        />
       </div>
 
-      <div className="relative pt-6 border-t border-black/[0.06]">
+      <div className="relative pt-6 pb-2 border-t border-black/[0.06]">
         <FooterContent />
       </div>
     </div>
@@ -492,7 +511,7 @@ export default function Home() {
         <AskBar onSubmit={handleSend} />
       </section>
 
-      <section className="max-w-4xl mx-auto px-4 md:px-6 mt-12 sm:mt-16 space-y-6 sm:space-y-8">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 mt-12 sm:mt-16 space-y-6 sm:space-y-8">
         {CASE_STUDIES.map((cs) => (
           <CaseStudyCard key={cs.id} cs={cs} />
         ))}

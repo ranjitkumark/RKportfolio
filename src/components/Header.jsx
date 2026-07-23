@@ -10,7 +10,7 @@ const NAV_ITEMS = [
 export default function Header() {
   const { pathname } = useLocation();
   return (
-    <header className="relative z-20 flex items-center justify-between px-4 sm:px-6 md:px-10 py-5 sm:py-6 max-w-6xl mx-auto w-full">
+    <header className="relative z-20 flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-16 py-5 sm:py-6 w-full">
       <Link to="/" className="text-[14px] sm:text-[15px] font-semibold tracking-tight text-[#14141A] lowercase shrink-0">
         ranjit kumar
       </Link>
