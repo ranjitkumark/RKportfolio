@@ -61,7 +61,7 @@ export default function ChatOverlay({ onClose }) {
   const submit = () => send(value);
 
   return (
-    <div className="fixed inset-0 z-50 bg-mint flex flex-col animate-fadeIn">
+    <div className="fixed inset-0 z-50 bg-mint flex flex-col animate-fadeIn font-poppins">
       <button
         type="button"
         onClick={onClose}
