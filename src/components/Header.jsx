@@ -6,7 +6,7 @@ const MODES = [
   { id: "life", label: "Life", icon: Heart },
 ];
 
-export default function Header({ mode, onModeChange, onAskRanjit }) {
+export default function Header({ mode, onModeChange, onAskRanjit, onOpenResume }) {
   return (
     <header className="relative z-30 w-full max-w-[1600px] mx-auto px-4 sm:px-16 py-6 font-poppins">
       <div className="flex flex-col items-center gap-3 sm:relative sm:flex-row sm:justify-center">
@@ -28,14 +28,14 @@ export default function Header({ mode, onModeChange, onAskRanjit }) {
         </div>
 
         <div className="flex items-center gap-3 sm:absolute sm:right-0">
-          <a
-            href="/ranjit-resume.pdf"
-            download
+          <button
+            type="button"
+            onClick={onOpenResume}
             className="hidden sm:flex items-center gap-2 text-[12px] font-medium text-accent bg-card border border-accent rounded-[24px] px-3.5 py-2 hover:opacity-80 transition-opacity"
           >
             <FileText size={13} />
             RESUME
-          </a>
+          </button>
           <button
             type="button"
             onClick={onAskRanjit}

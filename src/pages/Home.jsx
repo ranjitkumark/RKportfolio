@@ -48,7 +48,7 @@ function WorkSection() {
   );
 }
 
-export default function Home({ mode, onOpenPhilosophy }) {
+export default function Home({ mode, onOpenPhilosophy, onOpenResume }) {
   return (
     <div className="animate-fadeIn font-poppins">
       <section className="w-full max-w-[1600px] mx-auto px-4 sm:px-16 text-center py-16 sm:py-[120px]">
@@ -104,9 +104,9 @@ export default function Home({ mode, onOpenPhilosophy }) {
           </a>
         </div>
         <div className="mt-8 flex items-center justify-center gap-10 text-[12px] tracking-[1px] text-accent">
-          <a href="/ranjit-resume.pdf" download className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <button type="button" onClick={onOpenResume} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <FileText size={12} /> RESUME
-          </a>
+          </button>
           <a
             href="https://www.linkedin.com/in/ranjit-kumar-kar-3a3b7931/"
             target="_blank"
