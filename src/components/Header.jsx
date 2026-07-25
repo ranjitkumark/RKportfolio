@@ -1,9 +1,9 @@
 import React from "react";
-import { Monitor, Heart, FileText, MessageSquare, Command } from "lucide-react";
+import { Briefcase, Leaf, FileText, MessageSquare, Command } from "lucide-react";
 
 const MODES = [
-  { id: "work", label: "Work", icon: Monitor },
-  { id: "life", label: "Life", icon: Heart },
+  { id: "work", label: "Work", icon: Briefcase },
+  { id: "life", label: "Life", icon: Leaf },
 ];
 
 export default function Header({ mode, onModeChange, onAskRanjit, onOpenResume }) {

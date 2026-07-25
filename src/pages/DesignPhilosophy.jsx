@@ -72,21 +72,19 @@ const PROOF = [
 export default function DesignPhilosophy({ onBack }) {
   return (
     <div className="animate-fadeIn font-poppins min-h-screen">
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-16 py-6 flex justify-center">
-        <button
-          type="button"
-          onClick={onBack}
-          className="flex items-center gap-2 text-[14px] font-medium text-accent bg-card border border-accent rounded-[24px] px-4 py-2 hover:opacity-80 transition-opacity"
-        >
-          <ArrowLeft size={14} />
-          BACK TO HOME
-        </button>
-      </div>
+      <button
+        type="button"
+        onClick={onBack}
+        className="fixed top-5 sm:top-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2 text-[14px] font-medium text-accent bg-card border border-accent rounded-[24px] px-4 py-2 hover:opacity-80 transition-opacity shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
+      >
+        <ArrowLeft size={14} />
+        BACK
+      </button>
 
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-16">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-32">
         <div className="max-w-3xl">
           {/* HERO */}
-          <div className="pt-6 pb-16">
+          <div className="pt-20 sm:pt-24 pb-16">
             <Eyebrow>Design Philosophy — Ranjit Kumar</Eyebrow>
             <h1 className="text-[32px] sm:text-[44px] leading-[1.15] font-semibold text-heading mb-5">
               What twelve years in traffic taught me about design.
@@ -296,7 +294,7 @@ export default function DesignPhilosophy({ onBack }) {
 
       {/* CALM BAND (full-bleed) */}
       <div className="w-full bg-live/[0.07] border-y border-live/20">
-        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-16">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-32">
           <div className="max-w-3xl py-12 sm:py-16">
             <Eyebrow>Personal</Eyebrow>
             <h2 className="text-[24px] sm:text-[28px] font-semibold text-heading mb-5">Outside of work</h2>
@@ -311,7 +309,7 @@ export default function DesignPhilosophy({ onBack }) {
         </div>
       </div>
 
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-16">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-32">
         <div className="max-w-3xl">
           {/* BELIEFS */}
           <Section eyebrow="Beliefs" title="A few things I hold as true">

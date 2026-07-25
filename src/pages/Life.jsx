@@ -4,7 +4,7 @@ import { ReadMoreLink } from "../components/CaseStudyCard.jsx";
 
 function PhotoBlock({ label }) {
   return (
-    <div className="aspect-[4/5] rounded-2xl bg-card border border-band/40 flex items-center justify-center text-center px-5">
+    <div className="w-full max-w-[340px] aspect-[4/5] rounded-2xl bg-card border border-band/40 flex items-center justify-center text-center px-5 mx-auto md:mx-0">
       <span className="text-[12px] text-muted font-poppins">{label}</span>
     </div>
   );
@@ -27,9 +27,9 @@ function StoryRow({ photoLabel, title, children, reverse = false }) {
 export default function Life() {
   return (
     <div className="animate-fadeIn font-poppins">
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-16">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-32">
         {/* HERO */}
-        <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] gap-8 md:gap-16 items-start pt-6 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] gap-8 md:gap-16 items-start pt-16 sm:pt-20 pb-16">
           <PhotoBlock label="[ Your photo here ]" />
           <div>
             <Eyebrow>Outside of Work</Eyebrow>

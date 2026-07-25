@@ -1,5 +1,5 @@
 import React from "react";
-import { Eye, ArrowUpRight } from "lucide-react";
+import { Eye, ArrowRight } from "lucide-react";
 
 const ACTIVITY_ROWS = [
   { letter: "D", name: "Design Team", status: "Figma link updated", time: "2m", unread: true },
@@ -53,7 +53,7 @@ export function ReadMoreLink({ children }) {
       <span className="font-poppins font-medium text-[14px] text-accent underline decoration-solid">
         {children}
       </span>
-      <ArrowUpRight size={14} className="text-accent shrink-0" />
+      <ArrowRight size={14} className="text-accent shrink-0" />
     </span>
   );
 }
@@ -61,9 +61,9 @@ export function ReadMoreLink({ children }) {
 export default function CaseStudyCard({ study }) {
   return (
     <div className="flex flex-col md:flex-row gap-8 md:gap-[60px] items-center">
-      <div className="relative bg-card border border-[#c9d7da] dark:border-white/10 rounded-[24px] p-6 flex items-center justify-center shrink-0 w-full max-w-[300px] md:w-[300px] md:h-[210px]">
+      <div className="relative bg-card border border-[#c9d7da] dark:border-white/10 rounded-[24px] p-10 flex items-center justify-center shrink-0 w-full md:w-[380px] md:min-h-[420px]">
         <CommHubMock />
-        <span className="absolute left-6 bottom-3 flex items-center gap-1 text-[10px] text-body">
+        <span className="absolute left-6 bottom-4 flex items-center gap-1 text-[10px] text-body">
           <Eye size={11} /> Hover for a quick look
         </span>
       </div>
