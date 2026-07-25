@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* RGB triplets (no commas) so Tailwind's color-opacity modifiers (e.g. bg-accent/40) work */
+:root {
+  --c-ink: 17 17 17;
+  --c-heading: 36 36 36;
+  --c-body: 104 104 104;
+  --c-muted: 100 100 100;
+  --c-accent: 47 75 96;
+  --c-navy: 41 63 83;
+  --c-live: 0 146 73;
+  --c-card: 235 240 241;
+  --c-mint: 235 240 241;
+  --c-band: 189 195 199;
+  --c-surface: 255 255 255;
+}
+
+.dark {
+  --c-ink: 242 244 245;
+  --c-heading: 245 247 248;
+  --c-body: 169 180 186;
+  --c-muted: 139 150 156;
+  --c-accent: 141 180 214;
+  --c-navy: 61 90 116;
+  --c-live: 47 212 128;
+  --c-card: 27 37 48;
+  --c-mint: 20 29 37;
+  --c-band: 27 37 48;
+  --c-surface: 13 19 24;
+}
+
 html,
 body,
 #root {
@@ -10,4 +39,6 @@ body,
 
 body {
   font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background-color: rgb(var(--c-surface));
+  transition: background-color 0.25s ease;
 }

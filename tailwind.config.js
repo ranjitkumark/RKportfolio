@@ -1,21 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       colors: {
-        ink: "#14141A",
-        body: "#5B5B66",
-        muted: "#9A9AA5",
-        accent: "#2452C4",
-        navy: "#17213E",
-        live: "#16A34A",
-        card: "#EEF0F3",
-        mint: "#E9F0EA",
-        band: "#9BA1A6",
+        ink: "rgb(var(--c-ink) / <alpha-value>)",
+        heading: "rgb(var(--c-heading) / <alpha-value>)",
+        body: "rgb(var(--c-body) / <alpha-value>)",
+        muted: "rgb(var(--c-muted) / <alpha-value>)",
+        accent: "rgb(var(--c-accent) / <alpha-value>)",
+        navy: "rgb(var(--c-navy) / <alpha-value>)",
+        live: "rgb(var(--c-live) / <alpha-value>)",
+        card: "rgb(var(--c-card) / <alpha-value>)",
+        mint: "rgb(var(--c-mint) / <alpha-value>)",
+        band: "rgb(var(--c-band) / <alpha-value>)",
+        surface: "rgb(var(--c-surface) / <alpha-value>)",
       },
       fontFamily: {
         mono: ["'JetBrains Mono'", "ui-monospace", "SFMono-Regular", "monospace"],
+        poppins: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       keyframes: {
         fadeIn: {

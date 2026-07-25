@@ -66,30 +66,30 @@ export default function ChatOverlay({ onClose }) {
         type="button"
         onClick={onClose}
         aria-label="Close chat"
-        className="absolute top-5 right-5 sm:top-6 sm:right-6 w-9 h-9 rounded-full bg-ink/80 text-white flex items-center justify-center hover:bg-ink transition-colors"
+        className="absolute top-5 right-5 sm:top-8 sm:right-10 w-8 h-8 rounded-full bg-[#484848] text-white flex items-center justify-center hover:opacity-90 transition-opacity"
       >
-        <X size={16} />
+        <X size={14} />
       </button>
 
-      <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 sm:px-10 pt-16 sm:pt-20 pb-6">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 sm:px-10 pt-16 sm:pt-14 pb-6">
         <div className="max-w-2xl mx-auto w-full space-y-5">
           <div className="flex items-start gap-3">
-            <span className="w-8 h-8 shrink-0 rounded-full bg-black/10 text-ink text-[12px] font-semibold flex items-center justify-center">
+            <span className="w-7 h-7 shrink-0 rounded-full bg-[#7b8d8d] border border-[#597171] text-white text-[11px] font-semibold flex items-center justify-center">
               R
             </span>
-            <div className="bg-white rounded-2xl rounded-tl-sm px-5 py-4 text-[14px] leading-relaxed text-ink shadow-sm max-w-[85%]">
+            <div className="bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl rounded-tl-md px-[17px] py-[13px] text-[14px] leading-[22.4px] text-ink max-w-[85%]">
               {GREETING}
             </div>
           </div>
 
           {messages.length === 0 && (
-            <div className="flex flex-wrap gap-2 pl-11">
+            <div className="flex flex-wrap gap-3 pl-10">
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s}
                   type="button"
                   onClick={() => send(s)}
-                  className="text-[13px] text-body bg-white border border-black/5 rounded-full px-4 py-2 shadow-sm hover:border-black/15 transition-colors"
+                  className="text-[12px] font-medium text-body bg-white dark:bg-card border-[0.75px] border-black/20 dark:border-white/10 rounded-full h-[30px] px-[15px] shadow-[0px_1px_1px_rgba(0,0,0,0.24)] hover:border-black/40 dark:hover:border-white/30 transition-colors"
                 >
                   {s}
                 </button>
@@ -100,16 +100,16 @@ export default function ChatOverlay({ onClose }) {
           {messages.map((m, i) =>
             m.role === "assistant" ? (
               <div key={i} className="flex items-start gap-3">
-                <span className="w-8 h-8 shrink-0 rounded-full bg-black/10 text-ink text-[12px] font-semibold flex items-center justify-center">
+                <span className="w-7 h-7 shrink-0 rounded-full bg-[#7b8d8d] border border-[#597171] text-white text-[11px] font-semibold flex items-center justify-center">
                   R
                 </span>
-                <div className="bg-white rounded-2xl rounded-tl-sm px-5 py-4 text-[14px] leading-relaxed text-ink shadow-sm max-w-[85%]">
+                <div className="bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl rounded-tl-md px-[17px] py-[13px] text-[14px] leading-[22.4px] text-ink max-w-[85%]">
                   {m.content}
                 </div>
               </div>
             ) : (
               <div key={i} className="flex justify-end">
-                <div className="bg-navy text-white rounded-2xl rounded-tr-sm px-5 py-4 text-[14px] leading-relaxed max-w-[85%]">
+                <div className="bg-navy text-white rounded-tl-2xl rounded-bl-2xl rounded-br-2xl rounded-tr-md px-[17px] py-[13px] text-[14px] leading-[22.4px] max-w-[85%]">
                   {m.content}
                 </div>
               </div>
@@ -118,10 +118,10 @@ export default function ChatOverlay({ onClose }) {
 
           {loading && (
             <div className="flex items-start gap-3">
-              <span className="w-8 h-8 shrink-0 rounded-full bg-black/10 text-ink text-[12px] font-semibold flex items-center justify-center">
+              <span className="w-7 h-7 shrink-0 rounded-full bg-[#7b8d8d] border border-[#597171] text-white text-[11px] font-semibold flex items-center justify-center">
                 R
               </span>
-              <div className="bg-white rounded-2xl rounded-tl-sm px-5 py-4 shadow-sm">
+              <div className="bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl rounded-tl-md px-[17px] py-[13px]">
                 <span className="flex gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.3s]" />
                   <span className="w-1.5 h-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.15s]" />
@@ -133,29 +133,31 @@ export default function ChatOverlay({ onClose }) {
         </div>
       </div>
 
-      <div className="px-5 sm:px-10 pb-4">
-        <div className="max-w-2xl mx-auto w-full flex items-center bg-white rounded-full shadow-[0_2px_20px_rgba(20,20,26,0.08)] pl-5 pr-2 py-2">
+      <div className="px-5 sm:px-10 pb-8 font-poppins">
+        <div className="max-w-2xl mx-auto w-full flex items-center bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-full shadow-[0px_0px_2.5px_rgba(32,32,32,0.1)] pl-[13px] pr-[7px] py-[7px]">
           <input
             value={value}
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && submit()}
-            placeholder="Ask me anything..."
+            placeholder="Ask me anything…"
             className="flex-1 bg-transparent outline-none text-[14px] text-ink placeholder:text-muted"
           />
           <button
             type="button"
             onClick={submit}
             aria-label="Send"
-            className="w-9 h-9 shrink-0 rounded-full bg-navy text-white flex items-center justify-center hover:bg-[#232F55] transition-colors"
+            className="w-8 h-8 shrink-0 rounded-full bg-navy text-white flex items-center justify-center hover:opacity-90 transition-opacity"
           >
-            <ArrowUp size={16} />
+            <ArrowUp size={14} />
           </button>
         </div>
       </div>
 
-      <div className="border-t border-black/5 py-3 flex items-center justify-center gap-2 text-[11px] text-muted tracking-wide">
-        <kbd className="border border-black/10 rounded px-1.5 py-0.5 text-[10px]">ESC</kbd>
-        <span className="uppercase">Close</span>
+      <div className="border-t border-[#ced7d9] dark:border-white/10 py-8 flex items-center justify-center gap-3 font-poppins">
+        <span className="bg-[#dee2e3] dark:bg-card border border-[#9fa6ab] dark:border-white/20 rounded text-[14px] text-body px-[9px] py-[2px]">
+          ESC
+        </span>
+        <span className="text-[16px] font-medium text-body">CLOSE</span>
       </div>
     </div>
   );
