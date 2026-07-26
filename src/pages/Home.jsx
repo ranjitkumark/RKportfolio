@@ -75,24 +75,26 @@ export default function Home({ mode, onOpenPhilosophy, onOpenResume }) {
 
       {mode === "work" ? <WorkSection /> : <Life />}
 
-      <section className="w-full max-w-[1600px] mx-auto px-4 sm:px-32 py-[120px] text-center font-poppins">
-        <TrafficLight />
-        <p className="mt-6 mx-auto max-w-[760px] text-[22px] sm:text-[30px] leading-normal text-heading">
-          “A <span className="text-[#c93728]">traffic light</span> works because you never
-          <br className="hidden sm:block" /> have to think about it. That's the whole
-          <br className="hidden sm:block" /> job- earn that <span className="text-[#d08d00]">instant trust.</span>
-          <br className="hidden sm:block" /> No hesitation, no gusseing, Just <span className="text-[#2e6c4d]">knowing.</span>
-          <br className="hidden sm:block" /> Everything I design is in service of that
-          <br className="hidden sm:block" /> one second.”
-        </p>
-        <button
-          type="button"
-          onClick={onOpenPhilosophy}
-          className="inline-flex items-center gap-2 mt-6 text-[14px] font-semibold text-accent hover:opacity-80 transition-opacity"
-        >
-          READ MY DESIGN PHILOSOPHY <ArrowRight size={14} />
-        </button>
-      </section>
+      {mode === "work" && (
+        <section className="w-full max-w-[1600px] mx-auto px-4 sm:px-32 py-[120px] text-center font-poppins">
+          <TrafficLight />
+          <p className="mt-6 mx-auto max-w-[760px] text-[22px] sm:text-[30px] leading-normal text-heading">
+            “A <span className="text-[#c93728]">traffic light</span> works because you never
+            <br className="hidden sm:block" /> have to think about it. That's the whole
+            <br className="hidden sm:block" /> job- earn that <span className="text-[#d08d00]">instant trust.</span>
+            <br className="hidden sm:block" /> No hesitation, no gusseing, Just <span className="text-[#2e6c4d]">knowing.</span>
+            <br className="hidden sm:block" /> Everything I design is in service of that
+            <br className="hidden sm:block" /> one second.”
+          </p>
+          <button
+            type="button"
+            onClick={onOpenPhilosophy}
+            className="inline-flex items-center gap-2 mt-6 text-[14px] font-semibold text-accent hover:opacity-80 transition-opacity"
+          >
+            READ MY DESIGN PHILOSOPHY <ArrowRight size={14} />
+          </button>
+        </section>
+      )}
 
       <section className="w-full max-w-[1600px] mx-auto px-4 sm:px-32 pt-5 pb-[60px] text-center font-poppins">
         <h2 className="text-[36px] sm:text-[40px] font-semibold text-heading">Let's Talk.</h2>

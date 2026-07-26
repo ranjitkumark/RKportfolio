@@ -60,8 +60,8 @@ export function ReadMoreLink({ children }) {
 
 export default function CaseStudyCard({ study }) {
   return (
-    <div className="flex flex-col md:flex-row gap-8 md:gap-[60px] items-center">
-      <div className="relative bg-card border border-[#c9d7da] dark:border-white/10 rounded-[24px] p-10 flex items-center justify-center shrink-0 w-full md:w-[380px] md:min-h-[420px]">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+      <div className="relative bg-card border border-[#c9d7da] dark:border-white/10 rounded-[24px] p-10 flex items-center justify-center w-full md:min-h-[420px]">
         <CommHubMock />
         <span className="absolute left-6 bottom-4 flex items-center gap-1 text-[10px] text-body">
           <Eye size={11} /> Hover for a quick look

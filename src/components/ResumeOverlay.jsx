@@ -2,61 +2,91 @@ import React, { useEffect } from "react";
 import { X, Download } from "lucide-react";
 import Eyebrow from "./Eyebrow.jsx";
 
+const PROFILE =
+  "Senior/Lead UX Designer with 12+ years of experience designing intuitive, user-centered digital experiences across benefits management, IoT, AI, e-commerce, and decentralized (dApp) platforms. Skilled at translating complex, cross-functional requirements into scalable design solutions that improve usability, accessibility, and business outcomes. Proven track record of driving measurable gains in task efficiency, completion rates, and customer satisfaction through research-led design and design-system leadership.";
+
 const EXPERIENCE = [
   {
-    role: "Senior UX Designer",
-    company: "PlanSource Operations (ValueLabs)",
-    dates: "Aug 2016 – Present",
+    role: "Lead UX Designer",
+    company: "ValueLabs — Plansource Account",
+    dates: "Aug 2025 – Present",
     bullets: [
-      "Led a full revamp of the HSA experience: simplified employer setup while keeping IRS compliance, cut admin task time from 38 to 21 minutes, and reduced support tickets by 38% — helped win new clients, contributing to a 15% revenue increase.",
-      "Shipped prebuilt templates and automated messaging flows for employee communications: cut task time from 69 to 47 minutes and lifted feature CSAT from 2.9 to 4.1.",
-      "Designed an AI + voice-enabled chatbot for benefits queries and life-event workflows, cutting human agent handoffs by 13% in six months and improving NPS.",
-      "Redesigned the employee platform (responsive web + native mobile): +23% engagement, +22% enrollment completion, -15% support calls.",
-      "Unified two separate design systems into one, improving consistency, accessibility, and design velocity.",
+      "Promoted to Lead UX Designer as the Plansource account transitioned to ValueLabs. Continue to partner closely with product managers, product owners, and engineering teams to drive UX from research through implementation, and lead the redesign and governance of the product design system to strengthen consistency, scalability, and accessibility platform-wide.",
+    ],
+  },
+  {
+    role: "Senior UX Designer",
+    company: "Plansource Operations",
+    dates: "Jul 2021 – Aug 2025",
+    bullets: [
+      "Partnered closely with product managers, product owners, and engineering teams to drive UX from research through implementation. Led the redesign and planning of the product design system to strengthen consistency, scalability, and accessibility platform-wide.",
+      "Spearheaded a complete overhaul of the HSA experience, simplifying employer setup and ensuring IRS compliance with clear contribution guidelines — cut average admin task time from 38 to 21 minutes and reduced support tickets by 38%.",
+      "Engineered prebuilt templates and automated messaging flows that reduced average task time from 69 to 47 minutes and raised feature CSAT from 2.9 to 4.1, while improving clarity and consistency in employee communications.",
+      "Designed and launched an AI- and voice-enabled chatbot to handle benefit queries and manage life-event workflows, reducing human agent handoffs by 13% within six months and improving support efficiency and user satisfaction.",
+      "Optimized the benefits enrollment flow through usability testing and research, streamlining navigation and reducing friction — driving a 22% increase in completion rates, enhancing the onboarding experience, and cutting average task time by 30%.",
+      "Unified two disparate design systems into a single framework, establishing principles that improved consistency, accessibility, and scalability while accelerating design decision-making.",
     ],
   },
   {
     role: "Senior UX Designer",
     company: "Dataway Solutions",
-    dates: "",
+    dates: "Aug 2016 – Jul 2021",
     bullets: [
-      "Turned complex workflows into simple interactions; ran design sprints, research, user flows, wireframes, and prototypes end to end.",
+      "Led end-to-end UX design for high-impact government and IoT initiatives, including the design and development of a next-generation IoT platform.",
+      "Delivered the MeitY-funded “Emergency Citizen Safety” initiative, establishing a centralized command center at the Rajasthan Skill Center headquarters that monitored 2,300+ cameras in real time.",
+      "Rolled out a face-recognition-based attendance system across approximately 400 skill centers, streamlining workforce tracking at scale.",
+      "Earned the India Today Digital Trailblazer Award from the IT Minister in recognition of the initiative's digital innovation impact.",
     ],
   },
   {
     role: "Sr. Web & Graphics Designer",
     company: "Paskon Inc",
     dates: "Oct 2013 – Jun 2016",
-    bullets: ["Built low- and high-fidelity prototypes and mockups, and defined design principles."],
+    bullets: [
+      "Contributed to the core product team, creating low-fidelity prototypes, detailed mockups, design principles, and web/graphic designs.",
+      "Translated input from business and creative directors into simple, elegant design solutions, collaborating closely with product managers, developers, and marketing teams.",
+    ],
   },
   {
     role: "Web & Graphics Designer",
     company: "Wifi Networks",
     dates: "Nov 2012 – Oct 2013",
-    bullets: ["Covered print, branding, web, email, illustration, iconography, and motion graphics."],
+    bullets: [
+      "Designed and delivered a range of projects including print ads, branding, web and email promotions, illustrations, iconography, and motion graphics videos.",
+    ],
+  },
+  {
+    role: "Design Consultant",
+    company: "Startup from the Himalayas",
+    dates: "",
+    bullets: [
+      "Guided a startup's transformation into a lean, design-led organization aligned with the United Nations Sustainable Development Goals (UN SDGs).",
+      "Conducted user research and diary studies to ground decisions in real user needs, accelerating design cycles and strengthening adoption.",
+      "Led branding for a new product concept and partnered with the founder to shape the product vision and roadmap, accelerating time-to-market.",
+    ],
   },
 ];
 
-const SKILLS = [
-  "User research",
-  "Usability testing",
-  "Value proposition",
-  "Competitive analysis",
-  "Personas",
-  "Journey mapping",
-  "UX strategy",
-  "Information architecture",
-  "Wireframing",
-  "Interactive prototyping",
-  "Visual design",
-  "Accessibility (WCAG)",
-  "Design thinking",
-  "Product strategy",
-  "Leadership & mentoring",
-  "Design systems",
+const SKILL_GROUPS = [
+  {
+    label: "Research & Strategy",
+    items: ["User Research", "Usability Testing", "Value Proposition", "Competitive Analysis", "Personas", "Journey Mapping", "UX Strategy"],
+  },
+  {
+    label: "Design & Experience",
+    items: ["Information Architecture", "Wireframing", "Interactive Prototyping", "Visual Design", "Iconography", "Web Development"],
+  },
+  {
+    label: "Methods & Management",
+    items: ["Accessibility (WCAG)", "Design Thinking", "Problem Solving", "Empathy", "Leadership & Mentoring", "Product Strategy & Collaboration", "Design Systems"],
+  },
+  {
+    label: "Software & Languages",
+    items: ["Figma", "InVision", "Adobe CC", "Axure", "HTML", "CSS", "JavaScript"],
+  },
 ];
 
-const TOOLS = ["Figma", "Adobe Creative Cloud", "Axure RP", "InVision", "HTML", "CSS", "JavaScript"];
+const EDUCATION = ["Bachelor of Computer Applications", "Professional Diploma in 3D", "UX Certification (IXDF)"];
 
 export default function ResumeOverlay({ onClose }) {
   useEffect(() => {
@@ -87,9 +117,7 @@ export default function ResumeOverlay({ onClose }) {
         <div className="max-w-3xl mx-auto w-full">
           <Eyebrow>Resume</Eyebrow>
           <h1 className="text-[28px] sm:text-[36px] font-semibold text-heading">Ranjit Kumar</h1>
-          <p className="mt-1 text-[15px] sm:text-[16px] text-accent font-medium">
-            Lead UX Designer · B2B Enterprise SaaS
-          </p>
+          <p className="mt-1 text-[15px] sm:text-[16px] text-accent font-medium">Lead UX Designer</p>
 
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-body">
             <a href="mailto:postranjitk@gmail.com" className="hover:text-heading transition-colors">
@@ -108,7 +136,13 @@ export default function ResumeOverlay({ onClose }) {
             >
               LinkedIn
             </a>
+            <span className="w-px h-[14px] bg-body/30" />
+            <a href="https://www.ranjitkumar.me" target="_blank" rel="noreferrer" className="hover:text-heading transition-colors">
+              www.ranjitkumar.me
+            </a>
           </div>
+
+          <p className="mt-6 text-[14px] leading-relaxed text-body max-w-2xl">{PROFILE}</p>
 
           <a
             href="/ranjit-resume.pdf"
@@ -120,7 +154,9 @@ export default function ResumeOverlay({ onClose }) {
           </a>
 
           <div className="mt-10 pt-8 border-t border-band/30">
-            <h2 className="text-[12px] font-semibold uppercase tracking-[0.06em] text-muted mb-6">Experience</h2>
+            <h2 className="text-[12px] font-semibold uppercase tracking-[0.06em] text-muted mb-6">
+              Professional Experience
+            </h2>
             <div className="space-y-8">
               {EXPERIENCE.map((job, i) => (
                 <div key={i} className={i > 0 ? "pt-8 border-t border-band/30" : ""}>
@@ -143,25 +179,35 @@ export default function ResumeOverlay({ onClose }) {
           </div>
 
           <div className="mt-10 pt-8 border-t border-band/30">
-            <h2 className="text-[12px] font-semibold uppercase tracking-[0.06em] text-muted mb-4">Skills</h2>
-            <div className="flex flex-wrap gap-2">
-              {SKILLS.map((skill) => (
-                <span key={skill} className="text-[12px] text-body border border-band/40 rounded-full px-3.5 py-1.5">
-                  {skill}
-                </span>
+            <h2 className="text-[12px] font-semibold uppercase tracking-[0.06em] text-muted mb-5">Skills</h2>
+            <div className="space-y-4">
+              {SKILL_GROUPS.map((group) => (
+                <div key={group.label}>
+                  <p className="text-[12px] font-semibold text-heading mb-2">{group.label}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {group.items.map((skill) => (
+                      <span key={skill} className="text-[12px] text-body border border-band/40 rounded-full px-3.5 py-1.5">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-8 pt-8 border-t border-band/30">
-            <h2 className="text-[12px] font-semibold uppercase tracking-[0.06em] text-muted mb-4">Tools</h2>
-            <div className="flex flex-wrap gap-2">
-              {TOOLS.map((tool) => (
-                <span key={tool} className="text-[12px] text-body border border-band/40 rounded-full px-3.5 py-1.5">
-                  {tool}
-                </span>
+          <div className="mt-8 pt-8 border-t border-band/30 pb-2">
+            <h2 className="text-[12px] font-semibold uppercase tracking-[0.06em] text-muted mb-4">
+              Education & Certifications
+            </h2>
+            <ul className="space-y-2">
+              {EDUCATION.map((item) => (
+                <li key={item} className="flex gap-3 text-[14px] text-body">
+                  <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2" />
+                  <span>{item}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </div>

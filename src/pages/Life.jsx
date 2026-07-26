@@ -1,6 +1,5 @@
 import React from "react";
 import Eyebrow from "../components/Eyebrow.jsx";
-import { ReadMoreLink } from "../components/CaseStudyCard.jsx";
 
 function PhotoBlock({ label }) {
   return (
@@ -10,13 +9,11 @@ function PhotoBlock({ label }) {
   );
 }
 
-function StoryRow({ photoLabel, title, children, reverse = false }) {
+function StoryRow({ photoLabel, title, children }) {
   return (
-    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center py-12 sm:py-16 border-t border-band/30`}>
-      <div className={reverse ? "md:order-2" : ""}>
-        <PhotoBlock label={photoLabel} />
-      </div>
-      <div className={reverse ? "md:order-1" : ""}>
+    <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] gap-8 md:gap-12 items-center py-12 sm:py-16 border-t border-band/30">
+      <PhotoBlock label={photoLabel} />
+      <div>
         <h2 className="text-[24px] sm:text-[28px] font-semibold text-heading mb-3">{title}</h2>
         <div className="space-y-3 text-[15px] leading-relaxed text-body">{children}</div>
       </div>
@@ -29,66 +26,53 @@ export default function Life() {
     <div className="animate-fadeIn font-poppins">
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-32">
         {/* HERO */}
-        <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] gap-8 md:gap-16 items-start pt-16 sm:pt-20 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] gap-8 md:gap-12 items-start pt-16 sm:pt-20 pb-16">
           <PhotoBlock label="[ Your photo here ]" />
           <div>
             <Eyebrow>Outside of Work</Eyebrow>
-            <h1 className="text-[36px] sm:text-[48px] font-semibold text-heading mb-4">Outside the studio.</h1>
+            <h1 className="text-[36px] sm:text-[48px] font-semibold text-heading mb-4">Outside of Work</h1>
+            <p className="text-[16px] sm:text-[18px] italic text-body mb-5">
+              Work is only one part of how I see the world — the rest, I find in quiet places, new roads, and small
+              moments.
+            </p>
             <p className="text-[13px] font-medium text-accent uppercase tracking-wide mb-6">
-              [ e.g. Son · Traveler · Sketcher · Reader — swap for your own ]
+              Traveler · Reader · Moment-Catcher · Stillness-Seeker
             </p>
             <p className="text-[15px] sm:text-[16px] leading-relaxed text-body max-w-lg">
-              [ A short paragraph in your own words — what you make or do when you're not designing. Their version:
-              "I make things — with my hands, with words, with heat, with code — and I honestly can't stop." Write
-              the version of that sentence that's actually true for you. ]
+              Outside of work, I enjoy exploring new places, reading books that challenge my perspective, and
+              spending unhurried time over chai with friends. I find myself drawn to quiet places where I can slow
+              down and simply be present. Those moments often become the inspiration I bring back into my work.
             </p>
-            <div className="mt-5 inline-block text-[12px] font-mono text-live bg-live/10 border border-dashed border-live/40 rounded-lg px-4 py-3 max-w-lg">
-              This whole page is a template — replace every bracketed line and photo block with your own.
-            </div>
           </div>
         </div>
 
-        <StoryRow photoLabel="[ Photo — parents / family of origin ]" title="The family I came from">
+        <StoryRow photoLabel="[ Black & white mountain photo ]" title="Places That Shape Me">
           <p>
-            [ A line or two about your parents — who they are, what they gave you, or what shaped you before any of
-            this was a career. Doesn't need to be long. Their equivalent line was two sentences. ]
+            Travel has taught me more than any classroom ever could. Every destination offers a different way of
+            solving problems, communicating ideas, and living life. Whether it's a Himalayan trail, a quiet beach,
+            or a small town café, I enjoy observing how people interact with the world around them. Those
+            experiences remind me that great products start with understanding people.
           </p>
         </StoryRow>
 
-        <StoryRow photoLabel="[ Photo — spouse / kids / the family you built ]" title="The family I built" reverse>
-          <p>[ A line or two about the family you built — who they are, and what they mean to you. ]</p>
-        </StoryRow>
-
-        <StoryRow photoLabel="[ Photo — friends ]" title="The people who show up">
+        <StoryRow photoLabel="[ Mountain collage ]" title="Through My Lens">
           <p>
-            [ A line or two about your friends — who they are, how long you've known them, or what they mean to
-            you. ]
+            Somewhere on a Himalayan trail, I stopped chasing the summit for a moment and just looked around. The
+            mountains don't rush — they sit still, layer after layer, letting the light shift on their own time. I
+            don't click pictures to collect places; I capture moments that make me pause. A quiet sunrise, light
+            breaking through the peaks, mist settling over a valley, or a trail curving into silence. It's a habit
+            that reminds me to slow down, notice details, and appreciate that the smallest moments often tell the
+            biggest stories.
           </p>
         </StoryRow>
 
-        {/* WHAT I'M READING */}
-        <div className="pt-12 sm:pt-16 border-t border-band/30">
-          <h2 className="text-[24px] sm:text-[28px] font-semibold text-heading mb-6">What I'm reading</h2>
-          {["[ Book title ]", "[ Book title ]", "[ Book title ]"].map((title, i) => (
-            <div key={i} className="py-5 border-t border-band/30 last:border-b">
-              <div className="text-[15px] font-medium text-heading">{title}</div>
-              <div className="text-[12px] font-mono text-muted mt-1">[ Author ]</div>
-            </div>
-          ))}
-        </div>
-
-        {/* WHAT I WRITE */}
-        <div className="py-12 sm:py-16 border-t border-band/30">
-          <h2 className="text-[24px] sm:text-[28px] font-semibold text-heading mb-6">What I write</h2>
-          {["[ Title of blog post 1 ]", "[ Title of blog post 2 ]", "[ Title of blog post 3 ]"].map((title, i) => (
-            <a key={i} href="#" className="block py-5 border-t border-band/30 text-[15px] text-heading hover:text-accent transition-colors">
-              {title}
-            </a>
-          ))}
-          <a href="#" className="inline-block mt-6">
-            <ReadMoreLink>Read more</ReadMoreLink>
-          </a>
-        </div>
+        <StoryRow photoLabel="[ Beach photo ]" title="Quiet Places, Clear Mind">
+          <p>
+            Some of my favorite moments are the quiet ones — the sound of waves, a slow walk with no destination, or
+            a peaceful evening over chai. These pauses help me reflect, reset, and return with fresh ideas. They've
+            taught me that clarity often comes when everything else slows down.
+          </p>
+        </StoryRow>
       </div>
     </div>
   );
