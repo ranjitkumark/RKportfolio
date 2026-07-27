@@ -6,7 +6,7 @@ import TrafficLight from "../components/TrafficLight.jsx";
 import Life from "./Life.jsx";
 import { CASE_STUDIES } from "../data/caseStudies.js";
 
-function WorkSection() {
+function WorkSection({ onOpenArchive }) {
   return (
     <>
       <section id="work" className="w-full max-w-[1600px] mx-auto px-4 sm:px-32 pt-16 sm:pt-24 pb-10 font-poppins">
@@ -39,16 +39,16 @@ function WorkSection() {
           <p className="mt-3 text-[14px] leading-[20px] text-heading">
             A few more projects from further back - same discipline, different stops along the way.
           </p>
-          <a href="#" className="inline-block mt-3">
+          <button type="button" onClick={onOpenArchive} className="inline-block mt-3">
             <ReadMoreLink>Browse the archive</ReadMoreLink>
-          </a>
+          </button>
         </div>
       </section>
     </>
   );
 }
 
-export default function Home({ mode, onOpenPhilosophy, onOpenResume }) {
+export default function Home({ mode, onOpenPhilosophy, onOpenResume, onOpenArchive }) {
   return (
     <div className="animate-fadeIn font-poppins">
       {mode === "work" && (
@@ -73,7 +73,7 @@ export default function Home({ mode, onOpenPhilosophy, onOpenResume }) {
         </section>
       )}
 
-      {mode === "work" ? <WorkSection /> : <Life />}
+      {mode === "work" ? <WorkSection onOpenArchive={onOpenArchive} /> : <Life />}
 
       {mode === "work" && (
         <section className="w-full max-w-[1600px] mx-auto px-4 sm:px-32 py-[120px] text-center font-poppins">

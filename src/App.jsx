@@ -4,6 +4,7 @@ import Home from "./pages/Home.jsx";
 import DesignPhilosophy from "./pages/DesignPhilosophy.jsx";
 import ChatOverlay from "./components/ChatOverlay.jsx";
 import ResumeOverlay from "./components/ResumeOverlay.jsx";
+import ArchiveOverlay from "./components/ArchiveOverlay.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
 import { useTheme } from "./hooks/useTheme.js";
 
@@ -12,6 +13,7 @@ export default function App() {
   const [view, setView] = useState("home"); // "home" | "philosophy"
   const [chatOpen, setChatOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
+  const [archiveOpen, setArchiveOpen] = useState(false);
   const { themeMode, resolvedTheme, cycleThemeMode } = useTheme();
 
   useEffect(() => {
@@ -37,13 +39,19 @@ export default function App() {
       )}
       <main>
         {view === "home" ? (
-          <Home mode={mode} onOpenPhilosophy={() => setView("philosophy")} onOpenResume={() => setResumeOpen(true)} />
+          <Home
+            mode={mode}
+            onOpenPhilosophy={() => setView("philosophy")}
+            onOpenResume={() => setResumeOpen(true)}
+            onOpenArchive={() => setArchiveOpen(true)}
+          />
         ) : (
           <DesignPhilosophy onBack={() => setView("home")} />
         )}
       </main>
       {chatOpen && <ChatOverlay onClose={() => setChatOpen(false)} />}
       {resumeOpen && <ResumeOverlay onClose={() => setResumeOpen(false)} />}
+      {archiveOpen && <ArchiveOverlay onClose={() => setArchiveOpen(false)} />}
       <ThemeToggle themeMode={themeMode} resolvedTheme={resolvedTheme} onCycle={cycleThemeMode} />
     </div>
   );
