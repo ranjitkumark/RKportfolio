@@ -31,7 +31,7 @@ export default function Header({ mode, onModeChange, onAskRanjit, onOpenResume }
           <button
             type="button"
             onClick={onOpenResume}
-            className="hidden sm:flex items-center gap-2 text-[12px] font-medium text-accent bg-card border border-accent rounded-[24px] px-3.5 py-2 hover:opacity-80 transition-opacity"
+            className="hidden sm:flex items-center gap-2 h-9 text-[12px] font-medium text-accent bg-card border border-accent rounded-[24px] px-3.5 hover:opacity-80 transition-opacity"
           >
             <FileText size={13} />
             RESUME
@@ -39,7 +39,7 @@ export default function Header({ mode, onModeChange, onAskRanjit, onOpenResume }
           <button
             type="button"
             onClick={onAskRanjit}
-            className="flex items-center gap-2 text-[12px] font-medium text-accent bg-card border border-accent rounded-[24px] px-3.5 py-2.5 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-2 h-9 text-[12px] font-medium text-accent bg-card border border-accent rounded-[24px] px-3.5 hover:opacity-80 transition-opacity"
           >
             <MessageSquare size={16} />
             ASK RANJIT

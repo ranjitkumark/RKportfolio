@@ -1,3 +1,5 @@
+import { HSA_REEL, COMMUNICATION_REEL } from "./storyReels.js";
+
 export const CASE_STUDIES = [
   {
     id: "one-path-not-five",
@@ -12,6 +14,7 @@ export const CASE_STUDIES = [
     title: "Setup to Enrolled",
     suffix: "- HSA rebuilt end-to-end, from employer configuration to employee enrollment",
     href: "#",
+    reel: HSA_REEL,
   },
   {
     id: "one-setup-every-channel",
@@ -19,6 +22,7 @@ export const CASE_STUDIES = [
     title: "One Setup, Every Channel",
     suffix: " - a single hub for enrollment updates, employee communications, and PWA push notifications",
     href: "#",
+    reel: COMMUNICATION_REEL,
   },
   {
     id: "one-click-every-answer",

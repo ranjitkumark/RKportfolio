@@ -107,14 +107,16 @@ const PROOF = [
 export default function DesignPhilosophy({ onBack }) {
   return (
     <div className="animate-fadeIn font-poppins min-h-screen">
-      <button
-        type="button"
-        onClick={onBack}
-        className="fixed top-5 sm:top-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2 text-[14px] font-medium text-accent bg-card border border-accent rounded-[24px] px-4 py-2 hover:opacity-80 transition-opacity shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
-      >
-        <ArrowLeft size={14} />
-        BACK
-      </button>
+      <div className="fixed top-0 inset-x-0 z-40 h-16 sm:h-20 flex items-center justify-center bg-mint/90 backdrop-blur-sm border-b border-band/20">
+        <button
+          type="button"
+          onClick={onBack}
+          className="flex items-center gap-2 text-[14px] font-medium text-accent bg-card border border-accent rounded-[24px] px-4 py-2 hover:opacity-80 transition-opacity shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
+        >
+          <ArrowLeft size={14} />
+          BACK
+        </button>
+      </div>
 
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-32">
         <div className="max-w-2xl mx-auto text-center">

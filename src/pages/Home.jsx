@@ -66,9 +66,9 @@ export default function Home({ mode, onOpenPhilosophy, onOpenResume, onOpenArchi
           </p>
           <a
             href="#work"
-            className="inline-flex items-center gap-2 mt-8 text-[14px] font-medium text-accent hover:opacity-80 transition-opacity"
+            className="inline-flex items-center gap-2 mt-8 h-10 text-[13px] font-medium tracking-wide text-accent bg-card border border-accent rounded-full px-5 hover:opacity-80 transition-opacity"
           >
-            <ArrowDown size={13} /> SEE THE WORKS
+            SEE THE WORKS <ArrowDown size={13} />
           </a>
         </section>
       )}
@@ -89,7 +89,7 @@ export default function Home({ mode, onOpenPhilosophy, onOpenResume, onOpenArchi
           <button
             type="button"
             onClick={onOpenPhilosophy}
-            className="inline-flex items-center gap-2 mt-6 text-[14px] font-semibold text-accent hover:opacity-80 transition-opacity"
+            className="inline-flex items-center gap-2 mt-6 h-10 text-[13px] font-semibold tracking-wide text-accent bg-card border border-accent rounded-full px-5 hover:opacity-80 transition-opacity"
           >
             READ MY DESIGN PHILOSOPHY <ArrowRight size={14} />
           </button>

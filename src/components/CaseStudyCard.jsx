@@ -1,5 +1,6 @@
 import React from "react";
 import { Eye, ArrowRight } from "lucide-react";
+import StoryReel from "./StoryReel.jsx";
 
 const ACTIVITY_ROWS = [
   { letter: "D", name: "Design Team", status: "Figma link updated", time: "2m", unread: true },
@@ -61,12 +62,16 @@ export function ReadMoreLink({ children }) {
 export default function CaseStudyCard({ study }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-      <div className="relative bg-card border border-[#c9d7da] dark:border-white/10 rounded-[24px] p-10 flex items-center justify-center w-full md:min-h-[420px]">
-        <CommHubMock />
-        <span className="absolute left-6 bottom-4 flex items-center gap-1 text-[10px] text-body">
-          <Eye size={11} /> Hover for a quick look
-        </span>
-      </div>
+      {study.reel ? (
+        <StoryReel mock={study.reel.mock} beats={study.reel.beats} />
+      ) : (
+        <div className="relative bg-card border border-[#c9d7da] dark:border-white/10 rounded-[24px] p-10 flex items-center justify-center w-full md:min-h-[420px]">
+          <CommHubMock />
+          <span className="absolute left-6 bottom-4 flex items-center gap-1 text-[10px] text-body">
+            <Eye size={11} /> Hover for a quick look
+          </span>
+        </div>
+      )}
 
       <div className="flex flex-col justify-center">
         <div className="flex items-center gap-1.5 mb-1">
