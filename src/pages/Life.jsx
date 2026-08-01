@@ -1,18 +1,22 @@
 import React from "react";
 import Eyebrow from "../components/Eyebrow.jsx";
+import heroPlaceholder from "../assets/life/hero.svg";
+import mountainBwPlaceholder from "../assets/life/mountain-bw.png";
+import mountainCollagePlaceholder from "../assets/life/mountain-collage.png";
+import beachPlaceholder from "../assets/life/beach.png";
 
-function PhotoBlock({ label }) {
+function PhotoBlock({ src, label }) {
   return (
-    <div className="w-full max-w-[340px] aspect-[4/5] rounded-2xl bg-card border border-band/40 flex items-center justify-center text-center px-5 mx-auto md:mx-0">
-      <span className="text-[12px] text-muted font-poppins">{label}</span>
+    <div className="w-full max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden bg-card border border-band/40 mx-auto md:mx-0">
+      <img src={src} alt={label} className="w-full h-full object-cover" />
     </div>
   );
 }
 
-function StoryRow({ photoLabel, title, children }) {
+function StoryRow({ photoSrc, photoLabel, title, children }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] gap-8 md:gap-12 items-center py-12 sm:py-16 border-t border-band/30">
-      <PhotoBlock label={photoLabel} />
+      <PhotoBlock src={photoSrc} label={photoLabel} />
       <div>
         <h2 className="text-[24px] sm:text-[28px] font-semibold text-heading mb-3">{title}</h2>
         <div className="space-y-3 text-[15px] leading-relaxed text-body">{children}</div>
@@ -27,7 +31,7 @@ export default function Life() {
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-32">
         {/* HERO */}
         <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] gap-8 md:gap-12 items-start pt-16 sm:pt-20 pb-16">
-          <PhotoBlock label="[ Your photo here ]" />
+          <PhotoBlock src={heroPlaceholder} label="Your photo here" />
           <div>
             <Eyebrow>Outside of Work</Eyebrow>
             <h1 className="text-[36px] sm:text-[48px] font-semibold text-heading mb-4">Outside of Work</h1>
@@ -46,7 +50,7 @@ export default function Life() {
           </div>
         </div>
 
-        <StoryRow photoLabel="[ Black & white mountain photo ]" title="Places That Shape Me">
+        <StoryRow photoSrc={mountainBwPlaceholder} photoLabel="Black & white mountain photo" title="Places That Shape Me">
           <p>
             Travel has taught me more than any classroom ever could. Every destination offers a different way of
             solving problems, communicating ideas, and living life. Whether it's a Himalayan trail, a quiet beach,
@@ -55,7 +59,7 @@ export default function Life() {
           </p>
         </StoryRow>
 
-        <StoryRow photoLabel="[ Mountain collage ]" title="Through My Lens">
+        <StoryRow photoSrc={mountainCollagePlaceholder} photoLabel="Mountain collage" title="Through My Lens">
           <p>
             Somewhere on a Himalayan trail, I stopped chasing the summit for a moment and just looked around. The
             mountains don't rush — they sit still, layer after layer, letting the light shift on their own time. I
@@ -66,7 +70,7 @@ export default function Life() {
           </p>
         </StoryRow>
 
-        <StoryRow photoLabel="[ Beach photo ]" title="Quiet Places, Clear Mind">
+        <StoryRow photoSrc={beachPlaceholder} photoLabel="Beach photo" title="Quiet Places, Clear Mind">
           <p>
             Some of my favorite moments are the quiet ones — the sound of waves, a slow walk with no destination, or
             a peaceful evening over chai. These pauses help me reflect, reset, and return with fresh ideas. They've
