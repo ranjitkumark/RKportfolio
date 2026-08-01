@@ -1,12 +1,20 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
 import TrafficLight from "../components/TrafficLight.jsx";
-import Eyebrow from "../components/Eyebrow.jsx";
+
+function PhilosophyEyebrow({ children }) {
+  return (
+    <div className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.5px] text-muted uppercase font-poppins mb-3">
+      <span className="w-1.5 h-1.5 rounded-full bg-live" />
+      {children}
+    </div>
+  );
+}
 
 function Section({ eyebrow, title, children, divider = true }) {
   return (
     <section className={`py-12 sm:py-16 ${divider ? "border-t border-band/30" : ""}`}>
-      <Eyebrow>{eyebrow}</Eyebrow>
+      <PhilosophyEyebrow>{eyebrow}</PhilosophyEyebrow>
       <h2 className="text-[24px] sm:text-[28px] font-semibold text-heading mb-5">{title}</h2>
       <div className="space-y-4 text-[15px] sm:text-[16px] leading-relaxed text-body max-w-3xl">{children}</div>
     </section>
@@ -37,11 +45,11 @@ const PROOF = [
     body: (
       <>
         The HSA experience used to bury IRS compliance rules inside a setup flow people had to decode as they went —
-        now the system tells them as they go, and what took <span className="text-live font-mono font-semibold">38 → 21 min</span>{" "}
+        now the system tells them as they go, and what took <span className="font-mono font-semibold text-heading">38 → 21 min</span>{" "}
         now takes far less, with a lot fewer support calls behind it. The same fix worked on employee communications:
         prebuilt templates and automated messaging cut task time from{" "}
-        <span className="text-live font-mono font-semibold">69 → 47 min</span> and pulled feature satisfaction from{" "}
-        <span className="text-live font-mono font-semibold">2.9 → 4.1</span>, mostly by saying the same thing the
+        <span className="font-mono font-semibold text-heading">69 → 47 min</span> and pulled feature satisfaction from{" "}
+        <span className="font-mono font-semibold text-heading">2.9 → 4.1</span>, mostly by saying the same thing the
         same way every time. The enrollment flow got the same treatment: strip the friction, keep only what earns
         its place, and completion rates went up while the whole thing got faster to finish. The chatbot I built
         followed the same rule as everything else here — say what you know, say what you don't, and let people
@@ -58,10 +66,10 @@ const PROOF = [
     body: (
       <>
         On a MeitY-funded citizen safety initiative, I helped stand up a command center reading{" "}
-        <span className="text-live font-mono font-semibold">2,300+</span> live camera feeds in real time — the
+        <span className="font-mono font-semibold text-heading">2,300+</span> live camera feeds in real time — the
         closest I've come to designing an actual traffic light, at a scale where a wrong read isn't a bad review,
         it's a real risk. The same program rolled out face-recognition attendance across roughly{" "}
-        <span className="text-live font-mono font-semibold">400</span> skill centers. It's the work I'm proudest of,
+        <span className="font-mono font-semibold text-heading">400</span> skill centers. It's the work I'm proudest of,
         and it's the reason the India Today Digital Trailblazer Award still means something to me, handed to the
         project by the IT Minister himself.
       </>
@@ -72,7 +80,7 @@ const PROOF = [
 export default function DesignPhilosophy({ onBack }) {
   return (
     <div className="animate-fadeIn font-poppins min-h-screen">
-      <div className="fixed top-0 inset-x-0 z-40 h-16 sm:h-20 flex items-center justify-center bg-mint/90 backdrop-blur-sm border-b border-band/20">
+      <div className="fixed top-0 inset-x-0 z-40 h-16 sm:h-20 flex items-center justify-center backdrop-blur-sm">
         <button
           type="button"
           onClick={onBack}
@@ -87,13 +95,13 @@ export default function DesignPhilosophy({ onBack }) {
         <div className="max-w-3xl">
           {/* HERO */}
           <div className="pt-20 sm:pt-24 pb-16">
-            <Eyebrow>Design Philosophy — Ranjit Kumar</Eyebrow>
+            <PhilosophyEyebrow>Design Philosophy — Ranjit Kumar</PhilosophyEyebrow>
             <h1 className="text-[32px] sm:text-[44px] leading-[1.15] font-semibold text-heading mb-5">
-              What twelve years in traffic taught me about design.
+              I design the state, not just the screen.
             </h1>
             <p className="text-[16px] sm:text-[18px] italic text-body leading-relaxed max-w-xl mb-8">
-              A decade-plus of building systems that tell the truth about their own state — starting with the one
-              commute that never does.
+              Twelve years spent making sure a system tells the truth about what it's doing — before someone has to
+              guess.
             </p>
 
             <div className="flex gap-5">
@@ -113,15 +121,27 @@ export default function DesignPhilosophy({ onBack }) {
           {/* WHERE THIS BEGAN */}
           <Section eyebrow="Origin" title="Where this actually began">
             <p>
-              I started in animation — a diploma in 3D, learning that a single frame of motion could carry more
-              meaning than a paragraph of copy. That's not where most UX careers begin, but it's where mine did, and
-              it still shows up in how I think: I don't design static screens, I design <em>sequences</em>.
+              I learned two things before I learned design: what a system can actually do, and how a person figures
+              out what it's doing.
             </p>
-            <p>From there the path wasn't linear, it was escalating:</p>
+            <p>
+              The first came from three years as a working web developer — HTML, CSS, JavaScript, real production
+              sites. Most people learn design and then discover constraints. I met the constraints first, which is
+              why I still think in components and states rather than layouts, and why I've never been able to treat
+              a handoff as someone else's problem.
+            </p>
+            <p>
+              The second came from motion graphics and a 3D diploma. Animation stops being decoration the moment you
+              understand what it actually does to a person: it tells them where something came from, whether their
+              action registered, whether the system is thinking or stuck, and what deserves their attention right
+              now. Get the timing wrong and an interface feels broken even when every pixel is correct. Get it right
+              and people stop noticing the interface at all.
+            </p>
+            <p>Everything since has been the same question asked in different industries:</p>
             <div className="font-mono text-[14px] text-heading bg-card border border-band/40 rounded-xl px-5 py-4 max-w-md">
-              12+ years <span className="text-muted">·</span> 4 industries <span className="text-muted">·</span> 1 pattern
+              12+ years <span className="text-muted">·</span> 3 industries <span className="text-muted">·</span> 1 pattern
               <span className="block text-[12px] text-muted mt-1.5 font-poppins">
-                Animation → Web &amp; Graphics → IoT → US Benefits
+                Web Development &amp; Motion Graphics → IoT → US Benefits
               </span>
             </div>
             <p>
@@ -139,11 +159,11 @@ export default function DesignPhilosophy({ onBack }) {
               make it confidently.
             </p>
             <p>
-              I don't just design the screen. I design the <em>state</em> — is the system working, waiting, blocked,
-              or done — because most of the frustration people feel with software isn't bad visuals, it's not
-              knowing what's actually happening. That's a lesson I learned first from motion graphics, then
-              relearned the hard way on a government safety platform, where the "screen" was a live wall of 2,300+
-              camera feeds and a wrong read wasn't a bad review, it was a real-world risk.
+              What that means in practice: the state is the thing I'm actually designing — is the system working,
+              waiting, blocked, or done — because most of the frustration people feel with software isn't bad
+              visuals, it's not knowing what's actually happening. I learned that first from motion graphics, then
+              relearned it the hard way on a government safety platform, where the "screen" was a live wall of
+              2,300+ camera feeds and a wrong read wasn't a bad review, it was a real-world risk.
             </p>
           </Section>
 
@@ -253,6 +273,28 @@ export default function DesignPhilosophy({ onBack }) {
             </p>
           </Section>
 
+          {/* FRICTION */}
+          <Section eyebrow="Friction" title="What I can't stand watching happen">
+            <p>
+              Teams jumping straight into a polished prototype before anyone's checked whether the underlying
+              problem is worth solving — weeks spent on fidelity nobody asked for, on a direction nobody validated
+              first.
+            </p>
+            <p>
+              Accessibility treated like a checklist a compliance team signs off on, instead of the actual bar for
+              whether a product works at all. That gets stranger the higher the stakes — a benefits platform or a
+              government system is exactly where the people relying on it can least afford to be locked out.
+            </p>
+            <p>
+              Roadmaps that grow features faster than they grow value, until the workflow ends up optimized for the
+              org chart instead of the person actually using it.
+            </p>
+            <p>
+              And design getting pulled in only after the direction's already decided — when the biggest difference
+              I can make is shaping the problem itself, not skinning an interface after the fact.
+            </p>
+          </Section>
+
           {/* PROCESS */}
           <Section eyebrow="Process" title="The way I actually operate">
             <ul className="space-y-3">
@@ -276,9 +318,12 @@ export default function DesignPhilosophy({ onBack }) {
               <li className="flex gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
                 <span>
-                  <strong className="font-semibold text-heading">I know what the code costs.</strong> Starting in
-                  web development means I don't hand off specs that quietly become someone else's problem in sprint
-                  planning.
+                  <strong className="font-semibold text-heading">
+                    I know what the code costs, because I've written it.
+                  </strong>{" "}
+                  Three years as a working web developer — HTML, CSS, JavaScript, real production sites — before I
+                  ever called myself a UX designer. I don't hand off specs that quietly become someone else's
+                  problem in sprint planning, because I've been the person who inherited that problem.
                 </span>
               </li>
               <li className="flex gap-3">
@@ -289,7 +334,32 @@ export default function DesignPhilosophy({ onBack }) {
                   done.
                 </span>
               </li>
+              <li className="flex gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span>
+                  <strong className="font-semibold text-heading">I validate before I commit.</strong> A hunch is a
+                  starting point, not a decision — research, testing, and real data are what turn a guess into
+                  something worth building.
+                </span>
+              </li>
             </ul>
+          </Section>
+
+          {/* TRADE-OFFS */}
+          <Section eyebrow="Trade-offs" title="Where user needs and business needs actually meet">
+            <p>
+              I don't treat user needs and business goals as opposing forces. If people can't get what they came
+              for, the business loses. If the business can't sustain the product, people lose it entirely. My job is
+              finding the actual overlap between what someone needs, what the business is trying to achieve, and
+              what the technology can realistically support — and when a real trade-off shows up, making its cost
+              visible to whoever's deciding, instead of quietly absorbing it as "a design call."
+            </p>
+            <p>
+              The clearest version of this I keep coming back to: someone wants to find what they came for, fast.
+              The business wants people to discover more. A bad answer forces an interstitial between the two. A
+              better one builds search good enough that recommendations can sit inline — and both sides get what
+              they wanted without either one losing.
+            </p>
           </Section>
         </div>
       </div>
@@ -298,7 +368,7 @@ export default function DesignPhilosophy({ onBack }) {
       <div className="w-full bg-live/[0.07] border-y border-live/20">
         <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-32">
           <div className="max-w-3xl py-12 sm:py-16">
-            <Eyebrow>Personal</Eyebrow>
+            <PhilosophyEyebrow>Personal</PhilosophyEyebrow>
             <h2 className="text-[24px] sm:text-[28px] font-semibold text-heading mb-5">Outside of work</h2>
             <p className="text-[15px] sm:text-[16px] leading-relaxed text-body max-w-3xl">
               I spend three hours a day fighting traffic that neither respects nor informs me. Maybe that's exactly
@@ -329,6 +399,13 @@ export default function DesignPhilosophy({ onBack }) {
                 </li>
               ))}
             </ul>
+            <p>
+              One more on that last point, since it comes up a lot: AI is only worth adding if it reduces repetitive
+              work, personalizes something responsibly, surfaces an insight buried in too much data, or helps
+              someone find what they need faster — never because it's trendy. The best implementations don't
+              announce themselves. People should always know what's happening, stay in control, and be able to tell
+              the difference between AI recommending something and AI doing something.
+            </p>
           </Section>
 
           {/* COLLABORATION */}

@@ -1,9 +1,9 @@
 import React from "react";
 import Eyebrow from "../components/Eyebrow.jsx";
 import heroPlaceholder from "../assets/life/hero.svg";
-import mountainBwPlaceholder from "../assets/life/mountain-bw.svg";
-import mountainCollagePlaceholder from "../assets/life/mountain-collage.svg";
-import beachPlaceholder from "../assets/life/beach.svg";
+import mountainBwPlaceholder from "../assets/life/mountain-bw.png";
+import mountainCollagePlaceholder from "../assets/life/mountain-collage.png";
+import beachPlaceholder from "../assets/life/beach.png";
 
 function PhotoBlock({ src, label }) {
   return (
