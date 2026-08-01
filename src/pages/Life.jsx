@@ -1,6 +1,6 @@
 import React from "react";
 import Eyebrow from "../components/Eyebrow.jsx";
-import heroPlaceholder from "../assets/life/hero.svg";
+import heroPlaceholder from "../assets/life/hero.png";
 import mountainBwPlaceholder from "../assets/life/mountain-bw.png";
 import mountainCollagePlaceholder from "../assets/life/mountain-collage.png";
 import beachPlaceholder from "../assets/life/beach.png";
@@ -19,7 +19,7 @@ function StoryRow({ photoSrc, photoLabel, title, children }) {
       <PhotoBlock src={photoSrc} label={photoLabel} />
       <div>
         <h2 className="text-[24px] sm:text-[28px] font-semibold text-heading mb-3">{title}</h2>
-        <div className="space-y-3 text-[15px] leading-relaxed text-body">{children}</div>
+        <div className="space-y-3 text-[14px] leading-relaxed text-body">{children}</div>
       </div>
     </div>
   );
@@ -39,10 +39,10 @@ export default function Life() {
               Work is only one part of how I see the world — the rest, I find in quiet places, new roads, and small
               moments.
             </p>
-            <p className="text-[13px] font-medium text-accent uppercase tracking-wide mb-6">
+            <p className="text-[14px] font-medium text-accent uppercase tracking-wide mb-6">
               Traveler · Reader · Moment-Catcher · Stillness-Seeker
             </p>
-            <p className="text-[15px] sm:text-[16px] leading-relaxed text-body max-w-lg">
+            <p className="text-[14px] sm:text-[16px] leading-relaxed text-body max-w-lg">
               Outside of work, I enjoy exploring new places, reading books that challenge my perspective, and
               spending unhurried time over chai with friends. I find myself drawn to quiet places where I can slow
               down and simply be present. Those moments often become the inspiration I bring back into my work.
