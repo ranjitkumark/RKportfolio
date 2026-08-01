@@ -28,12 +28,12 @@ function StoryRow({ photoSrc, photoLabel, title, children }) {
 export default function Life() {
   return (
     <div className="animate-fadeIn font-poppins">
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-32">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-48">
         {/* HERO */}
         <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] gap-8 md:gap-12 items-start pt-16 sm:pt-20 pb-16">
           <PhotoBlock src={heroPlaceholder} label="Your photo here" />
           <div>
-            <Eyebrow>Outside of Work</Eyebrow>
+
             <h1 className="text-[36px] sm:text-[48px] font-semibold text-heading mb-4">Outside of Work</h1>
             <p className="text-[16px] sm:text-[18px] italic text-body mb-5">
               Work is only one part of how I see the world — the rest, I find in quiet places, new roads, and small

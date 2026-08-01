@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowDown, ArrowRight, Briefcase, Contact, Linkedin, Newspaper } from "lucide-react";
 import CaseStudyCard, { ReadMoreLink } from "../components/CaseStudyCard.jsx";
 import Footer from "../components/Footer.jsx";
+import FooterLife from "../components/FooterLife.jsx";
 import TrafficLight from "../components/TrafficLight.jsx";
 import Life from "./Life.jsx";
 import { CASE_STUDIES } from "../data/caseStudies.js";
@@ -96,7 +97,11 @@ export default function Home({ mode, onOpenPhilosophy, onOpenResume, onOpenArchi
         </section>
       )}
 
-      <section className="w-full max-w-[1600px] mx-auto px-4 sm:px-32 pt-5 pb-[60px] text-center font-poppins">
+      <section
+        className={`w-full max-w-[1600px] mx-auto px-4 ${
+          mode === "work" ? "sm:px-32" : "sm:px-48"
+        } pt-5 pb-[60px] text-center font-poppins`}
+      >
         <h2 className="text-[36px] sm:text-[40px] font-semibold text-heading">Let's Talk.</h2>
         <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[14px] text-body">
           <a href="mailto:postranjitk@gmail.com" className="hover:text-heading transition-colors">
@@ -125,7 +130,7 @@ export default function Home({ mode, onOpenPhilosophy, onOpenResume, onOpenArchi
         </div>
       </section>
 
-      <Footer />
+      {mode === "work" ? <Footer /> : <FooterLife />}
     </div>
   );
 }
