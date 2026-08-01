@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { X, ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { ARCHIVE_PROJECTS } from "../data/archiveProjects.js";
+
+const COVERS = import.meta.glob("../assets/archive/*/cover.svg", { eager: true, import: "default" });
+const SLIDES = import.meta.glob("../assets/archive/*/slide-*.svg", { eager: true, import: "default" });
+
+function getCover(projectId) {
+  return COVERS[`../assets/archive/${projectId}/cover.svg`];
+}
+
+function getSlide(projectId, slideNumber) {
+  return SLIDES[`../assets/archive/${projectId}/slide-${slideNumber}.svg`];
+}
 
 function HintBar({ showNav }) {
   return (
@@ -65,11 +76,15 @@ function ProjectSlider({ project, onClose }) {
         </button>
 
         <div
-          className={`w-full max-w-3xl aspect-video rounded-2xl bg-card border border-band/40 flex items-center justify-center transition-transform duration-300 ${
+          className={`w-full max-w-3xl aspect-video rounded-2xl overflow-hidden bg-card border border-band/40 transition-transform duration-300 ${
             zoomed ? "scale-110" : ""
           }`}
         >
-          <ImageIcon size={40} className="text-band" />
+          <img
+            src={getSlide(project.id, index + 1)}
+            alt={`${project.name} — slide ${index + 1}`}
+            className="w-full h-full object-cover"
+          />
         </div>
 
         <button
@@ -107,10 +122,18 @@ function ProjectGrid({ onSelect }) {
                 key={project.id}
                 type="button"
                 onClick={() => onSelect(project)}
-                className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-navy to-[#0d1318] text-left p-4 flex flex-col justify-end hover:opacity-90 transition-opacity"
+                className="group relative aspect-[4/3] rounded-2xl overflow-hidden text-left hover:opacity-90 transition-opacity"
               >
-                <span className="text-white text-[15px] font-semibold">{project.name}</span>
-                <span className="text-white/70 text-[12px] mt-1">{project.description}</span>
+                <img
+                  src={getCover(project.id)}
+                  alt={project.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+                <div className="relative h-full p-4 flex flex-col justify-end">
+                  <span className="text-white text-[15px] font-semibold">{project.name}</span>
+                  <span className="text-white/70 text-[12px] mt-1">{project.description}</span>
+                </div>
               </button>
             ))}
           </div>

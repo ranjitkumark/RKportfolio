@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" rx="20" fill="#ebf0f1" />
+  <rect x="1" y="1" width="958" height="538" rx="19" fill="none" stroke="#bdc3c7" stroke-width="2" stroke-dasharray="8 8" />
+  <g transform="translate(480,250)" fill="none" stroke="#8a9498" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-60" y="-45" width="120" height="90" rx="8" />
+    <circle cx="-25" cy="-15" r="10" />
+    <path d="M-60 27 L-15 -9 L12 18 L33 0 L60 27" />
+  </g>
+  <text x="480" y="358" text-anchor="middle" font-family="Poppins, sans-serif" font-size="20" font-weight="700" fill="#363636">Optage &#8212; Slide 10 of 16</text>
+  <text x="480" y="386" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="13" letter-spacing="0.5" fill="#646464">replace: src/assets/archive/optage/slide-10.svg</text>
+</svg>

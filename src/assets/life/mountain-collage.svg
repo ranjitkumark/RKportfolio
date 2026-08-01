@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="425" viewBox="0 0 340 425">
+  <rect width="340" height="425" rx="16" fill="#ebf0f1" />
+  <rect x="1" y="1" width="338" height="423" rx="15" fill="none" stroke="#bdc3c7" stroke-width="2" stroke-dasharray="6 6" />
+  <g transform="translate(170,180)" fill="none" stroke="#8a9498" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-38" y="-30" width="76" height="60" rx="6" />
+    <circle cx="-16" cy="-10" r="7" />
+    <path d="M-38 18 L-10 -6 L8 12 L20 0 L38 18" />
+  </g>
+  <text x="170" y="248" text-anchor="middle" font-family="Poppins, sans-serif" font-size="14" font-weight="600" fill="#484848">Mountain collage</text>
+  <text x="170" y="270" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="0.5" fill="#646464">replace: src/assets/life/mountain-collage.svg</text>
+</svg>
