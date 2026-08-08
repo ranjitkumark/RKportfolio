@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { ARCHIVE_PROJECTS } from "../data/archiveProjects.js";
 
-const COVERS = import.meta.glob("../assets/archive/*/cover.svg", { eager: true, import: "default" });
-const SLIDES = import.meta.glob("../assets/archive/*/slide-*.svg", { eager: true, import: "default" });
+const COVERS = import.meta.glob("../assets/archive/*/cover.png", { eager: true, import: "default" });
+const SLIDES = import.meta.glob("../assets/archive/*/slide-*.png", { eager: true, import: "default" });
 
 function getCover(projectId) {
-  return COVERS[`../assets/archive/${projectId}/cover.svg`];
+  return COVERS[`../assets/archive/${projectId}/cover.png`];
 }
 
 function getSlide(projectId, slideNumber) {
-  return SLIDES[`../assets/archive/${projectId}/slide-${slideNumber}.svg`];
+  return SLIDES[`../assets/archive/${projectId}/slide-${slideNumber}.png`];
 }
 
 function HintBar({ showNav }) {

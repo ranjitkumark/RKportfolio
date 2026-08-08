@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import LetsTalk from "../components/LetsTalk.jsx";
 import Footer from "../components/Footer.jsx";
-import valuePropImg from "../assets/case-studies/hsa/value-proposition.svg";
-import mindmapImg from "../assets/case-studies/hsa/mindmap.svg";
-import taskflowImg from "../assets/case-studies/hsa/taskflow.svg";
-import prototypeImg from "../assets/case-studies/hsa/prototype.svg";
-import finalImg from "../assets/case-studies/hsa/final-product.svg";
+import valuePropImg from "../assets/case-studies/hsa/value-proposition.png";
+import mindmapImg from "../assets/case-studies/hsa/mindmap.png";
+import taskflowImg from "../assets/case-studies/hsa/taskflow.png";
+import prototypeImg from "../assets/case-studies/hsa/prototype.png";
+import finalImg from "../assets/case-studies/hsa/final-product.png";
 
 const NAV_SECTIONS = [
   { id: "background", label: "Background" },
