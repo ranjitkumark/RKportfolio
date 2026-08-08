@@ -84,7 +84,7 @@ export default function StoryReel({ mock, beats, mockNode }) {
       {/* default mock UI */}
       <div
         className={`absolute top-9 left-9 right-9 transition-all duration-500 ${
-          mockNode ? "bottom-9" : "bg-white rounded-2xl overflow-hidden shadow-[0_18px_40px_-20px_rgba(20,30,25,0.35)]"
+          mockNode ? "bottom-16" : "bg-white rounded-2xl overflow-hidden shadow-[0_18px_40px_-20px_rgba(20,30,25,0.35)]"
         } ${playing ? "opacity-0 blur-md scale-[0.97] translate-y-1.5" : "opacity-100"}`}
       >
         {mockNode ? (

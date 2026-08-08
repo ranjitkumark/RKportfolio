@@ -1,13 +1,16 @@
 import React from "react";
 import { Eye, ArrowRight } from "lucide-react";
 import StoryReel from "./StoryReel.jsx";
-import { AIAssistantMock, CommHubStatsMock, DeliveryHubMock, CommHubContributionMock } from "./CaseStudyMocks.jsx";
+import deliveryHubImg from "../assets/case-studies/mocks/mock-delivery-hub.png";
+import commHubContributionImg from "../assets/case-studies/mocks/mock-comm-hub-contribution.png";
+import commHubStatsImg from "../assets/case-studies/mocks/mock-comm-hub-stats.png";
+import aiAssistantImg from "../assets/case-studies/mocks/mock-ai-assistant.png";
 
-const MOCK_BY_ID = {
-  "one-path-not-five": DeliveryHubMock,
-  "setup-to-enrolled": CommHubContributionMock,
-  "one-setup-every-channel": CommHubStatsMock,
-  "one-click-every-answer": AIAssistantMock,
+const MOCK_IMG_BY_ID = {
+  "one-path-not-five": deliveryHubImg,
+  "setup-to-enrolled": commHubContributionImg,
+  "one-setup-every-channel": commHubStatsImg,
+  "one-click-every-answer": aiAssistantImg,
 };
 
 export function ReadMoreLink({ children }) {
@@ -22,18 +25,20 @@ export function ReadMoreLink({ children }) {
 }
 
 export default function CaseStudyCard({ study, onOpenCaseStudy }) {
-  const MockComponent = MOCK_BY_ID[study.id];
+  const mockImg = MOCK_IMG_BY_ID[study.id];
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
       {study.reel ? (
         <StoryReel
           mock={study.reel.mock}
           beats={study.reel.beats}
-          mockNode={MockComponent ? <MockComponent /> : undefined}
+          mockNode={mockImg ? <img src={mockImg} alt={study.title} className="w-full h-full object-cover rounded-2xl" /> : undefined}
         />
       ) : (
-        <div className="relative w-full h-[420px] rounded-[24px] bg-card border border-[#c9d7da] dark:border-white/10 overflow-hidden p-9">
-          <MockComponent />
+        <div className="relative w-full h-[420px] rounded-[24px] bg-card border border-[#c9d7da] dark:border-white/10 overflow-hidden">
+          <div className="absolute top-9 left-9 right-9 bottom-16">
+            <img src={mockImg} alt={study.title} className="w-full h-full object-cover rounded-2xl" />
+          </div>
           <span className="absolute left-9 bottom-[30px] flex items-center gap-2 text-[13px] text-body">
             <Eye size={16} className="opacity-80" /> Hover for a quick look
           </span>

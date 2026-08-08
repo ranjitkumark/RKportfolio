@@ -24,6 +24,7 @@ export const CASE_STUDIES = [
     suffix: " - a single hub for enrollment updates, employee communications, and PWA push notifications",
     href: "#",
     reel: COMMUNICATION_REEL,
+    hasPage: true,
   },
   {
     id: "one-click-every-answer",

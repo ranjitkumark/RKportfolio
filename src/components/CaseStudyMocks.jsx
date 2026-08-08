@@ -1,9 +1,12 @@
 import React from "react";
 import { Mic, ArrowUp, MessageSquare, Info, Maximize2, MoreHorizontal, ChevronDown, ChevronRight, Plus, MoreVertical, Sparkles, Headphones } from "lucide-react";
 
-function MockShell({ title, children }) {
+function MockShell({ id, title, children }) {
   return (
-    <div className="w-full h-full bg-white rounded-2xl overflow-hidden shadow-[0_18px_40px_-20px_rgba(20,30,25,0.35)] flex flex-col">
+    <div
+      id={id}
+      className="w-full h-full bg-white rounded-2xl overflow-hidden shadow-[0_18px_40px_-20px_rgba(20,30,25,0.35)] flex flex-col"
+    >
       <div className="bg-accent px-4 py-3 flex items-center justify-between shrink-0">
         <span className="text-white text-[11px] font-bold tracking-[1.2px] font-poppins">{title}</span>
         <div className="flex items-center gap-1.5">
@@ -18,7 +21,7 @@ function MockShell({ title, children }) {
 
 export function AIAssistantMock() {
   return (
-    <MockShell title="AI ASSISTANT">
+    <MockShell id="mock-ai-assistant" title="AI ASSISTANT">
       <div className="h-full flex flex-col justify-between">
         <div className="bg-accent/85 rounded-2xl px-3 py-2.5 flex items-center gap-2">
           <span className="w-6 h-6 rounded-full bg-white flex items-center justify-center shrink-0">
@@ -66,7 +69,7 @@ const CHANNEL_STATS = [
 
 export function CommHubStatsMock() {
   return (
-    <MockShell title="COMMUNICATION HUB">
+    <MockShell id="mock-comm-hub-stats" title="COMMUNICATION HUB">
       <div className="grid grid-cols-2 gap-2.5 h-full">
         {CHANNEL_STATS.map((stat) => (
           <div key={stat.label} className="bg-white rounded-xl border border-band/30 px-2.5 py-2 flex flex-col justify-center">
@@ -82,7 +85,7 @@ export function CommHubStatsMock() {
 
 export function DeliveryHubMock() {
   return (
-    <MockShell title="DELIVERY HUB">
+    <MockShell id="mock-delivery-hub" title="DELIVERY HUB">
       <div className="h-full flex flex-col gap-2.5">
         <div className="bg-white rounded-xl border border-band/30 px-3 py-2.5">
           <div className="flex items-start justify-between gap-2">
@@ -139,7 +142,7 @@ export function CommHubContributionMock() {
     { label: "YOUR MAX CONTRIBUTION FOR 2025", value: "$6,580.00", pct: 76, min: "$0", max: "$8,550 limit" },
   ];
   return (
-    <MockShell title="COMMUNICATION HUB">
+    <MockShell id="mock-comm-hub-contribution" title="COMMUNICATION HUB">
       <div className="h-full flex flex-col justify-center gap-3">
         {rows.map((row) => (
           <div key={row.label} className="bg-white rounded-xl border border-band/30 px-3 py-2.5">

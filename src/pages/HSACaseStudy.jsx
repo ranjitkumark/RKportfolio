@@ -1,7 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
-import { ArrowLeft } from "lucide-react";
-import LetsTalk from "../components/LetsTalk.jsx";
-import Footer from "../components/Footer.jsx";
+import React, { useState } from "react";
+import {
+  Quote,
+  SectionHeading,
+  SubHeading,
+  Label,
+  List,
+  PlaceholderImage,
+  IssueCard,
+  TextColumn,
+  useScrollSpy,
+  CaseStudyNav,
+  CaseStudyPageShell,
+} from "../components/CaseStudyKit.jsx";
 import valuePropImg from "../assets/case-studies/hsa/value-proposition.png";
 import mindmapImg from "../assets/case-studies/hsa/mindmap.png";
 import taskflowImg from "../assets/case-studies/hsa/taskflow.png";
@@ -18,67 +28,9 @@ const NAV_SECTIONS = [
   { id: "end", label: "End" },
 ];
 
-function Quote({ children }) {
-  return (
-    <div className="flex gap-4 my-8 max-w-2xl mx-auto">
-      <div className="w-1 shrink-0 rounded-full bg-accent/40" />
-      <p className="text-[18px] sm:text-[20px] italic leading-relaxed text-heading">{children}</p>
-    </div>
-  );
-}
-
-function SectionHeading({ eyebrow, children }) {
-  return (
-    <h2 className="text-[28px] sm:text-[34px] font-semibold text-heading mb-6">
-      {children}
-      {eyebrow && <span className="block text-[16px] sm:text-[18px] font-normal italic text-muted mt-1">{eyebrow}</span>}
-    </h2>
-  );
-}
-
-function SubHeading({ children }) {
-  return <h3 className="text-[15px] sm:text-[16px] font-semibold text-heading mt-8 mb-3">{children}</h3>;
-}
-
-function Label({ children }) {
-  return (
-    <span className="block text-[11px] font-semibold uppercase tracking-[0.08em] text-accent mb-2">{children}</span>
-  );
-}
-
-function List({ items }) {
-  return (
-    <ul className="space-y-2.5">
-      {items.map((item, i) => (
-        <li key={i} className="flex gap-3 text-[14.5px] leading-relaxed text-body">
-          <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2" />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function PlaceholderImage({ src, alt }) {
-  return (
-    <div className="mt-6 rounded-2xl overflow-hidden border border-band/40 bg-card">
-      <img src={src} alt={alt} className="w-full h-auto" />
-    </div>
-  );
-}
-
-function IssueCard({ title, children }) {
-  return (
-    <div className="bg-card border border-band/30 rounded-xl p-4">
-      <p className="text-[14px] font-semibold text-heading mb-1.5">{title}</p>
-      <p className="text-[13.5px] leading-relaxed text-body">{children}</p>
-    </div>
-  );
-}
-
 function PersonaColumn({ role, painPoints, goals, needs, motivations }) {
   return (
-    <div className="bg-card border border-band/30 rounded-2xl p-6">
+    <div className="bg-card border border-band/30 rounded-2xl p-6 text-left">
       <Label>{role}</Label>
       <SubHeading>Key pain points</SubHeading>
       <List items={painPoints} />
@@ -147,45 +99,14 @@ function SkimView() {
 }
 
 function FullView() {
-  const [active, setActive] = useState("background");
-  const sectionRefs = useRef({});
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        });
-      },
-      { rootMargin: "-20% 0px -70% 0px" }
-    );
-    NAV_SECTIONS.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
+  const active = useScrollSpy(
+    NAV_SECTIONS.map((s) => s.id),
+    true
+  );
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-10 md:gap-16 items-start">
-      <nav className="hidden md:block sticky top-1/2 -translate-y-1/2">
-        <ul className="space-y-1 border-l border-band/40">
-          {NAV_SECTIONS.map((section) => (
-            <li key={section.id}>
-              <a
-                href={`#${section.id}`}
-                className={`block pl-4 py-1.5 text-[13px] font-medium -ml-px border-l-2 transition-colors ${
-                  active === section.id
-                    ? "border-accent text-accent"
-                    : "border-transparent text-muted hover:text-heading"
-                }`}
-              >
-                {section.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <CaseStudyNav sections={NAV_SECTIONS} active={active} />
 
       <div className="max-w-2xl">
         {/* BACKGROUND */}
@@ -215,18 +136,20 @@ function FullView() {
             Observing them in their day-to-day environment gave me a deeper understanding of the challenges they
             faced that weren't always visible through bug reports or client complaints.
           </p>
-          <Label>Findings</Label>
-          <List
-            items={[
-              "Coverage tiers (Employee Only, Employee + Family) and 55+ catch-up rules were missing, making IRS compliance difficult.",
-              <>
-                Admins created <strong className="font-semibold text-heading">72 separate employee populations</strong> as a
-                workaround, leading to wasted time and errors.
-              </>,
-              "Rigid configuration with no validation or preview allowed mistakes to scale across hundreds of employees.",
-              "Admins relied on memory and external documents to apply IRS rules, increasing cognitive load and risk.",
-            ]}
-          />
+          <div>
+            <Label>Findings</Label>
+            <List
+              items={[
+                "Coverage tiers (Employee Only, Employee + Family) and 55+ catch-up rules were missing, making IRS compliance difficult.",
+                <>
+                  Admins created <strong className="font-semibold text-heading">72 separate employee populations</strong> as a
+                  workaround, leading to wasted time and errors.
+                </>,
+                "Rigid configuration with no validation or preview allowed mistakes to scale across hundreds of employees.",
+                "Admins relied on memory and external documents to apply IRS rules, increasing cognitive load and risk.",
+              ]}
+            />
+          </div>
           <Quote>
             System gaps forced configuration teams into time-consuming workarounds, making large-scale setup
             inefficient, error-prone, and difficult to keep compliant.
@@ -271,7 +194,7 @@ function FullView() {
             where it could leap ahead.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-            <div className="bg-card border border-band/30 rounded-xl p-4">
+            <div className="bg-card border border-band/30 rounded-xl p-4 text-left">
               <p className="text-[13px] font-semibold text-heading mb-2">Strengths</p>
               <List
                 items={[
@@ -281,7 +204,7 @@ function FullView() {
                 ]}
               />
             </div>
-            <div className="bg-card border border-band/30 rounded-xl p-4">
+            <div className="bg-card border border-band/30 rounded-xl p-4 text-left">
               <p className="text-[13px] font-semibold text-heading mb-2">Weaknesses</p>
               <List
                 items={[
@@ -301,8 +224,7 @@ function FullView() {
             but stories of frustration, opportunity, and relief.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
-            <div>
-              <p className="text-[13px] font-semibold text-heading mb-2">Roses — what's working</p>
+            <TextColumn title="Roses — what's working">
               <List
                 items={[
                   "Employees can elect contributions during open enrollment without manual HR intervention.",
@@ -310,9 +232,8 @@ function FullView() {
                   "Payroll integration works reliably for standard deductions.",
                 ]}
               />
-            </div>
-            <div>
-              <p className="text-[13px] font-semibold text-heading mb-2">Buds — opportunities</p>
+            </TextColumn>
+            <TextColumn title="Buds — opportunities">
               <List
                 items={[
                   "Educate employees on IRS limits, catch-up contributions, and employer matching.",
@@ -321,9 +242,8 @@ function FullView() {
                   "Automate recalculation to reduce manual corrections.",
                 ]}
               />
-            </div>
-            <div>
-              <p className="text-[13px] font-semibold text-heading mb-2">Thorns — pain points</p>
+            </TextColumn>
+            <TextColumn title="Thorns — pain points">
               <List
                 items={[
                   "Tier changes mid-year produce inaccurate YTD values.",
@@ -332,7 +252,7 @@ function FullView() {
                   "Manual recalculations are time-consuming and error-prone.",
                 ]}
               />
-            </div>
+            </TextColumn>
           </div>
 
           <SubHeading>Key research insights</SubHeading>
@@ -341,7 +261,7 @@ function FullView() {
             employer/admin — highlighting where both sides experience friction.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-            <div>
+            <div className="text-left">
               <Label>Employee</Label>
               <List
                 items={[
@@ -353,7 +273,7 @@ function FullView() {
                 ]}
               />
             </div>
-            <div>
+            <div className="text-left">
               <Label>Employer / Administrator</Label>
               <List
                 items={[
@@ -441,8 +361,7 @@ function FullView() {
             automation, and flexibility in HSA management.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-            <div>
-              <Label>For employees</Label>
+            <TextColumn title="For employees">
               <List
                 items={[
                   "A simple, intuitive interface that removes confusion and fear of making mistakes.",
@@ -450,9 +369,8 @@ function FullView() {
                   "Actionable insight into employer contributions and IRS compliance.",
                 ]}
               />
-            </div>
-            <div>
-              <Label>For admin</Label>
+            </TextColumn>
+            <TextColumn title="For admin">
               <List
                 items={[
                   "Flexible funding schedules configurable without workarounds.",
@@ -460,7 +378,7 @@ function FullView() {
                   "Automated, accurate reporting across employer and employee contributions.",
                 ]}
               />
-            </div>
+            </TextColumn>
           </div>
           <PlaceholderImage src={valuePropImg} alt="Value proposition diagram" />
 
@@ -514,27 +432,31 @@ function FullView() {
             Enrollment — comparing a progressive step-by-step flow against a single-page layout before committing to
             a final direction.
           </p>
-          <Label>Testing objectives</Label>
-          <List
-            items={[
-              "Which HSA experience do employees prefer: progressive step-by-step, or all details on one page?",
-              "Can users easily find and understand contribution limits and employer contribution details?",
-              "Do users feel confident and secure while enrolling and configuring HSA contributions?",
-              "Does the interface guide users through setup without hesitation or confusion?",
-            ]}
-          />
-          <Label>Findings</Label>
-          <List
-            items={[
-              <>
-                <strong className="font-semibold text-heading">64% of users preferred all details on one page</strong>,
-                citing better visibility and easier comparison of employer and employee contributions.
-              </>,
-              <><strong className="font-semibold text-heading">70%</strong> strongly agreed the experience was easy to use.</>,
-              <><strong className="font-semibold text-heading">70%</strong> strongly agreed they felt confident while enrolling.</>,
-              <><strong className="font-semibold text-heading">90%</strong> strongly agreed they felt secure during HSA enrollment.</>,
-            ]}
-          />
+          <div>
+            <Label>Testing objectives</Label>
+            <List
+              items={[
+                "Which HSA experience do employees prefer: progressive step-by-step, or all details on one page?",
+                "Can users easily find and understand contribution limits and employer contribution details?",
+                "Do users feel confident and secure while enrolling and configuring HSA contributions?",
+                "Does the interface guide users through setup without hesitation or confusion?",
+              ]}
+            />
+            <div className="mt-6">
+              <Label>Findings</Label>
+              <List
+                items={[
+                  <>
+                    <strong className="font-semibold text-heading">64% of users preferred all details on one page</strong>,
+                    citing better visibility and easier comparison of employer and employee contributions.
+                  </>,
+                  <><strong className="font-semibold text-heading">70%</strong> strongly agreed the experience was easy to use.</>,
+                  <><strong className="font-semibold text-heading">70%</strong> strongly agreed they felt confident while enrolling.</>,
+                  <><strong className="font-semibold text-heading">90%</strong> strongly agreed they felt secure during HSA enrollment.</>,
+                ]}
+              />
+            </div>
+          </div>
           <p className="text-[15px] leading-relaxed text-body mt-4">
             These results showed that information visibility and transparency mattered more than step-by-step pacing
             when users made HSA decisions.
@@ -562,31 +484,33 @@ function FullView() {
           </p>
           <PlaceholderImage src={finalImg} alt="Final product screens" />
 
-          <SubHeading>Project takeaways</SubHeading>
-          <List
-            items={[
-              <>
-                <strong className="font-semibold text-heading">Design clarity reduces risk.</strong> Simplifying
-                contribution decisions and making system feedback clear significantly lowered user hesitation and
-                calculation errors.
-              </>,
-              <>
-                <strong className="font-semibold text-heading">Flexibility must be intentional.</strong> Supporting
-                real-world scenarios — mid-year changes, skips, employer funding variations — required designing
-                guardrails, not just options.
-              </>,
-              <>
-                <strong className="font-semibold text-heading">Admin experience is product experience.</strong>{" "}
-                Improving configuration workflows directly impacted downstream accuracy, support volume, and
-                operational efficiency.
-              </>,
-              <>
-                <strong className="font-semibold text-heading">Collaboration enabled scale.</strong> Working closely
-                with Product and Engineering ensured design decisions matched technical constraints and business
-                goals.
-              </>,
-            ]}
-          />
+          <div>
+            <SubHeading>Project takeaways</SubHeading>
+            <List
+              items={[
+                <>
+                  <strong className="font-semibold text-heading">Design clarity reduces risk.</strong> Simplifying
+                  contribution decisions and making system feedback clear significantly lowered user hesitation and
+                  calculation errors.
+                </>,
+                <>
+                  <strong className="font-semibold text-heading">Flexibility must be intentional.</strong> Supporting
+                  real-world scenarios — mid-year changes, skips, employer funding variations — required designing
+                  guardrails, not just options.
+                </>,
+                <>
+                  <strong className="font-semibold text-heading">Admin experience is product experience.</strong>{" "}
+                  Improving configuration workflows directly impacted downstream accuracy, support volume, and
+                  operational efficiency.
+                </>,
+                <>
+                  <strong className="font-semibold text-heading">Collaboration enabled scale.</strong> Working closely
+                  with Product and Engineering ensured design decisions matched technical constraints and business
+                  goals.
+                </>,
+              ]}
+            />
+          </div>
         </section>
       </div>
     </div>
@@ -597,51 +521,13 @@ export default function HSACaseStudy({ onBack, onOpenResume }) {
   const [view, setView] = useState("skim");
 
   return (
-    <div className="animate-fadeIn font-poppins min-h-screen">
-      <div className="fixed top-0 inset-x-0 z-40 h-16 sm:h-20 flex items-center justify-center backdrop-blur-sm">
-        <button
-          type="button"
-          onClick={onBack}
-          className="flex items-center gap-2 text-[13px] font-semibold text-white bg-navy rounded-full px-4 py-2 hover:opacity-90 transition-opacity shadow-[0_2px_12px_rgba(0,0,0,0.15)]"
-        >
-          <ArrowLeft size={14} />
-          BACK
-        </button>
-      </div>
-
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-32 pt-24 sm:pt-28">
-        <div className="inline-flex items-center bg-card border border-band/40 rounded-full p-1 mb-10">
-          <button
-            type="button"
-            onClick={() => setView("skim")}
-            className={`text-[12px] font-semibold uppercase tracking-wide px-4 py-1.5 rounded-full transition-colors ${
-              view === "skim" ? "bg-navy text-white" : "text-muted hover:text-heading"
-            }`}
-          >
-            Skim
-          </button>
-          <button
-            type="button"
-            onClick={() => setView("full")}
-            className={`text-[12px] font-semibold uppercase tracking-wide px-4 py-1.5 rounded-full transition-colors ${
-              view === "full" ? "bg-navy text-white" : "text-muted hover:text-heading"
-            }`}
-          >
-            Full
-          </button>
+    <CaseStudyPageShell onBack={onBack} onOpenResume={onOpenResume} view={view} setView={setView}>
+      <SkimView />
+      {view === "full" && (
+        <div className="mt-14 pt-14 border-t border-band/30">
+          <FullView />
         </div>
-
-        <SkimView />
-
-        {view === "full" && (
-          <div className="mt-14 pt-14 border-t border-band/30">
-            <FullView />
-          </div>
-        )}
-      </div>
-
-      <LetsTalk onOpenResume={onOpenResume} />
-      <Footer />
-    </div>
+      )}
+    </CaseStudyPageShell>
   );
 }
