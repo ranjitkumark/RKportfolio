@@ -143,7 +143,7 @@ export function CaseStudyPageShell({ onBack, onOpenResume, view, setView, childr
         </button>
       </div>
 
-      <div className="w-full max-w-[1000px] mx-auto px-4 sm:px-10 pt-24 sm:pt-28">
+      <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-10 pt-24 sm:pt-28">
         <div className="inline-flex items-center bg-card border border-band/40 rounded-full p-1 mb-10">
           <button
             type="button"

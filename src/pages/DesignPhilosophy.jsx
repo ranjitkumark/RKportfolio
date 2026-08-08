@@ -91,7 +91,7 @@ export default function DesignPhilosophy({ onBack }) {
         </button>
       </div>
 
-      <div className="w-full max-w-[1000px] mx-auto px-4 sm:px-10">
+      <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-10">
         <div className="max-w-3xl">
           {/* HERO */}
           <div className="pt-20 sm:pt-24 pb-16">
@@ -366,7 +366,7 @@ export default function DesignPhilosophy({ onBack }) {
 
       {/* CALM BAND (full-bleed) */}
       <div className="w-full bg-live/[0.07] border-y border-live/20">
-        <div className="w-full max-w-[1000px] mx-auto px-4 sm:px-10">
+        <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl py-12 sm:py-16">
             <PhilosophyEyebrow>Personal</PhilosophyEyebrow>
             <h2 className="text-[24px] sm:text-[28px] font-semibold text-heading mb-5">Outside of work</h2>
@@ -381,7 +381,7 @@ export default function DesignPhilosophy({ onBack }) {
         </div>
       </div>
 
-      <div className="w-full max-w-[1000px] mx-auto px-4 sm:px-10">
+      <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-10">
         <div className="max-w-3xl">
           {/* BELIEFS */}
           <Section eyebrow="Beliefs" title="A few things I hold as true">
