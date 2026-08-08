@@ -29,7 +29,7 @@ function BeatText({ beat, leaving }) {
   );
 }
 
-export default function StoryReel({ mock, beats }) {
+export default function StoryReel({ mock, beats, mockNode }) {
   const [playing, setPlaying] = useState(false);
   const [current, setCurrent] = useState(0);
   const [prev, setPrev] = useState(null);
@@ -83,40 +83,46 @@ export default function StoryReel({ mock, beats }) {
     >
       {/* default mock UI */}
       <div
-        className={`absolute top-9 left-9 right-9 bg-white rounded-2xl overflow-hidden shadow-[0_18px_40px_-20px_rgba(20,30,25,0.35)] transition-all duration-500 ${
-          playing ? "opacity-0 blur-md scale-[0.97] translate-y-1.5" : "opacity-100"
-        }`}
+        className={`absolute top-9 left-9 right-9 transition-all duration-500 ${
+          mockNode ? "bottom-9" : "bg-white rounded-2xl overflow-hidden shadow-[0_18px_40px_-20px_rgba(20,30,25,0.35)]"
+        } ${playing ? "opacity-0 blur-md scale-[0.97] translate-y-1.5" : "opacity-100"}`}
       >
-        <div className="bg-gradient-to-br from-accent to-navy px-[18px] py-4 flex items-center gap-3">
-          <span className="w-[34px] h-[34px] rounded-full bg-white/25 flex items-center justify-center text-white font-poppins font-bold text-[13px] shrink-0">
-            {mock.avatar}
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="text-white font-poppins font-bold text-[14px] truncate">{mock.title}</div>
-            <div className="text-white/75 text-[12px] mt-0.5 truncate">{mock.subtitle}</div>
-          </div>
-          <span className="w-2 h-2 rounded-full bg-[#4ADE80] shadow-[0_0_0_3px_rgba(74,222,128,0.25)] shrink-0" />
-        </div>
-        {mock.rows.map((row, i) => (
-          <div
-            key={row.name}
-            className={`flex items-center gap-3 px-[18px] py-[13px] border-b border-[#f0f1f6] ${
-              i % 2 === 1 ? "bg-[#f3f5fa]" : "bg-white"
-            }`}
-          >
-            <span className="w-[30px] h-[30px] rounded-full bg-[#dde3fb] text-[#3e5fe0] flex items-center justify-center font-poppins font-bold text-[12px] shrink-0">
-              {row.badge}
-            </span>
-            <div className="flex-1 min-w-0">
-              <div className="font-poppins font-bold text-[12.5px] text-[#16151a] truncate">{row.name}</div>
-              <div className="text-[11.5px] text-[#9a9890] mt-px truncate">{row.sub}</div>
+        {mockNode ? (
+          mockNode
+        ) : (
+          <>
+            <div className="bg-gradient-to-br from-accent to-navy px-[18px] py-4 flex items-center gap-3">
+              <span className="w-[34px] h-[34px] rounded-full bg-white/25 flex items-center justify-center text-white font-poppins font-bold text-[13px] shrink-0">
+                {mock.avatar}
+              </span>
+              <div className="flex-1 min-w-0">
+                <div className="text-white font-poppins font-bold text-[14px] truncate">{mock.title}</div>
+                <div className="text-white/75 text-[12px] mt-0.5 truncate">{mock.subtitle}</div>
+              </div>
+              <span className="w-2 h-2 rounded-full bg-[#4ADE80] shadow-[0_0_0_3px_rgba(74,222,128,0.25)] shrink-0" />
             </div>
-            <div className="flex flex-col items-end gap-1 shrink-0">
-              <span className="text-[10.5px] text-[#9a9890]">{row.time}</span>
-              {row.pulse && <span className="w-1.5 h-1.5 rounded-full bg-[#3e5fe0]" />}
-            </div>
-          </div>
-        ))}
+            {mock.rows.map((row, i) => (
+              <div
+                key={row.name}
+                className={`flex items-center gap-3 px-[18px] py-[13px] border-b border-[#f0f1f6] ${
+                  i % 2 === 1 ? "bg-[#f3f5fa]" : "bg-white"
+                }`}
+              >
+                <span className="w-[30px] h-[30px] rounded-full bg-[#dde3fb] text-[#3e5fe0] flex items-center justify-center font-poppins font-bold text-[12px] shrink-0">
+                  {row.badge}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="font-poppins font-bold text-[12.5px] text-[#16151a] truncate">{row.name}</div>
+                  <div className="text-[11.5px] text-[#9a9890] mt-px truncate">{row.sub}</div>
+                </div>
+                <div className="flex flex-col items-end gap-1 shrink-0">
+                  <span className="text-[10.5px] text-[#9a9890]">{row.time}</span>
+                  {row.pulse && <span className="w-1.5 h-1.5 rounded-full bg-[#3e5fe0]" />}
+                </div>
+              </div>
+            ))}
+          </>
+        )}
       </div>
 
       {/* hint */}

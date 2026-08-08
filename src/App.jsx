@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/Header.jsx";
 import Home from "./pages/Home.jsx";
 import DesignPhilosophy from "./pages/DesignPhilosophy.jsx";
+import HSACaseStudy from "./pages/HSACaseStudy.jsx";
 import ChatOverlay from "./components/ChatOverlay.jsx";
 import ResumeOverlay from "./components/ResumeOverlay.jsx";
 import ArchiveOverlay from "./components/ArchiveOverlay.jsx";
@@ -10,11 +11,16 @@ import { useTheme } from "./hooks/useTheme.js";
 
 export default function App() {
   const [mode, setMode] = useState("work");
-  const [view, setView] = useState("home"); // "home" | "philosophy"
+  const [view, setView] = useState("home"); // "home" | "philosophy" | "case-study"
+  const [activeCaseStudy, setActiveCaseStudy] = useState(null);
   const [chatOpen, setChatOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
   const [archiveOpen, setArchiveOpen] = useState(false);
   const { themeMode, resolvedTheme, cycleThemeMode } = useTheme();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [view]);
 
   useEffect(() => {
     const onKeyDown = (e) => {
@@ -38,15 +44,21 @@ export default function App() {
         />
       )}
       <main>
-        {view === "home" ? (
+        {view === "home" && (
           <Home
             mode={mode}
             onOpenPhilosophy={() => setView("philosophy")}
             onOpenResume={() => setResumeOpen(true)}
             onOpenArchive={() => setArchiveOpen(true)}
+            onOpenCaseStudy={(id) => {
+              setActiveCaseStudy(id);
+              setView("case-study");
+            }}
           />
-        ) : (
-          <DesignPhilosophy onBack={() => setView("home")} />
+        )}
+        {view === "philosophy" && <DesignPhilosophy onBack={() => setView("home")} />}
+        {view === "case-study" && activeCaseStudy === "setup-to-enrolled" && (
+          <HSACaseStudy onBack={() => setView("home")} onOpenResume={() => setResumeOpen(true)} />
         )}
       </main>
       {chatOpen && <ChatOverlay onClose={() => setChatOpen(false)} />}

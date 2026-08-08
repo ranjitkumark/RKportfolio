@@ -15,6 +15,7 @@ export const CASE_STUDIES = [
     suffix: "- HSA rebuilt end-to-end, from employer configuration to employee enrollment",
     href: "#",
     reel: HSA_REEL,
+    hasPage: true,
   },
   {
     id: "one-setup-every-channel",
