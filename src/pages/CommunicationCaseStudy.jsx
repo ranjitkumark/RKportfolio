@@ -72,8 +72,8 @@ const SKIM_STATS = [
 
 function SkimView() {
   return (
-    <div className="max-w-3xl">
-      <h1 className="text-[32px] sm:text-[44px] leading-[1.15] font-semibold text-heading mb-6">
+    <div>
+      <h1 className="text-[32px] sm:text-[44px] leading-[1.15] font-semibold text-heading mb-6 max-w-3xl">
         Campaigns took 69 minutes to build — and admins still weren't sure they'd sent the right one.
       </h1>
       <p className="text-[15px] sm:text-[16px] leading-relaxed text-body max-w-2xl">
@@ -113,7 +113,7 @@ function FullView() {
     <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-10 md:gap-16 items-start">
       <CaseStudyNav sections={NAV_SECTIONS} active={active} />
 
-      <div className="max-w-2xl">
+      <div>
         {/* BACKGROUND */}
         <section id="background" className="pb-16">
           <SectionHeading eyebrow="Spot the trouble.">Background</SectionHeading>
