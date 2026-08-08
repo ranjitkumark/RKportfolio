@@ -168,7 +168,7 @@ function FullView() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-10 md:gap-16 items-start">
-      <nav className="hidden md:block sticky top-28 self-start">
+      <nav className="hidden md:block sticky top-1/2 -translate-y-1/2">
         <ul className="space-y-1 border-l border-band/40">
           {NAV_SECTIONS.map((section) => (
             <li key={section.id}>
@@ -631,7 +631,13 @@ export default function HSACaseStudy({ onBack, onOpenResume }) {
           </button>
         </div>
 
-        {view === "skim" ? <SkimView /> : <FullView />}
+        <SkimView />
+
+        {view === "full" && (
+          <div className="mt-14 pt-14 border-t border-band/30">
+            <FullView />
+          </div>
+        )}
       </div>
 
       <LetsTalk onOpenResume={onOpenResume} />

@@ -32,12 +32,10 @@ export default function CaseStudyCard({ study, onOpenCaseStudy }) {
           mockNode={MockComponent ? <MockComponent /> : undefined}
         />
       ) : (
-        <div className="relative bg-card border border-[#c9d7da] dark:border-white/10 rounded-[24px] p-10 flex items-center justify-center w-full md:min-h-[420px]">
-          <div className="w-[300px] h-[320px]">
-            <MockComponent />
-          </div>
-          <span className="absolute left-6 bottom-4 flex items-center gap-1 text-[10px] text-body">
-            <Eye size={11} /> Hover for a quick look
+        <div className="relative w-full h-[420px] rounded-[24px] bg-card border border-[#c9d7da] dark:border-white/10 overflow-hidden p-9">
+          <MockComponent />
+          <span className="absolute left-9 bottom-[30px] flex items-center gap-2 text-[13px] text-body">
+            <Eye size={16} className="opacity-80" /> Hover for a quick look
           </span>
         </div>
       )}
