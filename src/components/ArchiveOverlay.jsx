@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { X, ChevronLeft, ChevronRight } from "./icons.jsx";
+import { X } from "./icons.jsx";
 import { ARCHIVE_PROJECTS } from "../data/archiveProjects.js";
 import OptageCaseStudy from "../pages/OptageCaseStudy.jsx";
+import OnectoCaseStudy from "../pages/OnectoCaseStudy.jsx";
+import PashminaCaseStudy from "../pages/PashminaCaseStudy.jsx";
+import SmartCoworkCaseStudy from "../pages/SmartCoworkCaseStudy.jsx";
+import TmlCaseStudy from "../pages/TmlCaseStudy.jsx";
 
 const COVERS = import.meta.glob("../assets/archive/*/cover.png", { eager: true, import: "default" });
-const SLIDES = import.meta.glob("../assets/archive/*/slide-*.png", { eager: true, import: "default" });
 
 function getCover(projectId) {
   return COVERS[`../assets/archive/${projectId}/cover.png`];
 }
 
-function getSlide(projectId, slideNumber) {
-  return SLIDES[`../assets/archive/${projectId}/slide-${slideNumber}.png`];
-}
+const CASE_STUDY_BY_ID = {
+  optage: OptageCaseStudy,
+  onecto: OnectoCaseStudy,
+  pashmina: PashminaCaseStudy,
+  "smart-cowork": SmartCoworkCaseStudy,
+  "the-my-leader": TmlCaseStudy,
+};
 
-function HintBar({ showNav }) {
+function HintBar() {
   return (
     <div className="border-t border-band/30 py-6 flex items-center justify-center gap-8 font-poppins">
       <span className="flex items-center gap-2">
@@ -23,87 +30,11 @@ function HintBar({ showNav }) {
         </kbd>
         <span className="text-[13px] font-medium text-body">CLOSE</span>
       </span>
-      {showNav && (
-        <>
-          <span className="flex items-center gap-2">
-            <kbd className="bg-[#dee2e3] dark:bg-card border border-[#9fa6ab] dark:border-white/20 rounded text-[13px] text-body px-[8px] py-[2px]">
-              Z
-            </kbd>
-            <span className="text-[13px] font-medium text-body">ZOOM</span>
-          </span>
-          <span className="flex items-center gap-2">
-            <kbd className="bg-[#dee2e3] dark:bg-card border border-[#9fa6ab] dark:border-white/20 rounded text-[13px] text-body px-[8px] py-[2px]">
-              ← →
-            </kbd>
-            <span className="text-[13px] font-medium text-body">NAVIGATE</span>
-          </span>
-        </>
-      )}
     </div>
   );
 }
 
-function ProjectSlider({ project, onClose }) {
-  const [index, setIndex] = useState(0);
-  const [zoomed, setZoomed] = useState(false);
-
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === "Escape") onClose();
-      else if (e.key === "ArrowLeft") setIndex((i) => (i - 1 + project.slideCount) % project.slideCount);
-      else if (e.key === "ArrowRight") setIndex((i) => (i + 1) % project.slideCount);
-      else if (e.key.toLowerCase() === "z") setZoomed((z) => !z);
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onClose, project.slideCount]);
-
-  return (
-    <>
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-16 pt-6 flex items-center justify-between font-poppins">
-        <span className="text-[13px] tracking-[0.15em] uppercase text-muted">
-          {project.name} <span className="mx-1">•</span> {index + 1}/{project.slideCount}
-        </span>
-      </div>
-
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-10 relative">
-        <button
-          type="button"
-          onClick={() => setIndex((i) => (i - 1 + project.slideCount) % project.slideCount)}
-          aria-label="Previous image"
-          className="absolute left-4 sm:left-10 w-11 h-11 rounded-full border border-band/60 bg-card flex items-center justify-center hover:opacity-80 transition-opacity"
-        >
-          <ChevronLeft size={18} className="text-heading" />
-        </button>
-
-        <div
-          className={`w-full max-w-3xl aspect-video rounded-2xl overflow-hidden bg-card border border-band/40 transition-transform duration-300 ${
-            zoomed ? "scale-110" : ""
-          }`}
-        >
-          <img
-            src={getSlide(project.id, index + 1)}
-            alt={`${project.name} — slide ${index + 1}`}
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setIndex((i) => (i + 1) % project.slideCount)}
-          aria-label="Next image"
-          className="absolute right-4 sm:right-10 w-11 h-11 rounded-full border border-band/60 bg-card flex items-center justify-center hover:opacity-80 transition-opacity"
-        >
-          <ChevronRight size={18} className="text-heading" />
-        </button>
-      </div>
-
-      <HintBar showNav />
-    </>
-  );
-}
-
-function ProjectGrid({ onSelect, onOpenCaseStudy }) {
+function ProjectGrid({ onSelect }) {
   return (
     <>
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-16 pt-6 font-poppins">
@@ -122,7 +53,7 @@ function ProjectGrid({ onSelect, onOpenCaseStudy }) {
               <button
                 key={project.id}
                 type="button"
-                onClick={() => (project.id === "optage" ? onOpenCaseStudy(project.id) : onSelect(project))}
+                onClick={() => onSelect(project.id)}
                 className="group relative aspect-[4/3] rounded-2xl overflow-hidden text-left hover:opacity-90 transition-opacity"
               >
                 <img
@@ -141,14 +72,13 @@ function ProjectGrid({ onSelect, onOpenCaseStudy }) {
         </div>
       </div>
 
-      <HintBar showNav={false} />
+      <HintBar />
     </>
   );
 }
 
 export default function ArchiveOverlay({ onClose }) {
-  const [activeProject, setActiveProject] = useState(null);
-  const [optageOpen, setOptageOpen] = useState(false);
+  const [openCaseStudyId, setOpenCaseStudyId] = useState(null);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -159,16 +89,17 @@ export default function ArchiveOverlay({ onClose }) {
   }, []);
 
   useEffect(() => {
-    if (activeProject || optageOpen) return; // slider/Optage own their own Escape handling while active
+    if (openCaseStudyId) return; // the case study popover owns its own Escape handling while open
     const onKeyDown = (e) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [activeProject, optageOpen, onClose]);
+  }, [openCaseStudyId, onClose]);
 
-  if (optageOpen) {
-    return <OptageCaseStudy onClose={onClose} />;
+  if (openCaseStudyId) {
+    const CaseStudy = CASE_STUDY_BY_ID[openCaseStudyId];
+    return <CaseStudy onClose={() => setOpenCaseStudyId(null)} />;
   }
 
   return (
@@ -182,11 +113,7 @@ export default function ArchiveOverlay({ onClose }) {
         <X size={14} />
       </button>
 
-      {activeProject ? (
-        <ProjectSlider project={activeProject} onClose={onClose} />
-      ) : (
-        <ProjectGrid onSelect={setActiveProject} onOpenCaseStudy={() => setOptageOpen(true)} />
-      )}
+      <ProjectGrid onSelect={setOpenCaseStudyId} />
     </div>
   );
 }

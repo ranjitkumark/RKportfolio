@@ -446,7 +446,7 @@ export default function CommunicationCaseStudy({ onBack, onOpenResume }) {
   return (
     <CaseStudyPageShell onBack={onBack} onOpenResume={onOpenResume}>
       {view === "skim" ? (
-        <div>
+        <div className="w-full md:w-[60%]">
           <ViewToggle view={view} setView={setView} />
           <SkimView />
         </div>
