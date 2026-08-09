@@ -517,18 +517,20 @@ export default function HSACaseStudy({ onBack, onOpenResume }) {
 
   return (
     <CaseStudyPageShell onBack={onBack} onOpenResume={onOpenResume} view={view} setView={setView}>
-      <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-10 md:gap-16 items-start">
-        <CaseStudyNav sections={NAV_SECTIONS} active={active} />
+      {view === "skim" ? (
+        <SkimView />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-10 md:gap-16 items-start">
+          <CaseStudyNav sections={NAV_SECTIONS} active={active} />
 
-        <div className="w-full md:w-[80%]">
-          <SkimView />
-          {view === "full" && (
+          <div className="w-full md:w-[80%]">
+            <SkimView />
             <div className="mt-14 pt-14 border-t border-band/30">
               <FullView />
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </CaseStudyPageShell>
   );
 }

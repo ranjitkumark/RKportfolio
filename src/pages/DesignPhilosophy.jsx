@@ -1,20 +1,12 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
 import TrafficLight from "../components/TrafficLight.jsx";
+import LetsTalk from "../components/LetsTalk.jsx";
+import Footer from "../components/Footer.jsx";
 
-function PhilosophyEyebrow({ children }) {
-  return (
-    <div className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.5px] text-muted uppercase font-poppins mb-3">
-      <span className="w-1.5 h-1.5 rounded-full bg-live" />
-      {children}
-    </div>
-  );
-}
-
-function Section({ eyebrow, title, children, divider = true }) {
+function Section({ title, children, divider = true }) {
   return (
     <section className={`py-12 sm:py-16 ${divider ? "border-t border-band/30" : ""}`}>
-      <PhilosophyEyebrow>{eyebrow}</PhilosophyEyebrow>
       <h2 className="text-[24px] sm:text-[28px] font-semibold text-heading mb-5">{title}</h2>
       <div className="space-y-4 text-[15px] sm:text-[16px] leading-relaxed text-body max-w-3xl">{children}</div>
     </section>
@@ -77,9 +69,9 @@ const PROOF = [
   },
 ];
 
-export default function DesignPhilosophy({ onBack }) {
+export default function DesignPhilosophy({ onBack, onOpenResume }) {
   return (
-    <div className="animate-fadeIn font-poppins min-h-screen">
+    <div className="philosophy-page animate-fadeIn font-poppins min-h-screen">
       <div className="fixed top-0 inset-x-0 z-40 h-16 sm:h-20 flex items-center justify-center backdrop-blur-sm">
         <button
           type="button"
@@ -95,7 +87,6 @@ export default function DesignPhilosophy({ onBack }) {
         <div className="max-w-3xl">
           {/* HERO */}
           <div className="pt-20 sm:pt-24 pb-16">
-            <PhilosophyEyebrow>Design Philosophy — Ranjit Kumar</PhilosophyEyebrow>
             <h1 className="text-[32px] sm:text-[44px] leading-[1.15] font-semibold text-heading mb-5">
               I design the state, not just the screen.
             </h1>
@@ -119,7 +110,7 @@ export default function DesignPhilosophy({ onBack }) {
           </div>
 
           {/* WHERE THIS BEGAN */}
-          <Section eyebrow="Origin" title="Where this actually began">
+          <Section title="Where this actually began">
             <p>
               I learned two things before I learned design: what a system can actually do, and how a person figures
               out what it's doing.
@@ -151,7 +142,7 @@ export default function DesignPhilosophy({ onBack }) {
           </Section>
 
           {/* BIO */}
-          <Section eyebrow="Bio" title="A short, honest bio">
+          <Section title="A short, honest bio">
             <p>
               I'm a Lead UX Designer currently running design for a major US benefits platform, coming off a 12+
               year path through graphic and web design, IoT, and enterprise product work. The thread through all of
@@ -168,7 +159,7 @@ export default function DesignPhilosophy({ onBack }) {
           </Section>
 
           {/* INTERSECTION */}
-          <Section eyebrow="Philosophy" title="The intersection I keep coming back to">
+          <Section title="The intersection I keep coming back to">
             <p>
               A traffic light is one of the only pieces of infrastructure on Earth that billions of people trust
               instantly, without training, in a split second, under stress. Nobody reads instructions at an
@@ -201,7 +192,7 @@ export default function DesignPhilosophy({ onBack }) {
           </Section>
 
           {/* THREAD */}
-          <Section eyebrow="Pattern" title="The thread running through all of it">
+          <Section title="The thread running through all of it">
             <p>
               Every project I've shipped, underneath the surface, is the same move:{" "}
               <strong className="font-semibold text-heading">
@@ -238,7 +229,7 @@ export default function DesignPhilosophy({ onBack }) {
           </Section>
 
           {/* FIELDWORK */}
-          <Section eyebrow="Fieldwork" title="Thirty days with a sheepherder and a Sozni artisan">
+          <Section title="Thirty days with a sheepherder and a Sozni artisan">
             <p>
               I worked with a UN-recognized NGO building an ecosystem around pashmina — trying to answer something
               nobody in the room could answer from a spreadsheet: where does the wool actually come from, and who is
@@ -264,7 +255,7 @@ export default function DesignPhilosophy({ onBack }) {
           </Section>
 
           {/* FOCUS */}
-          <Section eyebrow="Focus" title="The kind of problems I chase">
+          <Section title="The kind of problems I chase">
             <p>
               I run toward systems where the stakes are real and the state is unclear — not toward polish for its
               own sake. A beautiful screen that hides a false state is worse than an ugly one that tells the truth.
@@ -274,7 +265,7 @@ export default function DesignPhilosophy({ onBack }) {
           </Section>
 
           {/* FRICTION */}
-          <Section eyebrow="Friction" title="What I can't stand watching happen">
+          <Section title="What I can't stand watching happen">
             <p>
               Teams jumping straight into a polished prototype before anyone's checked whether the underlying
               problem is worth solving — weeks spent on fidelity nobody asked for, on a direction nobody validated
@@ -296,7 +287,7 @@ export default function DesignPhilosophy({ onBack }) {
           </Section>
 
           {/* PROCESS */}
-          <Section eyebrow="Process" title="The way I actually operate">
+          <Section title="The way I actually operate">
             <ul className="space-y-3">
               <li className="flex gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
@@ -346,7 +337,7 @@ export default function DesignPhilosophy({ onBack }) {
           </Section>
 
           {/* TRADE-OFFS */}
-          <Section eyebrow="Trade-offs" title="Where user needs and business needs actually meet">
+          <Section title="Where user needs and business needs actually meet">
             <p>
               I don't treat user needs and business goals as opposing forces. If people can't get what they came
               for, the business loses. If the business can't sustain the product, people lose it entirely. My job is
@@ -368,7 +359,6 @@ export default function DesignPhilosophy({ onBack }) {
       <div className="w-full bg-live/[0.07] border-y border-live/20">
         <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-10">
           <div className="max-w-3xl py-12 sm:py-16">
-            <PhilosophyEyebrow>Personal</PhilosophyEyebrow>
             <h2 className="text-[24px] sm:text-[28px] font-semibold text-heading mb-5">Outside of work</h2>
             <p className="text-[15px] sm:text-[16px] leading-relaxed text-body max-w-3xl">
               I spend three hours a day fighting traffic that neither respects nor informs me. Maybe that's exactly
@@ -384,7 +374,7 @@ export default function DesignPhilosophy({ onBack }) {
       <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-10">
         <div className="max-w-3xl">
           {/* BELIEFS */}
-          <Section eyebrow="Beliefs" title="A few things I hold as true">
+          <Section title="A few things I hold as true">
             <ul className="space-y-3">
               {[
                 "Clarity is not the absence of features — it's the presence of an honest state.",
@@ -409,7 +399,7 @@ export default function DesignPhilosophy({ onBack }) {
           </Section>
 
           {/* COLLABORATION */}
-          <Section eyebrow="Collaboration" title="If we end up working together">
+          <Section title="If we end up working together">
             <ul className="space-y-3">
               <li className="flex gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
@@ -433,7 +423,7 @@ export default function DesignPhilosophy({ onBack }) {
           </Section>
 
           {/* PROOF */}
-          <Section eyebrow="Impact" title="Proof, not promises">
+          <Section title="Proof, not promises">
             <div className="space-y-8">
               {PROOF.map((block) => (
                 <div key={block.title}>
@@ -455,9 +445,8 @@ export default function DesignPhilosophy({ onBack }) {
         </div>
       </div>
 
-      <footer className="text-center pb-14 text-[11px] font-medium uppercase tracking-[0.1em] text-muted font-poppins">
-        Ranjit Kumar — Lead UX Designer
-      </footer>
+      <LetsTalk onOpenResume={onOpenResume} />
+      <Footer />
     </div>
   );
 }

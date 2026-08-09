@@ -4,6 +4,7 @@ import Home from "./pages/Home.jsx";
 import DesignPhilosophy from "./pages/DesignPhilosophy.jsx";
 import HSACaseStudy from "./pages/HSACaseStudy.jsx";
 import CommunicationCaseStudy from "./pages/CommunicationCaseStudy.jsx";
+import OptageCaseStudy from "./pages/OptageCaseStudy.jsx";
 import ChatOverlay from "./components/ChatOverlay.jsx";
 import ResumeOverlay from "./components/ResumeOverlay.jsx";
 import ArchiveOverlay from "./components/ArchiveOverlay.jsx";
@@ -57,17 +58,31 @@ export default function App() {
             }}
           />
         )}
-        {view === "philosophy" && <DesignPhilosophy onBack={() => setView("home")} />}
+        {view === "philosophy" && (
+          <DesignPhilosophy onBack={() => setView("home")} onOpenResume={() => setResumeOpen(true)} />
+        )}
         {view === "case-study" && activeCaseStudy === "setup-to-enrolled" && (
           <HSACaseStudy onBack={() => setView("home")} onOpenResume={() => setResumeOpen(true)} />
         )}
         {view === "case-study" && activeCaseStudy === "one-setup-every-channel" && (
           <CommunicationCaseStudy onBack={() => setView("home")} onOpenResume={() => setResumeOpen(true)} />
         )}
+        {view === "case-study" && activeCaseStudy === "optage" && (
+          <OptageCaseStudy onBack={() => setView("home")} onOpenResume={() => setResumeOpen(true)} />
+        )}
       </main>
       {chatOpen && <ChatOverlay onClose={() => setChatOpen(false)} />}
       {resumeOpen && <ResumeOverlay onClose={() => setResumeOpen(false)} />}
-      {archiveOpen && <ArchiveOverlay onClose={() => setArchiveOpen(false)} />}
+      {archiveOpen && (
+        <ArchiveOverlay
+          onClose={() => setArchiveOpen(false)}
+          onOpenCaseStudy={(id) => {
+            setArchiveOpen(false);
+            setActiveCaseStudy(id);
+            setView("case-study");
+          }}
+        />
+      )}
       <ThemeToggle themeMode={themeMode} resolvedTheme={resolvedTheme} onCycle={cycleThemeMode} />
     </div>
   );

@@ -136,3 +136,8 @@ body {
   animation: reel-sweep 0.5s ease forwards;
   animation-delay: 300ms;
 }
+
+.philosophy-page .max-w-3xl {
+  max-width: 48rem;
+  margin: 0 auto;
+}

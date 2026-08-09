@@ -102,7 +102,7 @@ function ProjectSlider({ project, onClose }) {
   );
 }
 
-function ProjectGrid({ onSelect }) {
+function ProjectGrid({ onSelect, onOpenCaseStudy }) {
   return (
     <>
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-16 pt-6 font-poppins">
@@ -121,7 +121,7 @@ function ProjectGrid({ onSelect }) {
               <button
                 key={project.id}
                 type="button"
-                onClick={() => onSelect(project)}
+                onClick={() => (project.id === "optage" ? onOpenCaseStudy(project.id) : onSelect(project))}
                 className="group relative aspect-[4/3] rounded-2xl overflow-hidden text-left hover:opacity-90 transition-opacity"
               >
                 <img
@@ -145,7 +145,7 @@ function ProjectGrid({ onSelect }) {
   );
 }
 
-export default function ArchiveOverlay({ onClose }) {
+export default function ArchiveOverlay({ onClose, onOpenCaseStudy }) {
   const [activeProject, setActiveProject] = useState(null);
 
   useEffect(() => {
@@ -179,7 +179,7 @@ export default function ArchiveOverlay({ onClose }) {
       {activeProject ? (
         <ProjectSlider project={activeProject} onClose={onClose} />
       ) : (
-        <ProjectGrid onSelect={setActiveProject} />
+        <ProjectGrid onSelect={setActiveProject} onOpenCaseStudy={onOpenCaseStudy} />
       )}
     </div>
   );
