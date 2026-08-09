@@ -129,7 +129,32 @@ export function CaseStudyNav({ sections, active }) {
   );
 }
 
-export function CaseStudyPageShell({ onBack, onOpenResume, view, setView, children }) {
+export function ViewToggle({ view, setView }) {
+  return (
+    <div className="inline-flex items-center bg-card border border-band/40 rounded-full p-1 mb-10">
+      <button
+        type="button"
+        onClick={() => setView("skim")}
+        className={`text-[12px] font-semibold uppercase tracking-wide px-4 py-1.5 rounded-full transition-colors ${
+          view === "skim" ? "bg-navy text-white" : "text-muted hover:text-heading"
+        }`}
+      >
+        Skim
+      </button>
+      <button
+        type="button"
+        onClick={() => setView("full")}
+        className={`text-[12px] font-semibold uppercase tracking-wide px-4 py-1.5 rounded-full transition-colors ${
+          view === "full" ? "bg-navy text-white" : "text-muted hover:text-heading"
+        }`}
+      >
+        Full
+      </button>
+    </div>
+  );
+}
+
+export function CaseStudyPageShell({ onBack, onOpenResume, children }) {
   return (
     <div className="animate-fadeIn font-poppins min-h-screen">
       <div className="fixed top-0 inset-x-0 z-40 h-16 sm:h-20 flex items-center justify-center backdrop-blur-sm">
@@ -144,27 +169,6 @@ export function CaseStudyPageShell({ onBack, onOpenResume, view, setView, childr
       </div>
 
       <div className="w-full max-w-[1360px] mx-auto px-6 sm:px-10 pt-24 sm:pt-28 pb-20 sm:pb-28">
-        <div className="inline-flex items-center bg-card border border-band/40 rounded-full p-1 mb-10">
-          <button
-            type="button"
-            onClick={() => setView("skim")}
-            className={`text-[12px] font-semibold uppercase tracking-wide px-4 py-1.5 rounded-full transition-colors ${
-              view === "skim" ? "bg-navy text-white" : "text-muted hover:text-heading"
-            }`}
-          >
-            Skim
-          </button>
-          <button
-            type="button"
-            onClick={() => setView("full")}
-            className={`text-[12px] font-semibold uppercase tracking-wide px-4 py-1.5 rounded-full transition-colors ${
-              view === "full" ? "bg-navy text-white" : "text-muted hover:text-heading"
-            }`}
-          >
-            Full
-          </button>
-        </div>
-
         {children}
       </div>
 

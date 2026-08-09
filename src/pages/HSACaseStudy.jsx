@@ -11,6 +11,7 @@ import {
   useScrollSpy,
   CaseStudyNav,
   CaseStudyPageShell,
+  ViewToggle,
 } from "../components/CaseStudyKit.jsx";
 import valuePropImg from "../assets/case-studies/hsa/value-proposition.png";
 import mindmapImg from "../assets/case-studies/hsa/mindmap.png";
@@ -516,14 +517,18 @@ export default function HSACaseStudy({ onBack, onOpenResume }) {
   );
 
   return (
-    <CaseStudyPageShell onBack={onBack} onOpenResume={onOpenResume} view={view} setView={setView}>
+    <CaseStudyPageShell onBack={onBack} onOpenResume={onOpenResume}>
       {view === "skim" ? (
-        <SkimView />
+        <div>
+          <ViewToggle view={view} setView={setView} />
+          <SkimView />
+        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-10 md:gap-16 items-start">
           <CaseStudyNav sections={NAV_SECTIONS} active={active} />
 
           <div className="w-full md:w-[80%]">
+            <ViewToggle view={view} setView={setView} />
             <SkimView />
             <div className="mt-14 pt-14 border-t border-band/30">
               <FullView />
