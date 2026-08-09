@@ -20,7 +20,7 @@ const LAWS = [
     body: "Nobody should hit “Submit” only to find out five fields back was wrong all along. When I redesigned the HSA experience, the real fix wasn't a prettier form — it was surfacing IRS compliance issues while someone was still mid-setup, not after. Admin work that used to eat 38 minutes started taking 21, and people stopped calling support to ask what went wrong, because the form had already told them.",
   },
   {
-    dotClass: "bg-[#d08d00]",
+    dotClass: "bg-[#DB7B2B]",
     title: "Amber — latency without a signal reads as failure.",
     body: "If a system is thinking, it needs to say so — silence just makes people assume it's broken and try again, which makes everything worse. That's the instinct behind the AI/voice benefits chatbot I built: it didn't get smarter, it got more honest about what it did and didn't know, and within six months, far fewer people needed to escalate to a human just to get an answer it could've given them itself.",
   },
@@ -28,44 +28,6 @@ const LAWS = [
     dotClass: "bg-[#2e6c4d]",
     title: "Green — once it's safe to proceed, don't make the user double-check.",
     body: "Confidence is a design decision, not a personality trait. When I stripped unnecessary confirmation steps out of the benefits enrollment flow, completion rates climbed and the whole process got noticeably faster — not because people got more patient, but because they finally had fewer reasons to hesitate.",
-  },
-];
-
-const PROOF = [
-  {
-    title: "Benefits, made legible",
-    body: (
-      <>
-        The HSA experience used to bury IRS compliance rules inside a setup flow people had to decode as they went —
-        now the system tells them as they go, and what took <span className="font-mono font-semibold text-heading">38 → 21 min</span>{" "}
-        now takes far less, with a lot fewer support calls behind it. The same fix worked on employee communications:
-        prebuilt templates and automated messaging cut task time from{" "}
-        <span className="font-mono font-semibold text-heading">69 → 47 min</span> and pulled feature satisfaction from{" "}
-        <span className="font-mono font-semibold text-heading">2.9 → 4.1</span>, mostly by saying the same thing the
-        same way every time. The enrollment flow got the same treatment: strip the friction, keep only what earns
-        its place, and completion rates went up while the whole thing got faster to finish. The chatbot I built
-        followed the same rule as everything else here — say what you know, say what you don't, and let people
-        trust it enough to stop escalating to a human for things it could already answer.
-      </>
-    ),
-  },
-  {
-    title: "Systems, unified",
-    body: "Two separate design systems governing the same product meant two separate sets of assumptions about what “correct” looked like. I merged them into one framework — not a style guide nobody opens, but the thing that lets a whole team stop arguing about a button and start shipping.",
-  },
-  {
-    title: "A city, watched honestly",
-    body: (
-      <>
-        On a MeitY-funded citizen safety initiative, I helped stand up a command center reading{" "}
-        <span className="font-mono font-semibold text-heading">2,300+</span> live camera feeds in real time — the
-        closest I've come to designing an actual traffic light, at a scale where a wrong read isn't a bad review,
-        it's a real risk. The same program rolled out face-recognition attendance across roughly{" "}
-        <span className="font-mono font-semibold text-heading">400</span> skill centers. It's the work I'm proudest of,
-        and it's the reason the India Today Digital Trailblazer Award still means something to me, handed to the
-        project by the IT Minister himself.
-      </>
-    ),
   },
 ];
 
@@ -96,11 +58,11 @@ export default function DesignPhilosophy({ onBack, onOpenResume }) {
             </p>
 
             <div className="flex gap-5">
-              <div className="w-1 shrink-0 rounded-full bg-gradient-to-b from-[#c93728] from-30% via-[#d08d00] via-30% to-[#2e6c4d] to-[62%]" />
-              <blockquote className="text-[19px] sm:text-[22px] italic leading-relaxed text-heading">
-                I spend three hours a day in traffic that tells me nothing — no signal I can trust, no state I can
-                read. Good design is the opposite of that moment. You get there by obsessing over what someone needs
-                to know, right when they need to know it.
+              <div className="w-1 shrink-0 rounded-full bg-gradient-to-b from-[#c93728] from-30% via-[#DB7B2B] via-30% to-[#2e6c4d] to-[62%]" />
+              <blockquote className="text-[20px] italic leading-relaxed text-heading">
+                I spend three hours a day in traffic that gives me no signal I can trust and no clear picture of
+                what's happening. Great design does the opposite: it makes the right information visible,
+                understandable, and available at the moment it matters most.
               </blockquote>
             </div>
 
@@ -420,18 +382,6 @@ export default function DesignPhilosophy({ onBack, onOpenResume }) {
                 </span>
               </li>
             </ul>
-          </Section>
-
-          {/* PROOF */}
-          <Section title="Proof, not promises">
-            <div className="space-y-8">
-              {PROOF.map((block) => (
-                <div key={block.title}>
-                  <h4 className="text-[17px] sm:text-[19px] italic font-medium text-heading mb-2">{block.title}</h4>
-                  <p className="text-[15px] leading-relaxed text-body">{block.body}</p>
-                </div>
-              ))}
-            </div>
           </Section>
 
           {/* CLOSING */}

@@ -52,10 +52,25 @@ export default function CaseStudyCard({ study, onOpenCaseStudy }) {
             {study.status}
           </span>
         </div>
-        <p className="font-poppins text-[24px] leading-normal text-ink max-w-md">
-          <span className="font-semibold">{study.title}</span>
-          {study.suffix}
-        </p>
+        {study.hasPage ? (
+          <button
+            type="button"
+            onClick={() => onOpenCaseStudy?.(study.id)}
+            className="text-left hover:opacity-80 transition-opacity"
+          >
+            <p className="font-poppins text-[24px] leading-normal text-ink max-w-md">
+              <span className="font-semibold">{study.title}</span>
+              {study.suffix}
+            </p>
+          </button>
+        ) : (
+          <a href={study.href} className="hover:opacity-80 transition-opacity">
+            <p className="font-poppins text-[24px] leading-normal text-ink max-w-md">
+              <span className="font-semibold">{study.title}</span>
+              {study.suffix}
+            </p>
+          </a>
+        )}
         {study.hasPage ? (
           <button type="button" onClick={() => onOpenCaseStudy?.(study.id)} className="mt-4 inline-block text-left">
             <ReadMoreLink>Read the case study</ReadMoreLink>

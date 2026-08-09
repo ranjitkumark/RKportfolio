@@ -6,7 +6,7 @@
 :root {
   --c-ink: 17 17 17;
   --c-heading: 36 36 36;
-  --c-body: 104 104 104;
+  --c-body: 72 72 72;
   --c-muted: 100 100 100;
   --c-accent: 0 84 97;
   --c-navy: 41 63 83;
@@ -140,4 +140,11 @@ body {
 .philosophy-page .max-w-3xl {
   max-width: 48rem;
   margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .md\:w-\[62\%\] {
+    width: 62%;
+    margin: 0 auto;
+  }
 }

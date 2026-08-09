@@ -114,7 +114,7 @@ export function DeliveryHubMock() {
                 <span className="text-[7.5px] font-poppins text-heading truncate">2026 Plan Year</span>
               </div>
               <div className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#d08d00] shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#DB7B2B] shrink-0" />
                 <span className="text-[7.5px] font-poppins text-heading truncate">2025 Renewal</span>
               </div>
             </div>

@@ -87,7 +87,7 @@ export default function Home({ mode, onOpenPhilosophy, onOpenResume, onOpenArchi
           <p className="mt-6 mx-auto max-w-[760px] text-[22px] sm:text-[30px] leading-normal text-heading">
             “A <span className="text-[#c93728]">traffic light</span> works because you never
             <br className="hidden sm:block" /> have to think about it. That's the whole
-            <br className="hidden sm:block" /> job- earn that <span className="text-[#d08d00]">instant trust.</span>
+            <br className="hidden sm:block" /> job- earn that <span className="text-[#DB7B2B]">instant trust.</span>
             <br className="hidden sm:block" /> No hesitation, no gusseing, Just <span className="text-[#2e6c4d]">knowing.</span>
             <br className="hidden sm:block" /> Everything I design is in service of that
             <br className="hidden sm:block" /> one second.”

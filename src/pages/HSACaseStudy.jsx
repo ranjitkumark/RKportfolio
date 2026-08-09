@@ -519,7 +519,7 @@ export default function HSACaseStudy({ onBack, onOpenResume }) {
   return (
     <CaseStudyPageShell onBack={onBack} onOpenResume={onOpenResume}>
       {view === "skim" ? (
-        <div className="w-full md:w-[60%]">
+        <div className="w-full md:w-[62%]">
           <ViewToggle view={view} setView={setView} />
           <SkimView />
         </div>

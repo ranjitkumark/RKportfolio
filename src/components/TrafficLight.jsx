@@ -8,7 +8,7 @@ export default function TrafficLight({ size = "md" }) {
       className={`mx-auto ${dims} rounded-full bg-white dark:bg-card border border-black/10 dark:border-white/10 flex flex-col items-center justify-between py-2.5`}
     >
       <span className={`${dot} rounded-full bg-[#c93728]`} />
-      <span className={`${dot} rounded-full bg-[#d08d00]`} />
+      <span className={`${dot} rounded-full bg-[#DB7B2B]`} />
       <span className={`${dot} rounded-full bg-[#2e6c4d]`} />
     </div>
   );
