@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowDown, ArrowRight, Briefcase } from "lucide-react";
+import { ArrowDown, ArrowRight, Briefcase } from "../components/icons.jsx";
 import CaseStudyCard, { ReadMoreLink } from "../components/CaseStudyCard.jsx";
 import Footer from "../components/Footer.jsx";
 import FooterLife from "../components/FooterLife.jsx";

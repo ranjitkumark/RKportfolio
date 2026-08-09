@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Eye } from "lucide-react";
+import { Eye } from "./icons.jsx";
 
 const DURATION = 3600;
 

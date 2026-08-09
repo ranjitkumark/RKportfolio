@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "./icons.jsx";
 import LetsTalk from "./LetsTalk.jsx";
 import Footer from "./Footer.jsx";
 

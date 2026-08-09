@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "./icons.jsx";
 import { ARCHIVE_PROJECTS } from "../data/archiveProjects.js";
+import OptageCaseStudy from "../pages/OptageCaseStudy.jsx";
 
 const COVERS = import.meta.glob("../assets/archive/*/cover.png", { eager: true, import: "default" });
 const SLIDES = import.meta.glob("../assets/archive/*/slide-*.png", { eager: true, import: "default" });
@@ -145,8 +146,9 @@ function ProjectGrid({ onSelect, onOpenCaseStudy }) {
   );
 }
 
-export default function ArchiveOverlay({ onClose, onOpenCaseStudy }) {
+export default function ArchiveOverlay({ onClose }) {
   const [activeProject, setActiveProject] = useState(null);
+  const [optageOpen, setOptageOpen] = useState(false);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -157,13 +159,17 @@ export default function ArchiveOverlay({ onClose, onOpenCaseStudy }) {
   }, []);
 
   useEffect(() => {
-    if (activeProject) return; // ProjectSlider owns its own Escape handling while active
+    if (activeProject || optageOpen) return; // slider/Optage own their own Escape handling while active
     const onKeyDown = (e) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [activeProject, onClose]);
+  }, [activeProject, optageOpen, onClose]);
+
+  if (optageOpen) {
+    return <OptageCaseStudy onClose={onClose} />;
+  }
 
   return (
     <div className="fixed inset-0 z-50 bg-mint flex flex-col animate-fadeIn">
@@ -179,7 +185,7 @@ export default function ArchiveOverlay({ onClose, onOpenCaseStudy }) {
       {activeProject ? (
         <ProjectSlider project={activeProject} onClose={onClose} />
       ) : (
-        <ProjectGrid onSelect={setActiveProject} onOpenCaseStudy={onOpenCaseStudy} />
+        <ProjectGrid onSelect={setActiveProject} onOpenCaseStudy={() => setOptageOpen(true)} />
       )}
     </div>
   );

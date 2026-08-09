@@ -1,5 +1,4 @@
 import React from "react";
-import Eyebrow from "../components/Eyebrow.jsx";
 import heroPlaceholder from "../assets/life/hero.png";
 import mountainBwPlaceholder from "../assets/life/mountain-bw.png";
 import mountainCollagePlaceholder from "../assets/life/mountain-collage.png";
@@ -33,7 +32,6 @@ export default function Life() {
         <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] gap-8 md:gap-12 items-start pt-16 sm:pt-20 pb-16">
           <PhotoBlock src={heroPlaceholder} label="Your photo here" />
           <div>
-            <Eyebrow>Outside of Work</Eyebrow>
             <h1 className="text-[36px] sm:text-[48px] font-semibold text-heading mb-4">Outside of Work</h1>
             <p className="text-[16px] sm:text-[18px] italic text-body mb-5">
               Work is only one part of how I see the world — the rest, I find in quiet places, new roads, and small

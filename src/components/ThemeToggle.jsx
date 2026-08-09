@@ -1,5 +1,5 @@
 import React from "react";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon } from "./icons.jsx";
 
 const LABELS = {
   auto: "Auto (follows sunrise/sunset)",

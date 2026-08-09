@@ -1,5 +1,5 @@
 import React from "react";
-import { Eye, ArrowRight } from "lucide-react";
+import { Eye, ArrowRight } from "./icons.jsx";
 import StoryReel from "./StoryReel.jsx";
 import deliveryHubImg from "../assets/case-studies/mocks/mock-delivery-hub.png";
 import commHubContributionImg from "../assets/case-studies/mocks/mock-comm-hub-contribution.png";
@@ -32,12 +32,12 @@ export default function CaseStudyCard({ study, onOpenCaseStudy }) {
         <StoryReel
           mock={study.reel.mock}
           beats={study.reel.beats}
-          mockNode={mockImg ? <img src={mockImg} alt={study.title} className="w-full h-full object-cover rounded-2xl" /> : undefined}
+          mockNode={mockImg ? <img src={mockImg} alt={study.title} className="w-full h-full object-contain rounded-2xl" /> : undefined}
         />
       ) : (
         <div className="relative w-full h-[420px] rounded-[24px] bg-card border border-[#c9d7da] dark:border-white/10 overflow-hidden">
           <div className="absolute top-9 left-9 right-9 bottom-16">
-            <img src={mockImg} alt={study.title} className="w-full h-full object-cover rounded-2xl" />
+            <img src={mockImg} alt={study.title} className="w-full h-full object-contain rounded-2xl" />
           </div>
           <span className="absolute left-9 bottom-[30px] flex items-center gap-2 text-[13px] text-body">
             <Eye size={16} className="opacity-80" /> Hover for a quick look

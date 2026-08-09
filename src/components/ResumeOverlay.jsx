@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { X, Download } from "lucide-react";
-import Eyebrow from "./Eyebrow.jsx";
+import { X, Download } from "./icons.jsx";
 
 const PROFILE =
   "Senior/Lead UX Designer with 12+ years of experience designing intuitive, user-centered digital experiences across benefits management, IoT, AI, e-commerce, and decentralized (dApp) platforms. Skilled at translating complex, cross-functional requirements into scalable design solutions that improve usability, accessibility, and business outcomes. Proven track record of driving measurable gains in task efficiency, completion rates, and customer satisfaction through research-led design and design-system leadership.";
@@ -115,7 +114,6 @@ export default function ResumeOverlay({ onClose }) {
 
       <div className="flex-1 overflow-y-auto px-5 sm:px-10 pt-16 sm:pt-14 pb-10">
         <div className="max-w-3xl mx-auto w-full">
-          <Eyebrow>Resume</Eyebrow>
           <h1 className="text-[28px] sm:text-[36px] font-semibold text-heading">Ranjit Kumar</h1>
           <p className="mt-1 text-[15px] sm:text-[16px] text-accent font-medium">Lead UX Designer</p>
 

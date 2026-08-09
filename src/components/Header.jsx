@@ -1,5 +1,5 @@
 import React from "react";
-import { Briefcase, Leaf, FileText, MessageSquare, Command } from "lucide-react";
+import { Briefcase, Leaf, FileText, MessageSquare, Command } from "./icons.jsx";
 
 const MODES = [
   { id: "work", label: "Work", icon: Briefcase },

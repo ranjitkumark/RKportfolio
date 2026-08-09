@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { X, ArrowUp } from "lucide-react";
+import { X, ArrowUp } from "./icons.jsx";
 
 const GREETING = "Hi! I'm Ranjit's AI assistant. Ask me anything about his work, process, or experience.";
 const SUGGESTIONS = [

@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "../components/icons.jsx";
 import TrafficLight from "../components/TrafficLight.jsx";
 import LetsTalk from "../components/LetsTalk.jsx";
 import Footer from "../components/Footer.jsx";

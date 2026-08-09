@@ -1,5 +1,5 @@
 import React from "react";
-import { Contact, Linkedin, Newspaper } from "lucide-react";
+import { Contact, Linkedin, Newspaper } from "./icons.jsx";
 
 export default function LetsTalk({ onOpenResume, padding = "sm:px-32" }) {
   return (
