@@ -4,6 +4,7 @@ import Home from "./pages/Home.jsx";
 import DesignPhilosophy from "./pages/DesignPhilosophy.jsx";
 import HSACaseStudy from "./pages/HSACaseStudy.jsx";
 import CommunicationCaseStudy from "./pages/CommunicationCaseStudy.jsx";
+import ChatbotCaseStudy from "./pages/ChatbotCaseStudy.jsx";
 import ChatOverlay from "./components/ChatOverlay.jsx";
 import ResumeOverlay from "./components/ResumeOverlay.jsx";
 import ArchiveOverlay from "./components/ArchiveOverlay.jsx";
@@ -65,6 +66,9 @@ export default function App() {
         )}
         {view === "case-study" && activeCaseStudy === "one-setup-every-channel" && (
           <CommunicationCaseStudy onBack={() => setView("home")} onOpenResume={() => setResumeOpen(true)} />
+        )}
+        {view === "case-study" && activeCaseStudy === "one-click-every-answer" && (
+          <ChatbotCaseStudy onBack={() => setView("home")} onOpenResume={() => setResumeOpen(true)} />
         )}
       </main>
       {chatOpen && <ChatOverlay onClose={() => setChatOpen(false)} />}

@@ -1,4 +1,4 @@
-import { HSA_REEL, COMMUNICATION_REEL } from "./storyReels.js";
+import { HSA_REEL, COMMUNICATION_REEL, CHATBOT_REEL } from "./storyReels.js";
 
 export const CASE_STUDIES = [
   {
@@ -32,5 +32,7 @@ export const CASE_STUDIES = [
     title: "One Click, Every Answer",
     suffix: " - a chatbot for benefit questions, HSA balance, adding a dependent, and everything in between",
     href: "#",
+    reel: CHATBOT_REEL,
+    hasPage: true,
   },
 ];
