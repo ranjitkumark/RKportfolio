@@ -131,7 +131,7 @@ function FullView() {
             cognitive load and cutting efficiency.
           </p>
           <PlaceholderImage src={heuristicsImg} alt="Heuristic evaluation results" />
-          <div>
+          <div className="mt-4">
             <Label>Key evaluation dimensions</Label>
             <List
               items={[
@@ -346,7 +346,7 @@ function FullView() {
             I ran two rounds of usability testing with 10 benefit administrators, 7 of whom had prior experience with
             the product — a mix that surfaced both insider insights and fresh perspectives.
           </p>
-          <div>
+          <div className="mt-4">
             <Label>Goals</Label>
             <List
               items={[

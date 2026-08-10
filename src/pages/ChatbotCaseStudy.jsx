@@ -178,7 +178,9 @@ function FullView() {
           well.
         </p>
         <PlaceholderImage src={scorecardImg} alt="Scenario evaluation scorecard" />
-        <Label>Where the design failed independently of the model</Label>
+        <div className="mt-4">
+          <Label>Where the design failed independently of the model</Label>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
           <IssueCard title="Eligibility">
             Asked whether they were eligible for dental, the assistant returned enrollment information without

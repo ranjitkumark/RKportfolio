@@ -77,21 +77,23 @@ export default function OnectoCaseStudy({ onClose }) {
           proximity sensors for a coworking-space proof of concept — switching lights, AC, printers, and door
           sensors on and off through a mobile app powered by our own IoT platform.
         </p>
-        <Label>Modules shipped</Label>
-        <List
-          items={[
-            "Access control",
-            "Device management",
-            "Communication protocol",
-            "Rule engine",
-            "Security",
-            "REST APIs",
-            "Computer vision",
-            "Blockchain",
-            "Big data",
-            "Streaming as a service",
-          ]}
-        />
+        <div className="mt-4">
+          <Label>Modules shipped</Label>
+          <List
+            items={[
+              "Access control",
+              "Device management",
+              "Communication protocol",
+              "Rule engine",
+              "Security",
+              "REST APIs",
+              "Computer vision",
+              "Blockchain",
+              "Big data",
+              "Streaming as a service",
+            ]}
+          />
+        </div>
       </section>
 
       <section id="visuals" className="pt-16 pb-16">

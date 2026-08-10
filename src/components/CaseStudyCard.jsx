@@ -53,19 +53,15 @@ export default function CaseStudyCard({ study, onOpenCaseStudy }) {
           </span>
         </div>
         {study.hasPage ? (
-          <button
-            type="button"
-            onClick={() => onOpenCaseStudy?.(study.id)}
-            className="text-left hover:opacity-80 transition-opacity"
-          >
-            <p className="font-poppins text-[24px] leading-normal text-ink max-w-md">
+          <button type="button" onClick={() => onOpenCaseStudy?.(study.id)} className="group text-left">
+            <p className="font-poppins text-[24px] leading-normal text-ink max-w-md transition-colors group-hover:text-accent">
               <span className="font-semibold">{study.title}</span>
               {study.suffix}
             </p>
           </button>
         ) : (
-          <a href={study.href} className="hover:opacity-80 transition-opacity">
-            <p className="font-poppins text-[24px] leading-normal text-ink max-w-md">
+          <a href={study.href} className="group">
+            <p className="font-poppins text-[24px] leading-normal text-ink max-w-md transition-colors group-hover:text-accent">
               <span className="font-semibold">{study.title}</span>
               {study.suffix}
             </p>

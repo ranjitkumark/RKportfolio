@@ -49,16 +49,18 @@ export default function TmlCaseStudy({ onClose }) {
           and 32% female, spanning 49% aged 18–30, 37% aged 31–60, and 14% above 60. Qualitative research came from
           interviews with 4 ministers, 10 sarpanchs, 21 ward members, and 64 karyakartas across different regions.
         </p>
-        <Label>Gathering insights</Label>
-        <List
-          items={[
-            "No existing platform connected leaders and the public directly.",
-            "A wide gap between ministers and the common public.",
-            "A wide gap between people in authority and the common public.",
-            "No transparent, trustworthy environment to raise concerns in.",
-            "Real privacy concerns about being identified.",
-          ]}
-        />
+        <div className="mt-4">
+          <Label>Gathering insights</Label>
+          <List
+            items={[
+              "No existing platform connected leaders and the public directly.",
+              "A wide gap between ministers and the common public.",
+              "A wide gap between people in authority and the common public.",
+              "No transparent, trustworthy environment to raise concerns in.",
+              "Real privacy concerns about being identified.",
+            ]}
+          />
+        </div>
       </section>
 
       <section id="hypothesis" className="py-16 border-t border-band/30">

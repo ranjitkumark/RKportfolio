@@ -4,6 +4,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
+      lineHeight: {
+        relaxed: "1.8",
+      },
       colors: {
         ink: "rgb(var(--c-ink) / <alpha-value>)",
         heading: "rgb(var(--c-heading) / <alpha-value>)",

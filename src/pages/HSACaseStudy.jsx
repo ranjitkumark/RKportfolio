@@ -129,7 +129,7 @@ function FullView() {
             Observing them in their day-to-day environment gave me a deeper understanding of the challenges they
             faced that weren't always visible through bug reports or client complaints.
           </p>
-          <div>
+          <div className="mt-4">
             <Label>Findings</Label>
             <List
               items={[
@@ -155,7 +155,9 @@ function FullView() {
             identifying usability issues, compliance risks, and misalignments between system logic and real-world
             benefit plan designs.
           </p>
-          <Label>Key issues identified</Label>
+          <div className="mt-4">
+            <Label>Key issues identified</Label>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
             <IssueCard title="Limited flexibility for employees">
               Employees couldn't update contributions mid-year without HR involvement, leading to frustration and
@@ -425,7 +427,7 @@ function FullView() {
             Enrollment — comparing a progressive step-by-step flow against a single-page layout before committing to
             a final direction.
           </p>
-          <div>
+          <div className="mt-4">
             <Label>Testing objectives</Label>
             <List
               items={[

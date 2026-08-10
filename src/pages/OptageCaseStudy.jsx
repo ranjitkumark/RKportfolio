@@ -55,16 +55,18 @@ export default function OptageCaseStudy({ onClose }) {
           clearly, and a quick proof of concept gave them confidence early. Some of the useful insights we
           identified:
         </p>
-        <Label>Findings</Label>
-        <List
-          items={[
-            "There was an urgent need for a solution — the issues were serious enough to affect the business.",
-            "Most work was done manually in spreadsheets, generating reports by hand (time-consuming, unreliable data).",
-            "Headquarters had no visibility into which students were actually registered, or actually present at a center on any given day.",
-            "Significant operational cost was lost to process misuse.",
-            "Surprise inspections were nearly impossible across centers spread throughout the state.",
-          ]}
-        />
+        <div className="mt-4">
+          <Label>Findings</Label>
+          <List
+            items={[
+              "There was an urgent need for a solution — the issues were serious enough to affect the business.",
+              "Most work was done manually in spreadsheets, generating reports by hand (time-consuming, unreliable data).",
+              "Headquarters had no visibility into which students were actually registered, or actually present at a center on any given day.",
+              "Significant operational cost was lost to process misuse.",
+              "Surprise inspections were nearly impossible across centers spread throughout the state.",
+            ]}
+          />
+        </div>
       </section>
 
       <section id="solution" className="py-16 border-t border-band/30">
