@@ -15,7 +15,7 @@ function BeatText({ beat, leaving }) {
         beat.quote ? "italic text-[15px] sm:text-[16px]" : ""
       }`}
     >
-      {beat.quote && <span className="text-muted mr-0.5">&ldquo;</span>}
+      {beat.quote && <span className="text-muted mr-1">&ldquo;</span>}
       {tokens.map((tok, i) => (
         <span
           key={i}
@@ -24,7 +24,7 @@ function BeatText({ beat, leaving }) {
           dangerouslySetInnerHTML={{ __html: tok }}
         />
       ))}
-      {beat.quote && <span className="text-muted ml-0.5">&rdquo;</span>}
+      {beat.quote && <span className="text-muted ml-1">&rdquo;</span>}
     </p>
   );
 }
@@ -91,20 +91,20 @@ export default function StoryReel({ mock, beats, mockNode }) {
           mockNode
         ) : (
           <>
-            <div className="bg-gradient-to-br from-accent to-navy px-[18px] py-4 flex items-center gap-3">
+            <div className="bg-gradient-to-br from-accent to-navy px-[20px] py-4 flex items-center gap-3">
               <span className="w-[34px] h-[34px] rounded-full bg-white/25 flex items-center justify-center text-white font-poppins font-bold text-[13px] shrink-0">
                 {mock.avatar}
               </span>
               <div className="flex-1 min-w-0">
                 <div className="text-white font-poppins font-bold text-[14px] truncate">{mock.title}</div>
-                <div className="text-white/75 text-[12px] mt-0.5 truncate">{mock.subtitle}</div>
+                <div className="text-white/75 text-[12px] mt-1 truncate">{mock.subtitle}</div>
               </div>
               <span className="w-2 h-2 rounded-full bg-[#4ADE80] shadow-[0_0_0_3px_rgba(74,222,128,0.25)] shrink-0" />
             </div>
             {mock.rows.map((row, i) => (
               <div
                 key={row.name}
-                className={`flex items-center gap-3 px-[18px] py-[13px] border-b border-[#f0f1f6] ${
+                className={`flex items-center gap-3 px-[20px] py-[12px] border-b border-[#f0f1f6] ${
                   i % 2 === 1 ? "bg-[#f3f5fa]" : "bg-white"
                 }`}
               >
@@ -127,7 +127,7 @@ export default function StoryReel({ mock, beats, mockNode }) {
 
       {/* hint */}
       <div
-        className={`absolute left-9 bottom-[30px] flex items-center gap-2 text-[13px] text-body transition-all duration-300 ${
+        className={`absolute left-9 bottom-[32px] flex items-center gap-2 text-[13px] text-body transition-all duration-300 ${
           playing ? "opacity-0 translate-y-1.5" : "opacity-100"
         }`}
       >
@@ -148,7 +148,7 @@ export default function StoryReel({ mock, beats, mockNode }) {
               "radial-gradient(circle, rgb(var(--c-live) / 0.16) 0%, rgb(var(--c-live) / 0) 70%)",
           }}
         />
-        <div className="absolute top-[22px] left-6 z-[5] flex items-center gap-[7px] font-mono text-[10.5px] tracking-[0.14em] uppercase text-muted">
+        <div className="absolute top-[24px] left-6 z-[5] flex items-center gap-[8px] font-mono text-[10.5px] tracking-[0.14em] uppercase text-muted">
           <span className="w-[5px] h-[5px] rounded-full bg-live animate-[reel-pulse-dot_2.2s_ease-in-out_infinite]" />
           Live
         </div>
@@ -170,12 +170,12 @@ export default function StoryReel({ mock, beats, mockNode }) {
         </div>
 
         {activeTag && (
-          <div className="absolute left-1/2 bottom-14 -translate-x-1/2 px-3 py-1.5 rounded-full bg-live/10 border border-live/30 font-mono text-[10px] tracking-[0.1em] uppercase text-live whitespace-nowrap">
+          <div className="absolute left-1/2 bottom-14 -translate-x-1/2 px-3 py-2 rounded-full bg-live/10 border border-live/30 font-mono text-[10px] tracking-[0.1em] uppercase text-live whitespace-nowrap">
             {activeTag}
           </div>
         )}
 
-        <div className="absolute bottom-[22px] right-6 z-[6] font-mono text-[10.5px] text-muted">
+        <div className="absolute bottom-[24px] right-6 z-[6] font-mono text-[10.5px] text-muted">
           {current + 1} / {beats.length}
         </div>
       </div>

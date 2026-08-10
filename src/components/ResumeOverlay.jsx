@@ -162,7 +162,7 @@ export default function ResumeOverlay({ onClose }) {
                     <h3 className="text-[16px] sm:text-[17px] font-semibold text-heading">{job.role}</h3>
                     {job.dates && <span className="text-[12px] font-mono text-muted">{job.dates}</span>}
                   </div>
-                  <p className="text-[13px] text-accent font-medium mt-0.5">{job.company}</p>
+                  <p className="text-[13px] text-accent font-medium mt-1">{job.company}</p>
                   <ul className="mt-3 space-y-2">
                     {job.bullets.map((bullet, j) => (
                       <li key={j} className="flex gap-3 text-[14px] leading-relaxed text-heading">
@@ -184,7 +184,7 @@ export default function ResumeOverlay({ onClose }) {
                   <p className="text-[12px] font-semibold text-heading mb-2">{group.label}</p>
                   <div className="flex flex-wrap gap-2">
                     {group.items.map((skill) => (
-                      <span key={skill} className="text-[12px] text-heading border border-band/40 rounded-full px-3.5 py-1.5">
+                      <span key={skill} className="text-[12px] text-heading border border-band/40 rounded-full px-4 py-2">
                         {skill}
                       </span>
                     ))}
@@ -211,7 +211,7 @@ export default function ResumeOverlay({ onClose }) {
       </div>
 
       <div className="border-t border-[#ced7d9] dark:border-white/10 py-8 flex items-center justify-center gap-3 font-poppins">
-        <span className="bg-[#dee2e3] dark:bg-card border border-[#9fa6ab] dark:border-white/20 rounded text-[14px] text-heading px-[9px] py-[2px]">
+        <span className="bg-[#dee2e3] dark:bg-card border border-[#9fa6ab] dark:border-white/20 rounded text-[14px] text-heading px-[8px] py-[4px]">
           ESC
         </span>
         <span className="text-[16px] font-medium text-heading">CLOSE</span>

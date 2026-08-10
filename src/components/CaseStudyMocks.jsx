@@ -9,12 +9,12 @@ function MockShell({ id, title, children }) {
     >
       <div className="bg-accent px-4 py-3 flex items-center justify-between shrink-0">
         <span className="text-white text-[11px] font-bold tracking-[1.2px] font-poppins">{title}</span>
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-white/40" />
           <span className="w-2 h-2 rounded-full bg-white/70" />
         </div>
       </div>
-      <div className="flex-1 bg-[#e9f2fa] p-3.5 overflow-hidden">{children}</div>
+      <div className="flex-1 bg-[#e9f2fa] p-4 overflow-hidden">{children}</div>
     </div>
   );
 }
@@ -23,7 +23,7 @@ export function AIAssistantMock() {
   return (
     <MockShell id="mock-ai-assistant" title="AI ASSISTANT">
       <div className="h-full flex flex-col justify-between">
-        <div className="bg-accent/85 rounded-2xl px-3 py-2.5 flex items-center gap-2">
+        <div className="bg-accent/85 rounded-2xl px-3 py-3 flex items-center gap-2">
           <span className="w-6 h-6 rounded-full bg-white flex items-center justify-center shrink-0">
             <MessageSquare size={12} className="text-accent" />
           </span>
@@ -35,7 +35,7 @@ export function AIAssistantMock() {
         </div>
 
         <div className="bg-accent/70 rounded-full px-3 py-2 flex items-center gap-2 self-center max-w-[85%]">
-          <span className="flex items-center -space-x-1.5 shrink-0">
+          <span className="flex items-center -space-x-2 shrink-0">
             <span className="w-4 h-4 rounded-full bg-white flex items-center justify-center">
               <Sparkles size={9} className="text-accent" />
             </span>
@@ -70,12 +70,12 @@ const CHANNEL_STATS = [
 export function CommHubStatsMock() {
   return (
     <MockShell id="mock-comm-hub-stats" title="COMMUNICATION HUB">
-      <div className="grid grid-cols-2 gap-2.5 h-full">
+      <div className="grid grid-cols-2 gap-3 h-full">
         {CHANNEL_STATS.map((stat) => (
-          <div key={stat.label} className="bg-white rounded-xl border border-band/30 px-2.5 py-2 flex flex-col justify-center">
+          <div key={stat.label} className="bg-white rounded-xl border border-band/30 px-3 py-2 flex flex-col justify-center">
             <span className="text-[8px] font-semibold tracking-[0.06em] text-muted font-poppins truncate">{stat.label}</span>
-            <span className="text-[20px] font-bold text-accent font-poppins leading-tight mt-0.5">{stat.value}</span>
-            <span className="text-[9px] text-muted font-poppins mt-0.5">{stat.sub}</span>
+            <span className="text-[20px] font-bold text-accent font-poppins leading-tight mt-1">{stat.value}</span>
+            <span className="text-[9px] text-muted font-poppins mt-1">{stat.sub}</span>
           </div>
         ))}
       </div>
@@ -86,29 +86,29 @@ export function CommHubStatsMock() {
 export function DeliveryHubMock() {
   return (
     <MockShell id="mock-delivery-hub" title="DELIVERY HUB">
-      <div className="h-full flex flex-col gap-2.5">
-        <div className="bg-white rounded-xl border border-band/30 px-3 py-2.5">
+      <div className="h-full flex flex-col gap-3">
+        <div className="bg-white rounded-xl border border-band/30 px-3 py-3">
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0">
               <span className="text-[9px] font-bold tracking-[0.05em] text-heading font-poppins">EMPLOYER INFORMATION</span>
-              <p className="text-[8.5px] text-muted font-poppins mt-0.5 leading-tight">
+              <p className="text-[8.5px] text-muted font-poppins mt-1 leading-tight">
                 Update employer details for plan year and configuration.
               </p>
             </div>
-            <ChevronRight size={12} className="text-muted shrink-0 mt-0.5" />
+            <ChevronRight size={12} className="text-muted shrink-0 mt-1" />
           </div>
           <button
             type="button"
-            className="mt-2 text-[8px] font-semibold text-accent border border-accent rounded-full px-2.5 py-1 font-poppins"
+            className="mt-2 text-[8px] font-semibold text-accent border border-accent rounded-full px-3 py-1 font-poppins"
           >
             ✓ Mark as Complete
           </button>
         </div>
 
-        <div className="grid grid-cols-2 gap-2.5 flex-1 min-h-0">
-          <div className="bg-white rounded-xl border border-band/30 px-2.5 py-2 overflow-hidden">
+        <div className="grid grid-cols-2 gap-3 flex-1 min-h-0">
+          <div className="bg-white rounded-xl border border-band/30 px-3 py-2 overflow-hidden">
             <span className="text-[8px] font-bold tracking-[0.05em] text-heading font-poppins">CURRENT &amp; UPCOMING</span>
-            <div className="mt-1.5 space-y-1">
+            <div className="mt-2 space-y-1">
               <div className="flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0" />
                 <span className="text-[7.5px] font-poppins text-heading truncate">2026 Plan Year</span>
@@ -118,12 +118,12 @@ export function DeliveryHubMock() {
                 <span className="text-[7.5px] font-poppins text-heading truncate">2025 Renewal</span>
               </div>
             </div>
-            <div className="mt-1.5 pt-1.5 border-t border-band/30 flex items-center gap-1 text-muted">
+            <div className="mt-2 pt-2 border-t border-band/30 flex items-center gap-1 text-muted">
               <Plus size={9} />
               <span className="text-[7.5px] font-poppins">New Plan Year</span>
             </div>
           </div>
-          <div className="bg-white rounded-xl border border-band/30 px-2.5 py-2 flex flex-col justify-between">
+          <div className="bg-white rounded-xl border border-band/30 px-3 py-2 flex flex-col justify-between">
             <MoreVertical size={11} className="text-muted self-end" />
             <p className="text-[7.5px] text-muted font-poppins leading-tight">All set for Annual Enrollment.</p>
             <button type="button" className="text-[7.5px] font-semibold text-white bg-accent rounded-full px-2 py-1 font-poppins">
@@ -145,9 +145,9 @@ export function CommHubContributionMock() {
     <MockShell id="mock-comm-hub-contribution" title="COMMUNICATION HUB">
       <div className="h-full flex flex-col justify-center gap-3">
         {rows.map((row) => (
-          <div key={row.label} className="bg-white rounded-xl border border-band/30 px-3 py-2.5">
+          <div key={row.label} className="bg-white rounded-xl border border-band/30 px-3 py-3">
             <span className="text-[8px] font-semibold tracking-[0.05em] text-muted font-poppins">{row.label}</span>
-            <div className="text-[18px] font-bold text-accent font-poppins leading-tight mt-0.5 mb-1.5">{row.value}</div>
+            <div className="text-[18px] font-bold text-accent font-poppins leading-tight mt-1 mb-2">{row.value}</div>
             <div className="h-1 rounded-full bg-band/40 overflow-hidden">
               <div className="h-full bg-accent rounded-full" style={{ width: `${row.pct}%` }} />
             </div>

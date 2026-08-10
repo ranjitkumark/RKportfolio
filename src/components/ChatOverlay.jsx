@@ -82,7 +82,7 @@ export default function ChatOverlay({ onClose }) {
             <span className="w-7 h-7 shrink-0 rounded-full bg-[#7b8d8d] border border-[#597171] text-white text-[11px] font-semibold flex items-center justify-center">
               R
             </span>
-            <div className="bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl rounded-tl-md px-[17px] py-[13px] text-[14px] leading-[22.4px] text-ink max-w-[85%]">
+            <div className="bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl rounded-tl-md px-[16px] py-[12px] text-[14px] leading-[22.4px] text-ink max-w-[85%]">
               {GREETING}
             </div>
           </div>
@@ -94,7 +94,7 @@ export default function ChatOverlay({ onClose }) {
                   key={s}
                   type="button"
                   onClick={() => send(s)}
-                  className="text-[12px] font-medium text-body bg-white dark:bg-card border-[0.75px] border-black/20 dark:border-white/10 rounded-full h-[30px] px-[15px] shadow-[0px_1px_1px_rgba(0,0,0,0.24)] hover:border-black/40 dark:hover:border-white/30 transition-colors"
+                  className="text-[12px] font-medium text-body bg-white dark:bg-card border-[0.75px] border-black/20 dark:border-white/10 rounded-full h-[30px] px-[16px] shadow-[0px_1px_1px_rgba(0,0,0,0.24)] hover:border-black/40 dark:hover:border-white/30 transition-colors"
                 >
                   {s}
                 </button>
@@ -108,13 +108,13 @@ export default function ChatOverlay({ onClose }) {
                 <span className="w-7 h-7 shrink-0 rounded-full bg-[#7b8d8d] border border-[#597171] text-white text-[11px] font-semibold flex items-center justify-center">
                   R
                 </span>
-                <div className="bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl rounded-tl-md px-[17px] py-[13px] text-[14px] leading-[22.4px] text-ink max-w-[85%]">
+                <div className="bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl rounded-tl-md px-[16px] py-[12px] text-[14px] leading-[22.4px] text-ink max-w-[85%]">
                   {m.content}
                 </div>
               </div>
             ) : (
               <div key={i} className="flex justify-end">
-                <div className="bg-navy text-white rounded-tl-2xl rounded-bl-2xl rounded-br-2xl rounded-tr-md px-[17px] py-[13px] text-[14px] leading-[22.4px] max-w-[85%]">
+                <div className="bg-navy text-white rounded-tl-2xl rounded-bl-2xl rounded-br-2xl rounded-tr-md px-[16px] py-[12px] text-[14px] leading-[22.4px] max-w-[85%]">
                   {m.content}
                 </div>
               </div>
@@ -126,7 +126,7 @@ export default function ChatOverlay({ onClose }) {
               <span className="w-7 h-7 shrink-0 rounded-full bg-[#7b8d8d] border border-[#597171] text-white text-[11px] font-semibold flex items-center justify-center">
                 R
               </span>
-              <div className="bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl rounded-tl-md px-[17px] py-[13px]">
+              <div className="bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl rounded-tl-md px-[16px] py-[12px]">
                 <span className="flex gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.3s]" />
                   <span className="w-1.5 h-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.15s]" />
@@ -139,7 +139,7 @@ export default function ChatOverlay({ onClose }) {
       </div>
 
       <div className="px-5 sm:px-10 pb-8 font-poppins">
-        <div className="max-w-2xl mx-auto w-full flex items-center bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-full shadow-[0px_0px_2.5px_rgba(32,32,32,0.1)] pl-[13px] pr-[7px] py-[7px]">
+        <div className="max-w-2xl mx-auto w-full flex items-center bg-white dark:bg-card border border-[#b9c7c9] dark:border-white/10 rounded-full shadow-[0px_0px_2.5px_rgba(32,32,32,0.1)] pl-[12px] pr-[8px] py-[8px]">
           <input
             value={value}
             onChange={(e) => setValue(e.target.value)}
@@ -159,7 +159,7 @@ export default function ChatOverlay({ onClose }) {
       </div>
 
       <div className="border-t border-[#ced7d9] dark:border-white/10 py-8 flex items-center justify-center gap-3 font-poppins">
-        <span className="bg-[#dee2e3] dark:bg-card border border-[#9fa6ab] dark:border-white/20 rounded text-[14px] text-body px-[9px] py-[2px]">
+        <span className="bg-[#dee2e3] dark:bg-card border border-[#9fa6ab] dark:border-white/20 rounded text-[14px] text-body px-[8px] py-[4px]">
           ESC
         </span>
         <span className="text-[16px] font-medium text-body">CLOSE</span>

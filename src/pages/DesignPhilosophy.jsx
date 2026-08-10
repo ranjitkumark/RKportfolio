@@ -93,7 +93,7 @@ export default function DesignPhilosophy({ onBack, onOpenResume }) {
             <p>Everything since has been the same question asked in different industries:</p>
             <div className="font-mono text-[14px] text-heading bg-card border border-band/40 rounded-xl px-5 py-4 max-w-md">
               12+ years <span className="text-muted">·</span> 3 industries <span className="text-muted">·</span> 1 pattern
-              <span className="block text-[12px] text-muted mt-1.5 font-poppins">
+              <span className="block text-[12px] text-muted mt-2 font-poppins">
                 Web Development &amp; Motion Graphics → IoT → US Benefits
               </span>
             </div>
@@ -163,21 +163,21 @@ export default function DesignPhilosophy({ onBack, onOpenResume }) {
             </p>
             <ul className="space-y-3">
               <li className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                 <span>
                   In IoT, that was a real-time command center reading 2,300+ live camera feeds so operators could
                   act on a state instead of guessing at one.
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                 <span>
                   In benefits, that was turning IRS compliance rules and life-event workflows into signals people
                   could read <em>before</em> they made a costly mistake.
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                 <span>
                   In design systems, that was unifying two disconnected systems into one framework so teams stopped
                   guessing which pattern was "correct" this week.
@@ -252,7 +252,7 @@ export default function DesignPhilosophy({ onBack, onOpenResume }) {
           <Section title="The way I actually operate">
             <ul className="space-y-3">
               <li className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                 <span>
                   <strong className="font-semibold text-heading">I lead with research, not opinion.</strong> Every
                   major redesign I've shipped — HSA, enrollment, the chatbot — started from usability testing and
@@ -261,7 +261,7 @@ export default function DesignPhilosophy({ onBack, onOpenResume }) {
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                 <span>
                   <strong className="font-semibold text-heading">I build the system, not just the screen.</strong>{" "}
                   Two of the biggest wins in my career are design <em>systems</em> work — unifying frameworks so
@@ -269,7 +269,7 @@ export default function DesignPhilosophy({ onBack, onOpenResume }) {
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                 <span>
                   <strong className="font-semibold text-heading">
                     I know what the code costs, because I've written it.
@@ -280,7 +280,7 @@ export default function DesignPhilosophy({ onBack, onOpenResume }) {
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                 <span>
                   <strong className="font-semibold text-heading">I measure what I ship.</strong> Task time,
                   completion rate, CSAT, ticket volume — if I can't point to a number, I don't consider the redesign
@@ -288,7 +288,7 @@ export default function DesignPhilosophy({ onBack, onOpenResume }) {
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                 <span>
                   <strong className="font-semibold text-heading">I validate before I commit.</strong> A hunch is a
                   starting point, not a decision — research, testing, and real data are what turn a guess into
@@ -346,7 +346,7 @@ export default function DesignPhilosophy({ onBack, onOpenResume }) {
                 "The best AI in a workflow is the one that tells you what it doesn't know.",
               ].map((belief) => (
                 <li key={belief} className="flex gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                   <span>{belief}</span>
                 </li>
               ))}
@@ -364,18 +364,18 @@ export default function DesignPhilosophy({ onBack, onOpenResume }) {
           <Section title="If we end up working together">
             <ul className="space-y-3">
               <li className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                 <span>
                   Bring me the research, not just the ticket. I'll move faster with the "why" than with a polished
                   mock to approve.
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                 <span>Loop me in before the architecture is locked. I can save a rebuild if I see it early.</span>
               </li>
               <li className="flex gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-3" />
                 <span>
                   Tell me the real constraint, not the diplomatic version of it. I'd rather design inside a hard
                   limit than discover it in QA.

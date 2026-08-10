@@ -39,14 +39,14 @@ export default function CaseStudyCard({ study, onOpenCaseStudy }) {
           <div className="absolute top-9 left-9 right-9 bottom-16">
             <img src={mockImg} alt={study.title} className="w-full h-full object-contain rounded-2xl" />
           </div>
-          <span className="absolute left-9 bottom-[30px] flex items-center gap-2 text-[13px] text-body">
+          <span className="absolute left-9 bottom-[32px] flex items-center gap-2 text-[13px] text-body">
             <Eye size={16} className="opacity-80" /> Hover for a quick look
           </span>
         </div>
       )}
 
       <div className="flex flex-col justify-center">
-        <div className="flex items-center gap-1.5 mb-1">
+        <div className="flex items-center gap-2 mb-1">
           <span className="w-2 h-2 rounded-full bg-live" />
           <span className="text-[10px] font-semibold tracking-[0.5px] text-live uppercase font-poppins">
             {study.status}

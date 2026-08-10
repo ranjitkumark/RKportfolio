@@ -10,14 +10,14 @@ export default function Header({ mode, onModeChange, onAskRanjit, onOpenResume }
   return (
     <header className="relative z-30 w-full max-w-[1600px] mx-auto px-4 sm:px-16 py-6 font-poppins">
       <div className="flex flex-col items-center gap-3 sm:relative sm:flex-row sm:justify-center">
-        <div className="flex items-center gap-3 bg-white dark:bg-card border border-navy p-[5px] rounded-[40px]">
+        <div className="flex items-center gap-3 bg-white dark:bg-card border border-navy p-[4px] rounded-[40px]">
           {MODES.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
               type="button"
               onClick={() => onModeChange(id)}
               aria-pressed={mode === id}
-              className={`flex items-center gap-2 text-[14px] font-medium px-3 py-1.5 rounded-full transition-colors ${
+              className={`flex items-center gap-2 text-[14px] font-medium px-3 py-2 rounded-full transition-colors ${
                 mode === id ? "bg-accent text-white" : "text-muted hover:text-ink"
               }`}
             >
@@ -31,7 +31,7 @@ export default function Header({ mode, onModeChange, onAskRanjit, onOpenResume }
           <button
             type="button"
             onClick={onOpenResume}
-            className="hidden sm:flex items-center gap-2 h-9 text-[12px] font-medium text-accent bg-card border border-accent rounded-[24px] px-3.5 hover:opacity-80 transition-opacity"
+            className="hidden sm:flex items-center gap-2 h-9 text-[12px] font-medium text-accent bg-card border border-accent rounded-[24px] px-4 hover:opacity-80 transition-opacity"
           >
             <FileText size={13} />
             RESUME
@@ -39,7 +39,7 @@ export default function Header({ mode, onModeChange, onAskRanjit, onOpenResume }
           <button
             type="button"
             onClick={onAskRanjit}
-            className="flex items-center gap-2 h-9 text-[12px] font-medium text-accent bg-card border border-accent rounded-[24px] px-3.5 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-2 h-9 text-[12px] font-medium text-accent bg-card border border-accent rounded-[24px] px-4 hover:opacity-80 transition-opacity"
           >
             <MessageSquare size={16} />
             ASK RANJIT

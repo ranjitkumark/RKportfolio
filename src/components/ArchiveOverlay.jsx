@@ -25,7 +25,7 @@ function HintBar() {
   return (
     <div className="border-t border-band/30 py-6 flex items-center justify-center gap-8 font-poppins">
       <span className="flex items-center gap-2">
-        <kbd className="bg-[#dee2e3] dark:bg-card border border-[#9fa6ab] dark:border-white/20 rounded text-[13px] text-body px-[8px] py-[2px]">
+        <kbd className="bg-[#dee2e3] dark:bg-card border border-[#9fa6ab] dark:border-white/20 rounded text-[13px] text-body px-[8px] py-[4px]">
           ESC
         </kbd>
         <span className="text-[13px] font-medium text-body">CLOSE</span>

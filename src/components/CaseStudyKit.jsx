@@ -33,7 +33,7 @@ export function Label({ children }) {
 
 export function List({ items }) {
   return (
-    <ul className="space-y-2.5 text-left">
+    <ul className="space-y-3 text-left">
       {items.map((item, i) => (
         <li key={i} className="flex gap-3 text-[14.5px] leading-relaxed text-body">
           <span className="w-1.5 h-1.5 rounded-full bg-live shrink-0 mt-2" />
@@ -55,7 +55,7 @@ export function PlaceholderImage({ src, alt }) {
 export function IssueCard({ title, children }) {
   return (
     <div className="bg-card border border-band/30 rounded-xl p-4 text-left">
-      <p className="text-[14px] font-semibold text-heading mb-1.5">{title}</p>
+      <p className="text-[14px] font-semibold text-heading mb-2">{title}</p>
       <p className="text-[13.5px] leading-relaxed text-body">{children}</p>
     </div>
   );
@@ -116,7 +116,7 @@ export function CaseStudyNav({ sections, active }) {
           <li key={section.id}>
             <a
               href={`#${section.id}`}
-              className={`block pl-4 py-1.5 text-[13px] font-medium -ml-px border-l-2 transition-colors ${
+              className={`block pl-4 py-2 text-[13px] font-medium -ml-px border-l-2 transition-colors ${
                 active === section.id ? "border-accent text-accent" : "border-transparent text-muted hover:text-heading"
               }`}
             >
@@ -135,7 +135,7 @@ export function ViewToggle({ view, setView }) {
       <button
         type="button"
         onClick={() => setView("skim")}
-        className={`text-[12px] font-semibold uppercase tracking-wide px-4 py-1.5 rounded-full transition-colors ${
+        className={`text-[12px] font-semibold uppercase tracking-wide px-4 py-2 rounded-full transition-colors ${
           view === "skim" ? "bg-navy text-white" : "text-muted hover:text-heading"
         }`}
       >
@@ -144,7 +144,7 @@ export function ViewToggle({ view, setView }) {
       <button
         type="button"
         onClick={() => setView("full")}
-        className={`text-[12px] font-semibold uppercase tracking-wide px-4 py-1.5 rounded-full transition-colors ${
+        className={`text-[12px] font-semibold uppercase tracking-wide px-4 py-2 rounded-full transition-colors ${
           view === "full" ? "bg-navy text-white" : "text-muted hover:text-heading"
         }`}
       >

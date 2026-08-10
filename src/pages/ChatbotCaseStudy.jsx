@@ -110,13 +110,15 @@ function FullView() {
           I started by writing down what I actually needed to know, rather than what I assumed — nine research
           questions, grouped into three concerns.
         </p>
-        <Label>Why it failed before</Label>
-        <List
-          items={[
-            "Why was the bot idea dropped previously?",
-            "What areas are most users looking for help with?",
-          ]}
-        />
+        <div className="mt-4">
+          <Label>Why it failed before</Label>
+          <List
+            items={[
+              "Why was the bot idea dropped previously?",
+              "What areas are most users looking for help with?",
+            ]}
+          />
+        </div>
         <div className="mt-4">
           <Label>How support works today</Label>
           <List
