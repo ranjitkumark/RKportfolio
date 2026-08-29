@@ -148,10 +148,6 @@ export default function StoryReel({ mock, beats, mockNode }) {
               "radial-gradient(circle, rgb(var(--c-live) / 0.16) 0%, rgb(var(--c-live) / 0) 70%)",
           }}
         />
-        <div className="absolute top-[24px] left-6 z-[5] flex items-center gap-[8px] font-mono text-[10.5px] tracking-[0.14em] uppercase text-muted">
-          <span className="w-[5px] h-[5px] rounded-full bg-live animate-[reel-pulse-dot_2.2s_ease-in-out_infinite]" />
-          Live
-        </div>
         <div className="absolute top-6 right-6 z-[5] w-[60px] h-0.5 bg-band/50 rounded-full overflow-hidden">
           <span className="block h-full bg-live" style={{ width: `${playing ? progress : 0}%` }} />
         </div>
