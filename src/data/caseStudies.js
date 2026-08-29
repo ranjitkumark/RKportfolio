@@ -1,4 +1,4 @@
-import { HSA_REEL, COMMUNICATION_REEL, CHATBOT_REEL } from "./storyReels.js";
+import { DELIVERY_HUB_REEL, HSA_REEL, COMMUNICATION_REEL, CHATBOT_REEL } from "./storyReels.js";
 
 export const CASE_STUDIES = [
   {
@@ -7,6 +7,7 @@ export const CASE_STUDIES = [
     title: "One Path, Not Five",
     suffix: " - decades-old configuration, rebuilt as a single destination",
     href: "#",
+    reel: DELIVERY_HUB_REEL,
     hasPage: true,
   },
   {

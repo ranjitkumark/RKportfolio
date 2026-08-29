@@ -1,3 +1,35 @@
+export const DELIVERY_HUB_REEL = {
+  mock: {
+    avatar: "DH",
+    title: "Delivery Hub",
+    subtitle: "32 modules · Plan Year 2026",
+    rows: [
+      { badge: "DB", name: "Define Benefits", sub: "Validated · no errors", time: "Now", pulse: true },
+      { badge: "BP", name: "Benefit Plans", sub: "2 warnings found", time: "3m", pulse: true },
+      { badge: "CO", name: "Define Costs", sub: "Blocked — plans required", time: "12m", pulse: false },
+      { badge: "BR", name: "Branding & Styling", sub: "Contrast check failed", time: "1h", pulse: false },
+    ],
+  },
+  beats: [
+    { text: "The core hadn't been redesigned in a decade — <mark>the same setting</mark> could be changed in three places, under three different rules." },
+    {
+      text: "Completion was a self-attested checkbox. A step could be marked done while being wrong — <mark>and surface weeks later,</mark> at testing.",
+      tag: "35% OF EFFORT WAS CONFIG + QA",
+    },
+    {
+      text: "Branding lived in four destinations across two design eras. One live client's brand color scored <mark>1.87:1</mark> against AA's required 4.5:1 — and nothing in the product could tell them.",
+      tag: "4 DESTINATIONS, 1 BRAND",
+    },
+    { text: "So I turned a terminal checkbox into an <mark>ambient validation panel</mark> — visible while you work, linking straight to the step that caused it." },
+    { text: "Modernity isn't usability. Accordions and card grids both replaced tables — and both made the work slower. <mark>I reverted to tables, twice.</mark>" },
+    { text: "70 → 90 → 160 days across small, medium, and large clients. <mark>Roughly two months</mark> off a large implementation.", tag: "20–36% FASTER" },
+    {
+      text: "The most valuable finding was the cheapest to produce — someone just had to open all four screens and write down what each one claimed.",
+      quote: true,
+    },
+  ],
+};
+
 export const HSA_REEL = {
   mock: {
     avatar: "HS",
