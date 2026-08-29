@@ -7,6 +7,7 @@ export const CASE_STUDIES = [
     title: "One Path, Not Five",
     suffix: " - decades-old configuration, rebuilt as a single destination",
     href: "#",
+    hasPage: true,
   },
   {
     id: "setup-to-enrolled",
