@@ -149,7 +149,7 @@ export default function StoryReel({ mock, beats, mockNode }) {
           }}
         />
         <div className="absolute top-6 right-6 z-[5] w-[60px] h-0.5 bg-band/50 rounded-full overflow-hidden">
-          <span className="block h-full bg-live" style={{ width: `${playing ? progress : 0}%` }} />
+          <span className="block h-full bg-[#005461]" style={{ width: `${playing ? progress : 0}%` }} />
         </div>
 
         <div className="absolute inset-0 flex items-center justify-center px-6 sm:px-8 text-center">

@@ -75,10 +75,7 @@ const SKIM_META = [
   },
 ];
 
-const SKIM_STATS = [
-  { value: "35%", label: "Of implementation effort spent on configuration and QA" },
-  { value: "1.87:1", label: "Contrast ratio on a live client's brand color — AA requires 4.5:1" },
-];
+const SKIM_STATS = [{ value: "35%", label: "Of implementation effort spent on configuration and QA" }];
 
 function SkimView() {
   return (
@@ -392,16 +389,6 @@ function FullView() {
           platform's default colors meet WCAG 2.1 AA per the ADA and ACA — then offered a single button to replace
           those verified defaults with unverified ones, with no contrast feedback at any point.
         </p>
-        <p className="text-[15px] leading-relaxed text-body mt-4">
-          This was not hypothetical. On one live client org the primary brand color scored{" "}
-          <strong className="font-semibold text-heading">1.87:1</strong> against its white button label, where AA
-          requires 4.5:1. Their secondary scored 14.3:1. Nothing in the product could tell them which was which, or
-          that one was failing.
-        </p>
-        <Quote>
-          For a benefits platform, where enrollment is how an employee obtains health coverage, that is a legal
-          surface, not a polish concern.
-        </Quote>
         <p className="text-[15px] leading-relaxed text-body mt-4">
           The consolidation is a single Branding &amp; Styling page — with decommissioning the legacy screens as an
           explicit condition of the work. Consolidation only counts if the old destinations close. Otherwise you
