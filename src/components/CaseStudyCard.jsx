@@ -47,8 +47,8 @@ export default function CaseStudyCard({ study, onOpenCaseStudy }) {
 
       <div className="flex flex-col justify-center">
         <div className="flex items-center gap-2 mb-1">
-          <span className="w-2 h-2 rounded-full bg-[#005461]" />
-          <span className="text-[10px] font-semibold tracking-[0.5px] text-[#005461] uppercase font-poppins">
+          <span className="w-2 h-2 rounded-full bg-live" />
+          <span className="text-[10px] font-semibold tracking-[0.5px] text-live uppercase font-poppins">
             {study.status}
           </span>
         </div>

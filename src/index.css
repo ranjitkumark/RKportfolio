@@ -10,7 +10,7 @@
   --c-muted: 100 100 100;
   --c-accent: 0 84 97;
   --c-navy: 41 63 83;
-  --c-live: 0 146 73;
+  --c-live: 0 84 97;
   --c-card: 235 240 241;
   --c-mint: 235 240 241;
   --c-band: 189 195 199;
@@ -24,7 +24,7 @@
   --c-muted: 139 150 156;
   --c-accent: 15 152 119;
   --c-navy: 61 90 116;
-  --c-live: 47 212 128;
+  --c-live: 0 84 97;
   --c-card: 27 37 48;
   --c-mint: 20 29 37;
   --c-band: 27 37 48;
@@ -121,7 +121,7 @@ body {
 .reel-word mark {
   font-style: normal;
   font-weight: 600;
-  color: #005461;
+  color: rgb(var(--c-live));
   background: transparent;
   position: relative;
 }
@@ -132,7 +132,7 @@ body {
   right: 100%;
   bottom: -2px;
   height: 1px;
-  background: #005461;
+  background: rgb(var(--c-live));
   animation: reel-sweep 0.5s ease forwards;
   animation-delay: 300ms;
 }
