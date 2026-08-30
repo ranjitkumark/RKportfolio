@@ -11,6 +11,8 @@ const EXPERIENCE = [
     dates: "Aug 2025 – Present",
     bullets: [
       "Promoted to Lead UX Designer as the Plansource account transitioned to ValueLabs. Continue to partner closely with product managers, product owners, and engineering teams to drive UX from research through implementation, and lead the redesign and governance of the product design system to strengthen consistency, scalability, and accessibility platform-wide.",
+      "Designed a scalable, role-based checklist workflow for client onboarding with 32+steps, streamlining navigation by reducing clicks, consolidating views, and unifying pages into interactive tabs. This cut onboarding time by 30 days, enabled self-service for reseller partners (driving 17% revenue growth), improved retention by 21%, and lowered acquisition costs by 12%.",
+      "Unified two disparate design systems into a single framework, establishing principles that improved consistency, accessibility, and scalability while accelerating design decision-making.",
     ],
   },
   {
@@ -21,9 +23,9 @@ const EXPERIENCE = [
       "Partnered closely with product managers, product owners, and engineering teams to drive UX from research through implementation. Led the redesign and planning of the product design system to strengthen consistency, scalability, and accessibility platform-wide.",
       "Spearheaded a complete overhaul of the HSA experience, simplifying employer setup and ensuring IRS compliance with clear contribution guidelines — cut average admin task time from 38 to 21 minutes and reduced support tickets by 38%.",
       "Engineered prebuilt templates and automated messaging flows that reduced average task time from 69 to 47 minutes and raised feature CSAT from 2.9 to 4.1, while improving clarity and consistency in employee communications.",
-      "Designed and launched an AI- and voice-enabled chatbot to handle benefit queries and manage life-event workflows, reducing human agent handoffs by 13% within six months and improving support efficiency and user satisfaction.",
+      "Designed and launched an AI and voice-enabled chatbot to handle benefit queries and manage life-event workflows, reducing human agent handoffs by 13% within six months and improving support efficiency and user satisfaction.",
       "Optimized the benefits enrollment flow through usability testing and research, streamlining navigation and reducing friction — driving a 22% increase in completion rates, enhancing the onboarding experience, and cutting average task time by 30%.",
-      "Unified two disparate design systems into a single framework, establishing principles that improved consistency, accessibility, and scalability while accelerating design decision-making.",
+
     ],
   },
   {
