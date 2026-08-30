@@ -52,6 +52,19 @@ export function PlaceholderImage({ src, alt }) {
   );
 }
 
+export function FigmaEmbed({ src, title, height = 500 }) {
+  return (
+    <div className="mt-6 rounded-2xl overflow-hidden border border-band/40 bg-card">
+      <iframe
+        src={src}
+        title={title}
+        allowFullScreen
+        style={{ width: "100%", height: `${height}px`, border: "none", display: "block" }}
+      />
+    </div>
+  );
+}
+
 export function IssueCard({ title, children }) {
   return (
     <div className="bg-card border border-band/30 rounded-xl p-4 text-left">

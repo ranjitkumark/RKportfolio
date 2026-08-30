@@ -6,6 +6,7 @@ import {
   Label,
   List,
   PlaceholderImage,
+  FigmaEmbed,
   IssueCard,
   TextColumn,
   useScrollSpy,
@@ -17,7 +18,12 @@ import valuePropImg from "../assets/case-studies/hsa/value-proposition.png";
 import mindmapImg from "../assets/case-studies/hsa/mindmap.png";
 import taskflowImg from "../assets/case-studies/hsa/taskflow.png";
 import prototypeImg from "../assets/case-studies/hsa/prototype.png";
-import finalImg from "../assets/case-studies/hsa/final-product.png";
+
+const HSA_FIGMA_EMBED_SRC =
+  "https://www.figma.com/embed?embed_host=share&url=" +
+  encodeURIComponent(
+    "https://www.figma.com/design/KYWqNLUS4PVqKNDEN9KZ7b/PS?node-id=40000089-3833&t=cRXKrVX7fct1RkH2-1"
+  );
 
 const NAV_SECTIONS = [
   { id: "background", label: "Background" },
@@ -477,7 +483,7 @@ function FullView() {
             platform a scalable HSA foundation that supports evolving employer strategies and long-term product
             growth.
           </p>
-          <PlaceholderImage src={finalImg} alt="Final product screens" />
+          <FigmaEmbed src={HSA_FIGMA_EMBED_SRC} title="HSA final product — Figma" />
 
           <div>
             <SubHeading>Project takeaways</SubHeading>

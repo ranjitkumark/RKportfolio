@@ -2,15 +2,6 @@ import { DELIVERY_HUB_REEL, HSA_REEL, COMMUNICATION_REEL, CHATBOT_REEL } from ".
 
 export const CASE_STUDIES = [
   {
-    id: "one-path-not-five",
-    status: "LIVE",
-    title: "One Path, Not Five",
-    suffix: " - decades-old configuration, rebuilt as a single destination",
-    href: "#",
-    reel: DELIVERY_HUB_REEL,
-    hasPage: true,
-  },
-  {
     id: "setup-to-enrolled",
     status: "LIVE",
     title: "Setup to Enrolled",
@@ -26,6 +17,15 @@ export const CASE_STUDIES = [
     suffix: " - a single hub for enrollment updates, employee communications, and PWA push notifications",
     href: "#",
     reel: COMMUNICATION_REEL,
+    hasPage: true,
+  },
+  {
+    id: "one-path-not-five",
+    status: "LIVE",
+    title: "One Path, Not Five",
+    suffix: " - decades-old configuration, rebuilt as a single destination",
+    href: "#",
+    reel: DELIVERY_HUB_REEL,
     hasPage: true,
   },
   {

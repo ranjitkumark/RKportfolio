@@ -18,7 +18,6 @@ export const DELIVERY_HUB_REEL = {
     },
     {
       text: "Branding lived in four destinations across two design eras. One live client's brand color scored <mark>1.87:1</mark> against AA's required 4.5:1 — and nothing in the product could tell them.",
-      tag: "4 DESTINATIONS, 1 BRAND",
     },
     { text: "So I turned a terminal checkbox into an <mark>ambient validation panel</mark> — visible while you work, linking straight to the step that caused it." },
     { text: "Modernity isn't usability. Accordions and card grids both replaced tables — and both made the work slower. <mark>I reverted to tables, twice.</mark>" },
