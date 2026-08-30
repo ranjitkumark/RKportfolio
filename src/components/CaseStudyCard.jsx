@@ -16,10 +16,10 @@ const MOCK_IMG_BY_ID = {
 export function ReadMoreLink({ children }) {
   return (
     <span className="inline-flex items-center gap-2 h-9 py-2">
-      <span className="font-poppins font-medium text-[14px] text-accent underline decoration-solid">
+      <span className="font-poppins font-medium text-[14px] text-[#005461] underline decoration-solid">
         {children}
       </span>
-      <ArrowRight size={14} className="text-accent shrink-0" />
+      <ArrowRight size={14} className="text-[#005461] shrink-0" />
     </span>
   );
 }
@@ -35,7 +35,7 @@ export default function CaseStudyCard({ study, onOpenCaseStudy }) {
           mockNode={mockImg ? <img src={mockImg} alt={study.title} className="w-full h-full object-contain rounded-2xl" /> : undefined}
         />
       ) : (
-        <div className="relative w-full h-[420px] rounded-[24px] bg-card border border-[#c9d7da] dark:border-white/10 overflow-hidden">
+        <div className="relative w-full h-[420px] rounded-[24px] bg-card border border-[#c9d7da] dark:bg-[#101010] dark:border-[#1d1d1d] overflow-hidden">
           <div className="absolute top-9 left-9 right-9 bottom-16">
             <img src={mockImg} alt={study.title} className="w-full h-full object-contain rounded-2xl" />
           </div>

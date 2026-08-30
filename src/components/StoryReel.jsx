@@ -77,7 +77,7 @@ export default function StoryReel({ mock, beats, mockNode }) {
 
   return (
     <div
-      className="relative w-full h-[420px] rounded-[24px] bg-card border border-[#c9d7da] dark:border-white/10 overflow-hidden p-9"
+      className="relative w-full h-[420px] rounded-[24px] bg-card border border-[#c9d7da] dark:bg-[#101010] dark:border-[#1d1d1d] overflow-hidden p-9"
       onMouseEnter={() => setPlaying(true)}
       onMouseLeave={() => setPlaying(false)}
     >
