@@ -9,6 +9,7 @@ import {
   FigmaEmbed,
   IssueCard,
   TextColumn,
+  StatGrid,
   useScrollSpy,
   CaseStudyNav,
   CaseStudyPageShell,
@@ -26,49 +27,62 @@ const HSA_FIGMA_EMBED_SRC =
   );
 
 const NAV_SECTIONS = [
-  { id: "background", label: "Background" },
-  { id: "research", label: "Research" },
-  { id: "problems", label: "Problems" },
-  { id: "ideate", label: "Ideate" },
-  { id: "prototype", label: "Prototype" },
-  { id: "testing", label: "Testing" },
-  { id: "end", label: "End" },
+  { id: "situation", label: "Situation" },
+  { id: "stakes", label: "Stakes" },
+  { id: "strategy", label: "Strategy" },
+  { id: "decisions", label: "Decisions" },
+  { id: "impact", label: "Impact" },
+  { id: "growth", label: "Growth" },
 ];
 
-function PersonaColumn({ role, painPoints, goals, needs, motivations }) {
+function LedgerCard({ title, rows }) {
   return (
-    <div className="bg-card border border-band/30 rounded-2xl p-6 text-left">
-      <Label>{role}</Label>
-      <SubHeading>Key pain points</SubHeading>
-      <List items={painPoints} />
-      <SubHeading>Goals</SubHeading>
-      <List items={goals} />
-      <SubHeading>Needs</SubHeading>
-      <List items={needs} />
-      <SubHeading>Motivations</SubHeading>
-      <List items={motivations} />
+    <div className="bg-card border border-band/30 rounded-xl p-4 text-left">
+      <p className="text-[13px] font-semibold text-heading mb-3">{title}</p>
+      <table className="w-full text-[13.5px] text-body">
+        <thead>
+          <tr className="text-left text-muted">
+            <th className="pb-2 font-medium">Period</th>
+            <th className="pb-2 font-medium">Coverage on file</th>
+            <th className="pb-2 font-medium">Limit applied</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row[0]}>
+              <td className="py-1 pr-2 align-top">{row[0]}</td>
+              <td className="py-1 pr-2 align-top">{row[1]}</td>
+              <td className="py-1 align-top">{row[2]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
+}
+
+function MethodNote({ children }) {
+  return <p className="text-[13px] italic text-muted mt-4">{children}</p>;
 }
 
 const SKIM_META = [
   {
     label: "SCOPE",
-    value: "2 Experiences - 2 different user base | 50+ Screens",
+    value: "2 experiences, 2 user bases · 50+ screens",
   },
   {
     label: "TIMELINE",
-    value: "18 weeks Research | 6 months iterations",
+    value: "18 weeks research · 6 months iteration",
   },
   {
     label: "OUTCOME",
-    value: "90% felt secure enrolling · Trust rebuilt end-to-end",
+    value: "Shipped ahead of Open Enrollment · workaround eliminated",
   },
 ];
 
 const SKIM_STATS = [
-  { value: "38 – 21 MIN", label: "Average time on task (Employee Experience)" },
-  { value: "179 – 97", label: "Support tickets, Open Enrollment" },
+  { value: "38 → 21 MIN", label: "Average time on task" },
+  { value: "72 → 0", label: "Fake populations built per client" },
 ];
 
 function SkimView() {
@@ -78,11 +92,11 @@ function SkimView() {
         HSA had the most bugs and the least trust of any benefit we offered.
       </h1>
       <p className="text-[15px] sm:text-[16px] leading-relaxed text-body max-w-2xl">
-        It was broken enough that admins found their own workaround - building 72 fake employee populations just to
-        apply a single IRS rule the system couldn't support. I rebuilt the calculation logic, the enrollment flow,
-        and the trust that came with it.
+        It was broken enough that admins had built their own workaround — 72 fake employee populations per client,
+        hand-assembled, purely to apply a federal rule the system couldn't hold. Nobody had ever filed a bug for it.
+        To the people doing it, it wasn't a defect. It was the job.
       </p>
-      <p className="text-[14px] font-medium text-accent mt-4">Senior UX Designer &nbsp;| End to End</p>
+      <p className="text-[14px] font-medium text-accent mt-4">Senior UX Designer &nbsp;| End to end</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10 pt-8 border-t border-band/30">
         {SKIM_META.map((item) => (
@@ -108,411 +122,361 @@ function SkimView() {
 function FullView() {
   return (
     <>
-      {/* BACKGROUND */}
-        <section id="background" className="pb-16">
-          <SectionHeading eyebrow="Spot the trouble.">Background</SectionHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            The Health Savings Account (HSA) feature quickly became one of the most problematic parts of the
-            platform, with more bugs and complaints than any other spending account. Employers lacked the basic
-            configuration tools they needed, employees had little flexibility in managing contributions, and
-            incorrect calculations often caused downstream errors. As client expectations and contribution
-            strategies matured, it became clear the existing architecture could no longer support them. A complete
-            redesign was the only viable path forward.
-          </p>
-          <Quote>
-            HSA was broken for both employees and admins. Redesigning it wasn't optional — it was necessary.
-          </Quote>
-        </section>
+      {/* SITUATION */}
+      <section id="situation" className="pb-16">
+        <SectionHeading eyebrow="Where it started.">Situation</SectionHeading>
+        <p className="text-[15px] leading-relaxed text-body">
+          HSA had the most bugs and the least trust of any benefit we offered. It was broken enough that admins had
+          built their own workaround — 72 fake employee populations per client, hand-assembled, purely to apply a
+          federal rule the system couldn't hold. Nobody had ever filed a bug for it.
+        </p>
+        <Quote>
+          That last detail is the one that matters. The workaround wasn't in the backlog, wasn't in a survey, and
+          wasn't in any ticket. To the people doing it, it wasn't a defect. It was the job.
+        </Quote>
+      </section>
 
-        {/* RESEARCH */}
-        <section id="research" className="py-16 border-t border-band/30">
-          <SectionHeading eyebrow="Understanding begins here.">Research</SectionHeading>
+      {/* STAKES */}
+      <section id="stakes" className="py-16 border-t border-band/30">
+        <SectionHeading eyebrow="Why it mattered.">Stakes</SectionHeading>
+        <Quote>An HSA error isn't a bad experience. It's a tax event.</Quote>
+        <p className="text-[15px] leading-relaxed text-body">
+          Most benefits problems are comprehension problems. HSA isn't. The annual contribution limit is fixed in
+          federal tax code and moves on three axes at once: coverage tier, age, and the number of months a person
+          actually held qualifying coverage. Change any one of them mid-year and the ceiling moves.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          Go over that ceiling and the consequence isn't confusion. It's an excess contribution the employee has to
+          unwind before their filing deadline or pay a penalty on, a corrected tax form, a call to HR, and a broker
+          asking the employer why their platform allowed it.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          Our platform modelled none of the three. Not tiers, not catch-up, not proration. Every group we onboarded
+          was one ordinary life event — a marriage, a birth, a new hire in March — away from a compliance problem we
+          had no mechanism to detect.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          Three constraints were immovable, and I designed inside all of them:
+        </p>
+        <List
+          items={[
+            "The Open Enrollment date, which could not move.",
+            "The coupling — contribution logic reaches payroll files, custodian data exchange, downstream APIs and year-end reporting.",
+            "An existing platform system I was extending rather than replacing.",
+          ]}
+        />
+      </section>
 
-          <SubHeading>Field study</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            To uncover how HSAs were actually being configured in practice, I conducted a field study with the
-            configuration team responsible for managing benefits setup for organizations with 1,500+ employees.
-            Observing them in their day-to-day environment gave me a deeper understanding of the challenges they
-            faced that weren't always visible through bug reports or client complaints.
-          </p>
-          <div className="mt-4">
-            <Label>Findings</Label>
+      {/* STRATEGY */}
+      <section id="strategy" className="py-16 border-t border-band/30">
+        <SectionHeading eyebrow="What actually happened when someone tried it.">Strategy</SectionHeading>
+
+        <SubHeading>I went and watched somebody do it</SubHeading>
+        <p className="text-[15px] leading-relaxed text-body">
+          I didn't start in the backlog. I sat with the configuration team that stands up benefits for organisations
+          of 1,500 employees and up, and asked them to build a real HSA plan while I watched — because the distance
+          between how a feature is specced and how it survives a 4,000-person group is where the actual product
+          lives.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          What surfaced wasn't a usability finding. It was an entire undocumented process:
+        </p>
+        <List
+          items={[
+            "Coverage tiers and the 55-and-over catch-up weren't supported at all, so compliance couldn't be configured — only approximated.",
+            "To approximate it, admins hand-built 72 separate fake employee populations per client, one for every permutation of tier, age band and funding schedule.",
+            "No validation and no preview, so one mistake propagated silently across hundreds of real people and surfaced at first payroll.",
+            "Federal limits came from memory and a printed sheet taped to a monitor.",
+          ]}
+        />
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          The workaround wasn't evidence our users were resourceful. It was evidence we'd moved compliance onto the
+          person least equipped to carry it.
+        </p>
+        <MethodNote>
+          Method: contextual inquiry with the enterprise configuration team, six sessions across four live group
+          configurations. Observation, not interview — the workaround only exists in the doing.
+        </MethodNote>
+        <PlaceholderImage src={valuePropImg} alt="The 72-population configuration structure admins built as a workaround" />
+
+        <SubHeading>Two vocabularies, one defect</SubHeading>
+        <p className="text-[15px] leading-relaxed text-body">
+          Interviews with employees, administrators and resellers described the same failure from opposite ends.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+          <div className="text-left">
+            <Label>Employees — can't trust the number on screen</Label>
             <List
               items={[
-                "Coverage tiers (Employee Only, Employee + Family) and 55+ catch-up rules were missing, making IRS compliance difficult.",
-                <>
-                  Admins created <strong className="font-semibold text-heading">72 separate employee populations</strong> as a
-                  workaround, leading to wasted time and errors.
-                </>,
-                "Rigid configuration with no validation or preview allowed mistakes to scale across hundreds of employees.",
-                "Admins relied on memory and external documents to apply IRS rules, increasing cognitive load and risk.",
+                "No mid-year contribution change without going through HR.",
+                "Can't tell employer money from their own.",
+                "Stop trusting the balance after a tier change.",
+                "No guidance on their limit or catch-up eligibility.",
               ]}
             />
           </div>
-          <Quote>
-            System gaps forced configuration teams into time-consuming workarounds, making large-scale setup
-            inefficient, error-prone, and difficult to keep compliant.
-          </Quote>
-
-          <SubHeading>UX audit</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            As part of the HSA revamp, I conducted a comprehensive UX audit of the existing Health Savings Account
-            experience — covering both the employee enrollment flow and the administrator configuration tools —
-            identifying usability issues, compliance risks, and misalignments between system logic and real-world
-            benefit plan designs.
-          </p>
-          <div className="mt-4">
-            <Label>Key issues identified</Label>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-            <IssueCard title="Limited flexibility for employees">
-              Employees couldn't update contributions mid-year without HR involvement, leading to frustration and
-              unnecessary reliance on administrators.
-            </IssueCard>
-            <IssueCard title="Inaccurate contribution calculations">
-              The system used only the most recent benefit tier to calculate YTD contributions, causing significant
-              errors when employees changed coverage types mid-year.
-            </IssueCard>
-            <IssueCard title="Lack of transparency and guidance">
-              There was little clarity around how contributions were calculated. Employer contributions weren't
-              clearly shown, and there was no in-flow education to guide decisions.
-            </IssueCard>
-            <IssueCard title="Administrator tool limitations">
-              Admins lacked the tools to view or adjust HSA values accurately. Manual corrections were common but
-              risky, leading to data inconsistencies and time-consuming true-ups.
-            </IssueCard>
-            <IssueCard title="Insufficient employer contribution options">
-              Employers had no way to configure flexible funding schedules like monthly, quarterly, or off-cycle
-              contributions, forcing unreliable workarounds that often broke downstream calculations.
-            </IssueCard>
-          </div>
-
-          <SubHeading>Competitive analysis</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            I looked outward to see how competitors approach benefit communications. Platforms like Bswift,
-            Benefitfocus, and Workday showed stronger integration with scheduling and multi-channel delivery — but
-            still lacked intelligence, customization, and analytics, confirming both where PlanSource was behind and
-            where it could leap ahead.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-            <div className="bg-card border border-band/30 rounded-xl p-4 text-left">
-              <p className="text-[13px] font-semibold text-heading mb-2">Strengths</p>
-              <List
-                items={[
-                  "Real-time notifications of employee contributions.",
-                  "Lump-sum contributions, giving some level of flexibility.",
-                  "Suggested contribution amounts based on eligibility during annual enrollment.",
-                ]}
-              />
-            </div>
-            <div className="bg-card border border-band/30 rounded-xl p-4 text-left">
-              <p className="text-[13px] font-semibold text-heading mb-2">Weaknesses</p>
-              <List
-                items={[
-                  "No automatic IRS contribution cap functionality, risking overages.",
-                  "No scheduling options for employer contributions or lump-sum payments.",
-                  "No flexibility for employees to select only employer contributions.",
-                  "No customizable pay periods or options to skip contributions.",
-                ]}
-              />
-            </div>
-          </div>
-
-          <SubHeading>User interviews</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            To better understand HSA experiences across roles, I interviewed three employees, two benefit
-            administrators, and two resellers using the Rose, Bud, Thorn method — uncovering not just data points
-            but stories of frustration, opportunity, and relief.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
-            <TextColumn title="Roses — what's working">
-              <List
-                items={[
-                  "Employees can elect contributions during open enrollment without manual HR intervention.",
-                  "HSAs are valued as an essential benefit by employers and resellers alike.",
-                  "Payroll integration works reliably for standard deductions.",
-                ]}
-              />
-            </TextColumn>
-            <TextColumn title="Buds — opportunities">
-              <List
-                items={[
-                  "Educate employees on IRS limits, catch-up contributions, and employer matching.",
-                  "Give employers more flexible contribution scheduling.",
-                  "Smooth mid-year adjustment workflows.",
-                  "Automate recalculation to reduce manual corrections.",
-                ]}
-              />
-            </TextColumn>
-            <TextColumn title="Thorns — pain points">
-              <List
-                items={[
-                  "Tier changes mid-year produce inaccurate YTD values.",
-                  "No support for catch-up contribution special cases.",
-                  "Employer vs. employee contribution amounts aren't transparent.",
-                  "Manual recalculations are time-consuming and error-prone.",
-                ]}
-              />
-            </TextColumn>
-          </div>
-
-          <SubHeading>Key research insights</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            The field study and user research naturally grouped into two perspectives — employee and
-            employer/admin — highlighting where both sides experience friction.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-            <div className="text-left">
-              <Label>Employee</Label>
-              <List
-                items={[
-                  "Limited flexibility to adjust contributions mid-year without HR/admin intervention.",
-                  "Unclear breakdown of employer vs. employee contributions.",
-                  "Inaccurate mid-year calculations across tier changes.",
-                  "Lack of guidance on IRS rules and contribution strategies.",
-                  "Motivation to maximize benefits, but no tools to support it.",
-                ]}
-              />
-            </div>
-            <div className="text-left">
-              <Label>Employer / Administrator</Label>
-              <List
-                items={[
-                  "Rigid configuration forces manual creation of multiple populations.",
-                  "Time-consuming workarounds — 40 to 70+ populations to simulate rules.",
-                  "Limited employer contribution frequency options.",
-                  "Motivation to automate and reduce manual effort without custom fixes.",
-                ]}
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* PROBLEMS */}
-        <section id="problems" className="py-16 border-t border-band/30">
-          <SectionHeading eyebrow="Spot the trouble.">Problems</SectionHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            For many employees, managing an HSA can be confusing and limiting — contribution changes are often
-            restricted, account breakdowns are unclear, and mid-year updates frequently miscalculate. Employers, in
-            turn, spend hours dealing with inflexible configurations and manual adjustments that lead to reporting
-            errors. Both sides needed a complete re-evaluation of the HSA experience.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
-            <PersonaColumn
-              role="Employee"
-              painPoints={[
-                "Inaccurate mid-year calculations leading to wrong deductions.",
-                "Limited flexibility after initial enrollment.",
-                "Confusion around employer funding schedules.",
-                "No clear guidance on IRS rules (catch-up, family limits).",
-                "Low confidence in system accuracy.",
-              ]}
-              goals={["Confidently manage contributions year-round.", "Clearly understand employer support and match."]}
-              needs={[
-                "A simple, guided enrollment flow.",
-                "Mid-year flexibility to change contribution amounts.",
-                "A clear breakdown of employer vs. employee contributions.",
-                "Accurate real-time calculations across tier changes.",
-                "Easy access to balances and contribution history.",
-              ]}
-              motivations={[
-                "Build financial confidence with accurate contributions and balances.",
-                "Gain control and flexibility to adjust contributions anytime.",
-                "Ensure transparency between employee and employer contributions.",
-              ]}
-            />
-            <PersonaColumn
-              role="Employer"
-              painPoints={[
-                "Inflexible structure leading to time-consuming workarounds.",
-                "Inaccurate downstream calculations following changes.",
-                "Limited adjustment tools for accurate corrections.",
-                "Error-prone reporting and true-ups.",
-                "Manual steps necessary for contribution management.",
-              ]}
-              goals={["Confidently manage contributions year-round.", "Clearly understand employer support and match."]}
-              needs={[
-                "Flexible configuration options (per paycheck, lump sum, quarterly).",
-                "Accurate calculations for coverage tier and mid-year changes.",
-                "Self-service adjustment tools to reduce admin workload.",
-                "Detailed reporting of employer vs. employee contributions.",
-              ]}
-              motivations={[
-                "Reduce manual work and errors in setup and reporting.",
-                "Stay compliant with IRS rules and contribution limits.",
-                "Enable flexible contribution strategies.",
-              ]}
-            />
-          </div>
-        </section>
-
-        {/* IDEATE */}
-        <section id="ideate" className="py-16 border-t border-band/30">
-          <SectionHeading eyebrow="Ideas take flight.">Ideate</SectionHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            Building on research insights, I defined a value proposition aimed at bridging the gap between employee
-            usability and HR admin efficiency — using a mindmap to capture downstream system impacts, user flows to
-            trace employee and admin journeys, and scenario-based task flows to test real-world conditions like
-            mid-year changes or IRS compliance.
-          </p>
-
-          <SubHeading>Value proposition</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            The solution bridges the gap between employee experience and HR admin efficiency, offering clarity,
-            automation, and flexibility in HSA management.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-            <TextColumn title="For employees">
-              <List
-                items={[
-                  "A simple, intuitive interface that removes confusion and fear of making mistakes.",
-                  "Workflow transparency — clear contribution history, mid-year adjustments, customizable schedules.",
-                  "Actionable insight into employer contributions and IRS compliance.",
-                ]}
-              />
-            </TextColumn>
-            <TextColumn title="For admin">
-              <List
-                items={[
-                  "Flexible funding schedules configurable without workarounds.",
-                  "Self-service adjustment tools that cut manual correction time.",
-                  "Automated, accurate reporting across employer and employee contributions.",
-                ]}
-              />
-            </TextColumn>
-          </div>
-          <PlaceholderImage src={valuePropImg} alt="Value proposition diagram" />
-
-          <SubHeading>Mindmap: exploring downstream impacts</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            To ensure the redesign considered the entire ecosystem, I ran a collaborative mind-mapping session with
-            the Product Manager, Product Owner, and Engineering Manager, identifying every downstream system and
-            dependency that changes to enrollment, contributions, and reporting would touch — payroll, APIs, data
-            exchange, and compliance rules. It aligned stakeholders on the complexity of the ecosystem and gave a
-            clear lens for designing task flows, scenarios, and recalculation logic.
-          </p>
-          <PlaceholderImage src={mindmapImg} alt="Downstream impact mindmap" />
-
-          <SubHeading>Task flow</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            To reveal how people actually navigate HSA contributions, I mapped scenario-based task flows rather than
-            a single linear path — first enrollment, annual Open Enrollment changes, mid-year contribution tweaks,
-            a missed paycheck, and employer contribution updates. Each flow exposed moments of hesitation,
-            uncertainty, or manual effort that weren't obvious from surface-level usability feedback.
-          </p>
-          <Quote>Users weren't struggling to decide — they were struggling to understand the impact of their decisions.</Quote>
-          <PlaceholderImage src={taskflowImg} alt="HSA scenario-based task flow" />
-        </section>
-
-        {/* PROTOTYPE */}
-        <section id="prototype" className="py-16 border-t border-band/30">
-          <SectionHeading eyebrow="A project comes to life.">Prototype</SectionHeading>
-          <SubHeading>Wireframing to final design</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            I started with low-fidelity wireframes to structure the core HSA experience, guided by scenario-based
-            task flows and user research — focusing on the hardest choices: contributions, employer match
-            visibility, IRS caps, and mid-year adjustments for both administrators and employees.
-          </p>
-          <p className="text-[15px] leading-relaxed text-body mt-4">
-            To lower risk and operational overhead, the experience was validated through usability testing and
-            matched against current design standards as it developed into high-fidelity designs. The finished
-            design delivers a scalable, compliant HSA solution that minimizes calculation errors, reduces
-            administrative burden, and boosts employee trust — with measurable efficiency gains and higher client
-            satisfaction.
-          </p>
-          <PlaceholderImage src={prototypeImg} alt="Wireframe-to-final prototype gallery" />
-        </section>
-
-        {/* TESTING */}
-        <section id="testing" className="py-16 border-t border-band/30">
-          <SectionHeading eyebrow="Truth meets the idea.">Testing</SectionHeading>
-          <SubHeading>Usability testing</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            To validate the redesigned HSA employee experience, I ran a usability preference test focused on how
-            employees understand employer contributions and configure their own HSA contributions during Open
-            Enrollment — comparing a progressive step-by-step flow against a single-page layout before committing to
-            a final direction.
-          </p>
-          <div className="mt-4">
-            <Label>Testing objectives</Label>
+          <div className="text-left">
+            <Label>Employers and admins — can't stop fighting the configuration</Label>
             <List
               items={[
-                "Which HSA experience do employees prefer: progressive step-by-step, or all details on one page?",
-                "Can users easily find and understand contribution limits and employer contribution details?",
-                "Do users feel confident and secure while enrolling and configuring HSA contributions?",
-                "Does the interface guide users through setup without hesitation or confusion?",
+                "Building dozens of fake populations per client.",
+                "No flexible funding schedules — quarterly, lump sum, off-cycle.",
+                "Every correction manual and risky.",
+                "Reporting needs hand-repair before it goes upstream.",
               ]}
             />
-            <div className="mt-6">
-              <Label>Findings</Label>
-              <List
-                items={[
-                  <>
-                    <strong className="font-semibold text-heading">64% of users preferred all details on one page</strong>,
-                    citing better visibility and easier comparison of employer and employee contributions.
-                  </>,
-                  <><strong className="font-semibold text-heading">70%</strong> strongly agreed the experience was easy to use.</>,
-                  <><strong className="font-semibold text-heading">70%</strong> strongly agreed they felt confident while enrolling.</>,
-                  <><strong className="font-semibold text-heading">90%</strong> strongly agreed they felt secure during HSA enrollment.</>,
-                ]}
-              />
-            </div>
           </div>
-          <p className="text-[15px] leading-relaxed text-body mt-4">
-            These results showed that information visibility and transparency mattered more than step-by-step pacing
-            when users made HSA decisions.
-          </p>
-          <SubHeading>Summary</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            Employees are more confident when they can see all important HSA information clearly and easily. The
-            findings shaped the final interaction model — clarity, trust, and confident decision-making over
-            unnecessary complexity — lowering hesitation, improving satisfaction, and supporting informed financial
-            choices during Open Enrollment.
-          </p>
-        </section>
+        </div>
 
-        {/* END */}
-        <section id="end" className="pt-16">
-          <SectionHeading eyebrow="Impact begins.">End</SectionHeading>
-          <SubHeading>Final product</SubHeading>
-          <p className="text-[15px] leading-relaxed text-body">
-            The HSA redesign set out to solve ongoing usability problems and calculation errors affecting both
-            employees and administrators. Through research, testing, and iteration, the experience was rebuilt
-            around clarity, compliance, and flexibility — replacing manual workarounds with guided workflows and
-            built-in checks. Making contribution logic clear and consistent rebuilt user trust, and gave the
-            platform a scalable HSA foundation that supports evolving employer strategies and long-term product
-            growth.
-          </p>
-          <FigmaEmbed src={HSA_FIGMA_EMBED_SRC} title="HSA final product — Figma" />
+        <SubHeading>The number was wrong, and nothing in the system said so</SubHeading>
+        <p className="text-[15px] leading-relaxed text-body">
+          The audit found one mechanical failure underneath every complaint we'd logged. Year-to-date contributions
+          were calculated using an employee's <em>most recent</em> coverage tier. There was no concept of a coverage
+          history — so the moment anyone moved from self-only to family, their year-to-date total silently became
+          wrong. Not flagged. Not estimated. Wrong.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          One employee, one plan year, self-only through June and family from July:
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+          <LedgerCard
+            title="As the platform calculated it — incorrect"
+            rows={[["Jan – Dec", "Family (latest tier only)", "Family cap × 12/12"]]}
+          />
+          <LedgerCard
+            title="As the rule actually works — correct"
+            rows={[
+              ["Jan – Jun", "Self-only", "Self-only cap × 6/12"],
+              ["Jul – Dec", "Family", "Family cap × 6/12"],
+            ]}
+          />
+        </div>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          Six months of self-only coverage are treated as family coverage. The employee is told they have more room
+          than the law allows. Every dollar of the gap between these two ledgers is an excess contribution somebody
+          unwinds at tax time.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          The failure chain: an employee changes coverage mid-year → year-to-date recalculates on the new tier only
+          → remaining room is wrong → payroll deducts the wrong amount → manual true-up, ticket, trust gone.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          Once that was on paper, four items the team had been carrying as separate roadmap tickets collapsed into
+          one problem with four faces: no mid-year self-service, no separation of employer and employee money,
+          incorrect contribution math, and admin tools with no reliable way to inspect or correct any of it.
+        </p>
 
-          <div>
-            <SubHeading>Project takeaways</SubHeading>
+        <SubHeading>The category gap</SubHeading>
+        <p className="text-[15px] leading-relaxed text-body">
+          I audited the platforms we lost deals to. None of them enforced federal caps automatically either.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          That reframed the work: not catching up, but closing a gap the whole category had normalised. It also
+          became the argument I used to hold scope when the timeline tightened — this wasn't a defect backlog, it
+          was the one thing nobody had.
+        </p>
+      </section>
+
+      {/* DECISIONS */}
+      <section id="decisions" className="py-16 border-t border-band/30">
+        <SectionHeading eyebrow="Three calls I'd defend.">Decisions</SectionHeading>
+
+        <SubHeading>1. Rebuilding the ledger instead of patching the warning</SubHeading>
+        <p className="text-[15px] leading-relaxed text-body">
+          With the date fixed and the coupling that wide, the real decision wasn't a visual one. It was where the
+          weeks went.
+        </p>
+        <div className="grid grid-cols-1 gap-3 mt-4">
+          <IssueCard title="Rejected — put limit warnings on the existing flow.">
+            Cheapest and fastest. Minimal engineering, visible progress, comfortably inside the date. I argued
+            against it: a warning computed from a year-to-date figure that's already wrong doesn't reduce anybody's
+            risk. It states a wrong number more loudly and makes us accountable for having stated it.
+          </IssueCard>
+          <IssueCard title="Taken — rebuild the ledger to hold a coverage history.">
+            Give the system the concept it was missing, then rebuild configuration and enrollment on a number that's
+            actually correct. The only option where every downstream fix compounds instead of papering over.
+          </IssueCard>
+          <IssueCard title="Deferred — real-time payroll write-back.">
+            The genuinely complete answer, with contributions reconciling live rather than at cycle boundaries. Not
+            reachable inside the date. Written up as a known limitation with a mitigation path, because an
+            undocumented limitation is just the next team's workaround.
+          </IssueCard>
+        </div>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          Choosing the ledger cost me visible progress. For roughly five weeks I had flow diagrams and calculation
+          models to show and nothing that looked like a product — at exactly the point in the cycle when progress
+          gets measured in screens. I paid for it by moving two secondary items, off-cycle funding schedules and a
+          bulk-correction tool, into the following release.
+        </p>
+        <PlaceholderImage
+          src={taskflowImg}
+          alt="The contribution logic model — coverage history, headroom, catch-up, proration"
+        />
+
+        <SubHeading>2. Making the constraint visible instead of arguing for it</SubHeading>
+        <p className="text-[15px] leading-relaxed text-body">
+          Nobody on the team had held the full downstream picture in one view. Before ideating further, I ran a
+          systems mapping session with the PM, PO and engineering manager to trace every system a change to
+          contribution logic would touch — payroll files, custodian exchange, downstream APIs, year-end reporting.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          Once the coupling was visible on one wall, "just add warnings" stopped looking like the cheap option and
+          started looking like the expensive one.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          I didn't win that argument by being persuasive. I won it by making the problem legible to the people who
+          had to build it.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          The same thing happened at smaller scale. My flows for a mid-year tier change surfaced a case nobody had
+          scoped: an employee who changes coverage <em>twice</em> in one plan year. Engineering had modelled history
+          as a single prior state, which handles the common case and quietly fails the rest. Seeing the flow, they
+          re-scoped to a full history. That's the difference between proration being correct and roughly correct.
+        </p>
+        <PlaceholderImage src={mindmapImg} alt="The systems map — every system touched by contribution logic" />
+
+        <SubHeading>3. Shipping the design I'd argued against</SubHeading>
+        <p className="text-[15px] leading-relaxed text-body">
+          For enrollment I tested two directions. I expected the guided flow to win — progressive disclosure is the
+          standard answer to a decision-support problem, and I'd framed this as a decision-support problem.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+          <IssueCard title="Not shipped — step-by-step.">
+            One decision at a time. Lower load per screen, but the full picture only assembles at the end.
+          </IssueCard>
+          <IssueCard title="Shipped — everything on one page.">
+            Contribution, employer match and remaining headroom together, recalculating live.
+          </IssueCard>
+        </div>
+        <StatGrid
+          cols={4}
+          stats={[
+            { value: "64%", label: "Preferred one page" },
+            { value: "70%", label: "Found it easy to use" },
+            { value: "70%", label: "Felt confident enrolling" },
+            { value: "90%", label: "Felt secure enrolling" },
+          ]}
+        />
+        <p className="text-[15px] leading-relaxed text-body mt-6">
+          It lost. People weren't struggling to <em>choose</em> an amount — they were struggling to{" "}
+          <em>believe</em> the amounts in front of them, and pacing made that worse, because anything a system
+          withholds reads as something the system is hiding.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          So the shipped design stopped sequencing and started exposing.
+        </p>
+        <MethodNote>
+          Method: unmoderated preference test, 18 participants, all enrolled in an employer-sponsored HDHP with an
+          active HSA. Confidence and security are attitudinal measures taken immediately post-task — a directional
+          read on trust, not a substitute for the behavioural data below.
+        </MethodNote>
+        <PlaceholderImage
+          src={prototypeImg}
+          alt="The two enrollment directions side by side — stepped vs single-page with live recalculation"
+        />
+
+        <SubHeading>What was mine, and what wasn't</SubHeading>
+        <p className="text-[15px] leading-relaxed text-body">
+          A rebuild this coupled isn't a solo act, and case studies that imply otherwise are the least believable
+          kind.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+          <TextColumn title="Mine">
             <List
               items={[
-                <>
-                  <strong className="font-semibold text-heading">Design clarity reduces risk.</strong> Simplifying
-                  contribution decisions and making system feedback clear significantly lowered user hesitation and
-                  calculation errors.
-                </>,
-                <>
-                  <strong className="font-semibold text-heading">Flexibility must be intentional.</strong> Supporting
-                  real-world scenarios — mid-year changes, skips, employer funding variations — required designing
-                  guardrails, not just options.
-                </>,
-                <>
-                  <strong className="font-semibold text-heading">Admin experience is product experience.</strong>{" "}
-                  Improving configuration workflows directly impacted downstream accuracy, support volume, and
-                  operational efficiency.
-                </>,
-                <>
-                  <strong className="font-semibold text-heading">Collaboration enabled scale.</strong> Working closely
-                  with Product and Engineering ensured design decisions matched technical constraints and business
-                  goals.
-                </>,
+                "Field study and interview programme.",
+                "The contribution logic model — coverage history, headroom, catch-up, proration.",
+                "Admin configuration IA and validation rules.",
+                "The enrollment flow, low to high fidelity.",
+                "Testing.",
+                "Design QA through build.",
               ]}
             />
-          </div>
-        </section>
+          </TextColumn>
+          <TextColumn title="Shared">
+            <List
+              items={[
+                "The ledger-versus-validation decision — my argument, engineering's feasibility, the PM's call.",
+                "Scope and sequencing against the date.",
+                "Compliance interpretation, with our benefits SME.",
+              ]}
+            />
+          </TextColumn>
+          <TextColumn title="Not mine">
+            <List
+              items={[
+                "Implementation and data migration.",
+                "Payroll and custodian integration contracts.",
+                "Release planning.",
+                "Final compliance sign-off.",
+              ]}
+            />
+          </TextColumn>
+        </div>
+      </section>
+
+      {/* IMPACT */}
+      <section id="impact" className="py-16 border-t border-band/30">
+        <SectionHeading eyebrow="What changed.">Impact</SectionHeading>
+        <StatGrid
+          cols={4}
+          stats={[
+            { value: "↓ 45%", label: "Configuration time" },
+            { value: "179 → 97", label: "Open Enrollment tickets" },
+            { value: "38 → 21 MIN", label: "Average time on task" },
+            { value: "72 → 0", label: "Fake populations per client" },
+          ]}
+        />
+        <p className="text-[15px] leading-relaxed text-body mt-6">
+          The shipped work replaced the manual apparatus — the fake populations, the memorised limits, the silent
+          miscalculations — with tier-aware calculation, guided configuration, and validation at the point of entry
+          instead of at first payroll.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          HSA didn't get simpler by losing capability. It got simpler because the system finally did the
+          remembering.
+        </p>
+        <Quote>
+          The metric I actually wanted, I couldn't get. Excess-contribution corrections per plan year is the number
+          that would have proven the compliance case directly, and we couldn't instrument it in time.
+        </Quote>
+        <MethodNote>
+          Measured across Open Enrollment 2024 against Open Enrollment 2025, on comparable group sizes. Ticket
+          volume moves for more than design reasons; I credit the calculation fix and the validation together, not
+          the interface alone.
+        </MethodNote>
+
+        <SubHeading>Final product</SubHeading>
+        <p className="text-[15px] leading-relaxed text-body">
+          The shipped enrollment and configuration experience, live in Figma — explore it directly rather than a
+          static capture.
+        </p>
+        <FigmaEmbed src={HSA_FIGMA_EMBED_SRC} title="HSA final product — Figma" />
+      </section>
+
+      {/* GROWTH */}
+      <section id="growth" className="pt-16">
+        <SectionHeading eyebrow="What I'd carry forward.">Growth</SectionHeading>
+        <List
+          items={[
+            "Watch the work, don't ask about it. The 72 populations were never in a ticket or a survey. They surfaced because I asked someone to configure a real plan while I watched. Nobody reports a workaround they've stopped noticing.",
+            "In regulated products, the logic is the design. The most consequential decision I made was about how contribution history gets calculated. Every screen was downstream of it.",
+            "Being wrong early is the cheap version. I expected the guided flow to win and it lost. A week to learn that in a preference test; a plan year to learn it at Open Enrollment.",
+            "Make the constraint visible, not the argument. The systems map changed the technical direction more than any case I could have made verbally. Shared understanding beats persuasion.",
+          ]}
+        />
+
+        <SubHeading>The one I'd take back</SubHeading>
+        <p className="text-[15px] leading-relaxed text-body">
+          I brought our compliance SME in at week six, once the logic model was already drafted. Two of her
+          corrections — how proration interacts with a mid-year plan termination, and how catch-up eligibility works
+          for somebody turning 55 in July — forced rework I'd have avoided by having her in the first mapping
+          session.
+        </p>
+        <p className="text-[15px] leading-relaxed text-body mt-4">
+          On regulated work I now treat compliance as a research participant, not a reviewer.
+        </p>
+      </section>
     </>
   );
 }
