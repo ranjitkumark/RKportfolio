@@ -112,15 +112,19 @@ function buildSystemBlocks(selectedKeys) {
 }
 
 // Sonnet handles case-study depth and full UX audits (persona.js asks for a real
-// conversational review, not a one-liner) — 600 tokens was too tight for that and could
-// leave nothing but a truncated fragment. Haiku is only ever answering short factual
-// lookups, so it stays tight.
+// conversational review, not a one-liner). Confirmed from production logs: image requests
+// were spending the *entire* token budget on an internal "thinking" block before ever
+// reaching visible text — stop_reason "max_tokens" with output_tokens_details.thinking_tokens
+// equal to the full budget, deterministically, every time. 1200 wasn't reasoning-then-answer
+// room, it was just reasoning room. This needs enough headroom for both. Haiku never sees
+// this — it's only routed short factual lookups — so it stays tight.
 const MAX_TOKENS_BY_MODEL = {
-  [SONNET_MODEL]: 1200,
+  [SONNET_MODEL]: 6000,
   [HAIKU_MODEL]: 400,
 };
+const MAX_TOKENS_RETRY_MULTIPLIER = 1.5; // if the first attempt still hits the ceiling
 
-async function callClaudeOnce(model, system, messages) {
+async function callClaudeOnce(model, system, messages, maxTokens) {
   return fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -128,18 +132,18 @@ async function callClaudeOnce(model, system, messages) {
       "x-api-key": process.env.ANTHROPIC_API_KEY,
       "anthropic-version": "2023-06-01",
     },
-    body: JSON.stringify({ model, max_tokens: MAX_TOKENS_BY_MODEL[model] || 600, system, messages }),
+    body: JSON.stringify({ model, max_tokens: maxTokens, system, messages }),
   });
 }
 
 // One full attempt: the HTTP call, with its own retry on 429/5xx (a short backoff; 4xx
 // other than 429 — bad request, auth — is not retried, since a malformed request just
 // fails the same way twice). Returns the extracted text plus the raw response for logging.
-async function callClaudeAttempt(model, system, messages) {
-  let res = await callClaudeOnce(model, system, messages);
+async function callClaudeAttempt(model, system, messages, maxTokens) {
+  let res = await callClaudeOnce(model, system, messages, maxTokens);
   if (!res.ok && (res.status === 429 || res.status >= 500)) {
     await new Promise((resolve) => setTimeout(resolve, 500));
-    res = await callClaudeOnce(model, system, messages);
+    res = await callClaudeOnce(model, system, messages, maxTokens);
   }
   if (!res.ok) {
     const detail = await res.text();
@@ -154,29 +158,33 @@ async function callClaudeAttempt(model, system, messages) {
   return { text, data };
 }
 
-function logEmptyReply(model, data, note) {
+function logEmptyReply(model, data, maxTokens, note) {
   console.warn(`chat.js empty reply${note}:`, {
     model,
+    maxTokens,
     stop_reason: data.stop_reason,
     block_types: (data.content || []).map((b) => b.type),
     usage: data.usage,
   });
 }
 
-// A 200 response with no usable text (seen in practice on some image requests, on the
-// first call of a fresh conversation) gets a second attempt from scratch, on top of the
-// 429/5xx retry inside callClaudeAttempt — the same fix a visitor manually triggers by
-// just asking again, done automatically instead. Logs both attempts either way, so a
-// repeat failure still shows the real cause in Vercel's function logs.
+// A 200 response with no usable text gets one retry. If it hit the token ceiling (the
+// confirmed failure mode — thinking alone consuming the full budget), the retry raises the
+// ceiling instead of repeating the exact same request, which would just hit the same wall
+// again deterministically. Logs every attempt either way, so a repeat failure still shows
+// the real cause in Vercel's function logs.
 async function callClaude(model, system, messages) {
-  let { text, data } = await callClaudeAttempt(model, system, messages);
-  console.log("chat.js usage:", { model, usage: data.usage, stop_reason: data.stop_reason });
+  const baseMaxTokens = MAX_TOKENS_BY_MODEL[model] || 600;
+  let { text, data } = await callClaudeAttempt(model, system, messages, baseMaxTokens);
+  console.log("chat.js usage:", { model, maxTokens: baseMaxTokens, usage: data.usage, stop_reason: data.stop_reason });
 
   if (!text) {
-    logEmptyReply(model, data, ", retrying");
-    ({ text, data } = await callClaudeAttempt(model, system, messages));
-    console.log("chat.js retry usage:", { model, usage: data.usage, stop_reason: data.stop_reason });
-    if (!text) logEmptyReply(model, data, " after retry");
+    logEmptyReply(model, data, baseMaxTokens, ", retrying");
+    const retryMaxTokens =
+      data.stop_reason === "max_tokens" ? Math.round(baseMaxTokens * MAX_TOKENS_RETRY_MULTIPLIER) : baseMaxTokens;
+    ({ text, data } = await callClaudeAttempt(model, system, messages, retryMaxTokens));
+    console.log("chat.js retry usage:", { model, maxTokens: retryMaxTokens, usage: data.usage, stop_reason: data.stop_reason });
+    if (!text) logEmptyReply(model, data, retryMaxTokens, " after retry");
   }
 
   return text;
