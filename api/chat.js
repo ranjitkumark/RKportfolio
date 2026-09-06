@@ -111,6 +111,15 @@ function buildSystemBlocks(selectedKeys) {
   return blocks;
 }
 
+// Sonnet handles case-study depth and full UX audits (persona.js asks for a real
+// conversational review, not a one-liner) — 600 tokens was too tight for that and could
+// leave nothing but a truncated fragment. Haiku is only ever answering short factual
+// lookups, so it stays tight.
+const MAX_TOKENS_BY_MODEL = {
+  [SONNET_MODEL]: 1200,
+  [HAIKU_MODEL]: 400,
+};
+
 async function callClaudeOnce(model, system, messages) {
   return fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
@@ -119,7 +128,7 @@ async function callClaudeOnce(model, system, messages) {
       "x-api-key": process.env.ANTHROPIC_API_KEY,
       "anthropic-version": "2023-06-01",
     },
-    body: JSON.stringify({ model, max_tokens: 600, system, messages }),
+    body: JSON.stringify({ model, max_tokens: MAX_TOKENS_BY_MODEL[model] || 600, system, messages }),
   });
 }
 
@@ -137,11 +146,24 @@ async function callClaude(model, system, messages) {
   }
 
   const data = await res.json();
-  console.log("chat.js usage:", { model, usage: data.usage });
-  return (data.content || [])
+  console.log("chat.js usage:", { model, usage: data.usage, stop_reason: data.stop_reason });
+  const text = (data.content || [])
     .map((b) => (b.type === "text" ? b.text : ""))
     .join("\n")
     .trim();
+
+  if (!text) {
+    // Empty reply on a 200 response — log everything useful so the real cause shows up in
+    // Vercel's function logs instead of just surfacing the generic fallback to the visitor.
+    console.warn("chat.js empty reply:", {
+      model,
+      stop_reason: data.stop_reason,
+      block_types: (data.content || []).map((b) => b.type),
+      usage: data.usage,
+    });
+  }
+
+  return text;
 }
 
 async function callClaudeRouted(messages) {
