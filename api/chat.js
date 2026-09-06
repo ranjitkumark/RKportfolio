@@ -132,9 +132,10 @@ async function callClaudeOnce(model, system, messages) {
   });
 }
 
-// Retries once on 429/5xx with a short backoff. 4xx other than 429 (bad request, auth,
-// etc.) is not retried — retrying a malformed request just fails the same way twice.
-async function callClaude(model, system, messages) {
+// One full attempt: the HTTP call, with its own retry on 429/5xx (a short backoff; 4xx
+// other than 429 — bad request, auth — is not retried, since a malformed request just
+// fails the same way twice). Returns the extracted text plus the raw response for logging.
+async function callClaudeAttempt(model, system, messages) {
   let res = await callClaudeOnce(model, system, messages);
   if (!res.ok && (res.status === 429 || res.status >= 500)) {
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -146,21 +147,36 @@ async function callClaude(model, system, messages) {
   }
 
   const data = await res.json();
-  console.log("chat.js usage:", { model, usage: data.usage, stop_reason: data.stop_reason });
   const text = (data.content || [])
     .map((b) => (b.type === "text" ? b.text : ""))
     .join("\n")
     .trim();
+  return { text, data };
+}
+
+function logEmptyReply(model, data, note) {
+  console.warn(`chat.js empty reply${note}:`, {
+    model,
+    stop_reason: data.stop_reason,
+    block_types: (data.content || []).map((b) => b.type),
+    usage: data.usage,
+  });
+}
+
+// A 200 response with no usable text (seen in practice on some image requests, on the
+// first call of a fresh conversation) gets a second attempt from scratch, on top of the
+// 429/5xx retry inside callClaudeAttempt — the same fix a visitor manually triggers by
+// just asking again, done automatically instead. Logs both attempts either way, so a
+// repeat failure still shows the real cause in Vercel's function logs.
+async function callClaude(model, system, messages) {
+  let { text, data } = await callClaudeAttempt(model, system, messages);
+  console.log("chat.js usage:", { model, usage: data.usage, stop_reason: data.stop_reason });
 
   if (!text) {
-    // Empty reply on a 200 response — log everything useful so the real cause shows up in
-    // Vercel's function logs instead of just surfacing the generic fallback to the visitor.
-    console.warn("chat.js empty reply:", {
-      model,
-      stop_reason: data.stop_reason,
-      block_types: (data.content || []).map((b) => b.type),
-      usage: data.usage,
-    });
+    logEmptyReply(model, data, ", retrying");
+    ({ text, data } = await callClaudeAttempt(model, system, messages));
+    console.log("chat.js retry usage:", { model, usage: data.usage, stop_reason: data.stop_reason });
+    if (!text) logEmptyReply(model, data, " after retry");
   }
 
   return text;
