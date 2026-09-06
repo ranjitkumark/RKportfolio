@@ -26,7 +26,10 @@ function WorkSection({ onOpenArchive, onOpenCaseStudy }) {
 
       <section className="w-full max-w-[1600px] mx-auto px-4 sm:px-32 py-10 space-y-24">
         {CASE_STUDIES.map((study) => (
-          <CaseStudyCard key={study.id} study={study} onOpenCaseStudy={onOpenCaseStudy} />
+          // TODO: Delivery Hub hidden temporarily — remove this style prop to bring it back.
+          <div key={study.id} style={study.id === "one-path-not-five" ? { display: "none" } : undefined}>
+            <CaseStudyCard study={study} onOpenCaseStudy={onOpenCaseStudy} />
+          </div>
         ))}
       </section>
 

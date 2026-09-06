@@ -257,7 +257,7 @@ export default function ChatOverlay({ onClose }) {
                   key={s.label}
                   type="button"
                   onClick={() => (s.action === "file" ? fileInputRef.current?.click() : send(s.label))}
-                  className="text-[12px] font-medium text-body bg-white dark:bg-card border-[0.75px] border-black/20 dark:border-white/10 rounded-full h-[30px] px-[16px] shadow-[0px_1px_1px_rgba(0,0,0,0.24)] hover:border-black/40 dark:hover:border-white/30 transition-colors"
+                  className="text-[12px] font-medium text-body bg-white dark:bg-card border-[0.75px] border-black/20 dark:border-white/10 rounded-full h-[30px] px-[16px] hover:border-black/40 dark:hover:border-white/30 transition-colors"
                 >
                   {s.label}
                 </button>
