@@ -9,7 +9,7 @@ const MODES = [
 export default function Header({ mode, onModeChange, onAskRanjit, onOpenResume }) {
   return (
     <header className="relative z-30 w-full max-w-[1600px] mx-auto px-4 sm:px-16 py-6 font-poppins">
-      <div className="flex flex-col items-center gap-3 sm:relative sm:flex-row sm:justify-center">
+      <div className="relative flex items-center justify-center gap-3">
         <div className="flex items-center gap-3 bg-white dark:bg-card border border-navy p-[4px] rounded-[40px]">
           {MODES.map(({ id, label, icon: Icon }) => (
             <button
@@ -27,7 +27,7 @@ export default function Header({ mode, onModeChange, onAskRanjit, onOpenResume }
           ))}
         </div>
 
-        <div className="flex items-center gap-3 sm:absolute sm:right-0">
+        <div className="flex items-center gap-3 absolute right-0">
           <button
             type="button"
             onClick={onOpenResume}
@@ -39,7 +39,15 @@ export default function Header({ mode, onModeChange, onAskRanjit, onOpenResume }
           <button
             type="button"
             onClick={onAskRanjit}
-            className="flex items-center gap-2 h-9 text-[12px] font-medium text-accent bg-card border border-accent rounded-[24px] px-4 hover:opacity-80 transition-opacity"
+            aria-label="Ask Ranjit"
+            className="flex sm:hidden items-center justify-center w-9 h-9 text-accent bg-card border border-accent rounded-full hover:opacity-80 transition-opacity"
+          >
+            <MessageSquare size={16} />
+          </button>
+          <button
+            type="button"
+            onClick={onAskRanjit}
+            className="hidden sm:flex items-center gap-2 h-9 text-[12px] font-medium text-accent bg-card border border-accent rounded-[24px] px-4 hover:opacity-80 transition-opacity"
           >
             <MessageSquare size={16} />
             ASK RANJIT
