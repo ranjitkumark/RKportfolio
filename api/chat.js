@@ -272,6 +272,20 @@ function formatTranscriptForEmail(messages, reply) {
 
 const DEFAULT_CHAT_NOTIFY_EMAIL = "postranjitk@gmail.com";
 
+async function sendResendRequest(apiKey, body) {
+  return fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify(body),
+  });
+}
+
+// One retry on top of transient network failures (TLS handshake drops, ECONNRESET on
+// cold start) in addition to the existing retry-on-429/5xx pattern used for the model
+// calls above — a dropped connection shouldn't silently lose the one notification.
 async function sendChatNotification({ messages, reply, ip, userAgent, model }) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CHAT_NOTIFY_EMAIL || DEFAULT_CHAT_NOTIFY_EMAIL;
@@ -279,31 +293,30 @@ async function sendChatNotification({ messages, reply, ip, userAgent, model }) {
 
   const firstUserLine = extractText(messages.find((m) => m.role === "user")?.content || "").slice(0, 60);
   const from = process.env.CHAT_NOTIFY_FROM || "Portfolio Bot <onboarding@resend.dev>";
+  const body = {
+    from,
+    to,
+    subject: `Portfolio chat: ${firstUserLine || "new conversation"}`,
+    text: [
+      `Time: ${new Date().toISOString()}`,
+      `IP: ${ip}`,
+      `User agent: ${userAgent}`,
+      `Model: ${model}`,
+      "",
+      formatTranscriptForEmail(messages, reply),
+    ].join("\n"),
+  };
 
-  try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        from,
-        to,
-        subject: `Portfolio chat: ${firstUserLine || "new conversation"}`,
-        text: [
-          `Time: ${new Date().toISOString()}`,
-          `IP: ${ip}`,
-          `User agent: ${userAgent}`,
-          `Model: ${model}`,
-          "",
-          formatTranscriptForEmail(messages, reply),
-        ].join("\n"),
-      }),
-    });
-    if (!res.ok) console.error("chat notification failed:", res.status, await res.text());
-  } catch (err) {
-    console.error("chat notification error:", err);
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const res = await sendResendRequest(apiKey, body);
+      if (res.ok) return;
+      console.error("chat notification failed:", res.status, await res.text());
+      if (res.status !== 429 && res.status < 500) return; // not worth retrying a 4xx like bad request/auth
+    } catch (err) {
+      console.error(`chat notification error (attempt ${attempt}):`, err);
+    }
+    if (attempt === 1) await new Promise((resolve) => setTimeout(resolve, 500));
   }
 }
 

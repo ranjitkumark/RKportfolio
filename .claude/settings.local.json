@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"/root/.claude/uploads/533d5b50-6f1c-585d-94ee-97a9d57df91c/06226435-Ranjit-Kumar-Resume_1.pdf\" /home/user/RKportfolio/public/ranjit-resume.pdf && ls -la /home/user/RKportfolio/public/ranjit-resume.pdf)"
+    ]
+  }
+}
