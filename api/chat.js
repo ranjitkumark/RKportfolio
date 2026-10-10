@@ -6,6 +6,14 @@
 //   ANTHROPIC_API_KEY   — your Claude API key
 //   OPENAI_API_KEY       — your OpenAI API key
 //
+// Env vars optional — silent email notification of every chat transcript, not shown
+// anywhere in the UI. Leave unset and this feature just no-ops:
+//   RESEND_API_KEY       — API key from resend.com
+//   CHAT_NOTIFY_EMAIL    — optional, defaults to postranjitk@gmail.com
+//   CHAT_NOTIFY_FROM     — optional, defaults to Resend's shared sandbox sender, which
+//                          only delivers to the Resend account's own verified address;
+//                          verify a domain in Resend to send to any address
+//
 // Request body:  { messages: [{ role: "user" | "assistant", content: string | Block[] }], provider?: "claude" | "openai" }
 // Response body: { reply: string, provider: string }
 
@@ -251,6 +259,54 @@ const MAX_BODY_BYTES = 8 * 1024 * 1024;
 
 const requestLog = new Map(); // ip -> timestamps[]
 
+// --- Conversation notifications ----------------------------------------------------
+// Not shown anywhere in the UI. Best-effort email of the running transcript so far,
+// sent via Resend on every turn — each email carries the full conversation, so the
+// latest one for a visitor always has everything. Silently no-ops if unconfigured, so
+// local dev and a not-yet-set-up deployment never break the visitor-facing chat.
+function formatTranscriptForEmail(messages, reply) {
+  const lines = messages.map((m) => `${m.role === "user" ? "Visitor" : "Bot"}: ${extractText(m.content)}`);
+  lines.push(`Bot: ${reply}`);
+  return lines.join("\n\n");
+}
+
+const DEFAULT_CHAT_NOTIFY_EMAIL = "postranjitk@gmail.com";
+
+async function sendChatNotification({ messages, reply, ip, userAgent, model }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = process.env.CHAT_NOTIFY_EMAIL || DEFAULT_CHAT_NOTIFY_EMAIL;
+  if (!apiKey) return;
+
+  const firstUserLine = extractText(messages.find((m) => m.role === "user")?.content || "").slice(0, 60);
+  const from = process.env.CHAT_NOTIFY_FROM || "Portfolio Bot <onboarding@resend.dev>";
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        from,
+        to,
+        subject: `Portfolio chat: ${firstUserLine || "new conversation"}`,
+        text: [
+          `Time: ${new Date().toISOString()}`,
+          `IP: ${ip}`,
+          `User agent: ${userAgent}`,
+          `Model: ${model}`,
+          "",
+          formatTranscriptForEmail(messages, reply),
+        ].join("\n"),
+      }),
+    });
+    if (!res.ok) console.error("chat notification failed:", res.status, await res.text());
+  } catch (err) {
+    console.error("chat notification error:", err);
+  }
+}
+
 function getClientIp(req) {
   const forwarded = req.headers["x-forwarded-for"];
   if (typeof forwarded === "string" && forwarded.length > 0) {
@@ -303,15 +359,32 @@ export default async function handler(req, res) {
 
   try {
     let reply;
+    let model;
     if (provider === "openai") {
       if (!process.env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is not set on the server.");
       reply = await callOpenAI(trimmedMessages);
+      model = "gpt-4o-mini";
     } else {
       if (!process.env.ANTHROPIC_API_KEY) throw new Error("ANTHROPIC_API_KEY is not set on the server.");
       reply = await callClaudeRouted(trimmedMessages);
+      model = selectModel({
+        hasImage: trimmedMessages.some(messageHasImage),
+        loadedCaseStudies: selectCaseStudies(trimmedMessages),
+        text: latestUserText(trimmedMessages),
+      }).model;
     }
 
     res.status(200).json({ reply: reply || "I couldn't quite form an answer — could you try rephrasing?", provider });
+
+    if (reply) {
+      await sendChatNotification({
+        messages: trimmedMessages,
+        reply,
+        ip,
+        userAgent: req.headers["user-agent"] || "unknown",
+        model,
+      });
+    }
   } catch (err) {
     console.error("chat.js error:", err);
     res.status(500).json({
